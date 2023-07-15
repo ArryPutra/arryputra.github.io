@@ -1,0 +1,573 @@
+<!-- npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch -->
+<!DOCTYPE html>
+<html lang="en" x-data x-bind:class="localStorage.getItem('isDarkMode') == 'true' ? 'dark' : ''" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ArryPutra</title>
+  <!-- CONNECT TAILWINDCSS -->
+  <link href="dist/output.css" rel="stylesheet">
+  <!-- CONNECT ALPINEJS -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <!-- CONNECT SCROLL REVEAL (ANIMATE ON SCROLL) -->
+  <script src="https://unpkg.com/scrollreveal"></script>
+  <!-- CONNECT GOOGLE FONT -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- IMPORT POPPINS GOOGLE FONT -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+<script>
+  document.addEventListener('alpine:init', () => {
+  
+  Alpine.store('darkMode', {
+    isDarkMode: localStorage.getItem('isDarkMode') === 'true' ? true : false,
+    toggle() {
+      this.isDarkMode = !this.isDarkMode;
+      this.isDarkMode ? document.documentElement.classList.add('dark') : document.documentElement.classList.remove('dark')
+      localStorage.setItem('isDarkMode', this.isDarkMode);
+    },
+  });
+
+  Alpine.store('language', {
+    isEnLanguage: localStorage.getItem('isEnLanguage') === 'true' ? true : false,
+    toggle() {
+      this.isEnLanguage = !this.isEnLanguage;
+      localStorage.setItem('isEnLanguage', this.isEnLanguage);
+    },
+  });
+});
+</script>
+<style>
+  #homeMainTitle h1:nth-child(1) {
+    animation: homeMainTitleAnimation 2.5s alternate infinite ease-in-out;
+    margin-top: -34px;
+  }
+  @keyframes homeMainTitleAnimation {
+    0% {
+      margin-top: 0px;
+    }
+    20% {
+      margin-top: 0px;
+    }
+    40% {
+      margin-top: 0px;
+    }
+    60% {
+      margin-top: -34px;
+    }
+    80% {
+      margin-top: -34px;
+    }
+    100% {
+      margin-top: -34px;
+    }
+  }
+</style>
+<body 
+x-data 
+class="font-semibold font-poppins m-auto w-full bg-white dark:bg-slate-950 dark:text-white">
+<!-- HEADER -->
+<header class="backdrop-filter backdrop-blur-xl z-30 h-20 px-8 flex items-center justify-between fixed w-full left-1/2 -translate-x-1/2">
+  <div class="flex m-auto w-full max-w-2xl justify-between">
+    <!-- LOGO -->
+    <h1
+    class="font-bold text-2xl">Arry<span class="text-primary">Putra</span></h1>
+    <!-- END LOGO -->
+    <article class="flex items-center gap-4">
+      <!-- DARK MODE -->
+      <button 
+      x-on:click="$store.darkMode.toggle()"
+      class="flex bg-gray-50 p-2 rounded-full relative gap-10 dark:bg-slate-900">
+        <div
+        x-bind:class="$store.darkMode.isDarkMode ? 'left-16' : 'left-0'"
+        class="duration-200 absolute scale w-7 h-7 rounded-full top-1/2 -translate-y-1/2 left-1 bg-white dark:bg-slate-800"></div>
+        <svg class="w-5 h-5 z-10" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+        </svg>      
+        <svg class="w-5 h-5 z-10" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+        </svg>      
+      </button>
+      <!-- END DARK MODE -->
+      <!-- SWITCH LANGUANGE -->
+      <button
+      x-on:click="$store.language.toggle()"
+      class="relative text-center overflow-hidden bg-gradient-to-tr w-14 h-9 from-secondary to-tertiary text-white p-1.5 px-4 rounded-xl">
+        <h1
+        x-bind:class="$store.language.isEnLanguage ? 'ml-0' : '-ml-10'"
+        class="duration-300 absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2">EN</h1>
+        <h1
+        x-bind:class="$store.language.isEnLanguage ? 'ml-10' : 'ml-0'"
+        class="duration-300 absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2">ID</h1>
+      </button>          
+      <!-- END SWITCH LANGUANGE -->
+    </article>
+  </div>
+</header>
+<!-- END HEADER -->
+<!-- NAVIGATION -->
+<div id="navigationMainIcon" class="backdrop-filter backdrop-blur-md fixed shadow h-12 gap-2 px-3 items-center flex rounded-full bottom-0 mb-[10vh] right-1/2 translate-x-1/2 z-10">
+  <a href="#home" class="text-white rounded-full">
+    <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+    </svg>
+  </a>
+  <a href="#about" class="p-2 rounded-full">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+    </svg>   
+  </a>
+  <a href="#skills" class="p-2 rounded-full">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />
+    </svg>         
+  </a>
+  <a href="#certificate" class="p-2 rounded-full">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M11.35 3.836c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m8.9-4.414c.376.023.75.05 1.124.08 1.131.094 1.976 1.057 1.976 2.192V16.5A2.25 2.25 0 0118 18.75h-2.25m-7.5-10.5H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V18.75m-7.5-10.5h6.375c.621 0 1.125.504 1.125 1.125v9.375m-8.25-3l1.5 1.5 3-3.75" />
+    </svg>       
+  </a>
+  <a href="#project" class="p-2 rounded-full">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5M9 11.25v1.5M12 9v3.75m3-6v6" />
+    </svg>     
+  </a>
+  <a href="#contact" class="p-2 rounded-full">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 01.865-.501 48.172 48.172 0 003.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" />
+    </svg>     
+  </a>
+</div>
+<!-- END NAVIGATION -->
+<!-- MAIN HOME -->
+<section id="home" class="font-bold px-8 h-screen flex flex-col items-center justify-center gap-4 md:flex-row-reverse md:justify-between max-w-2xl m-auto">
+  <div class="h-20 md:hidden"></div>
+  <!-- TOP -->
+  <section class="relative scale-75 md:scale-90">
+    <span id="homeAvatarBg">
+      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" id="blobSvg" filter="blur(0px)" style="opacity: 1; scale: 1.2;" transform="rotate(0)"><path id="blob" fill="url(#gradient)" style="opacity: 1;"><animate attributeName="d" dur="10000ms" repeatCount="indefinite" values="M440.5,320.5Q418,391,355.5,442.5Q293,494,226,450.5Q159,407,99,367Q39,327,31.5,247.5Q24,168,89,125.5Q154,83,219.5,68Q285,53,335.5,94.5Q386,136,424.5,193Q463,250,440.5,320.5Z;M453.78747,319.98894Q416.97789,389.97789,353.96683,436.87838Q290.95577,483.77887,223.95577,447.43366Q156.95577,411.08845,105.64373,365.97789Q54.33169,320.86732,62.67444,252.61056Q71.01719,184.3538,113.01965,135.21007Q155.02211,86.06634,220.52211,66.46683Q286.02211,46.86732,335.5,91.94472Q384.97789,137.02211,437.78747,193.51106Q490.59704,250,453.78747,319.98894Z;M411.39826,313.90633Q402.59677,377.81265,342.92059,407.63957Q283.24442,437.46649,215.13648,432.5428Q147.02853,427.61911,82.23325,380.9572Q17.43796,334.29529,20.45223,250.83809Q23.46649,167.38089,82.5856,115.05707Q141.70471,62.73325,212.19045,63.73015Q282.67618,64.72705,352.67308,84.79839Q422.66998,104.86972,421.43486,177.43486Q420.19974,250,411.39826,313.90633Z;M440.5,320.5Q418,391,355.5,442.5Q293,494,226,450.5Q159,407,99,367Q39,327,31.5,247.5Q24,168,89,125.5Q154,83,219.5,68Q285,53,335.5,94.5Q386,136,424.5,193Q463,250,440.5,320.5Z;"></animate></path><defs><linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color: rgb(87, 0, 255);"></stop><stop offset="100%" style="stop-color: rgb(158, 0, 255);"></stop></linearGradient></defs>
+      </svg>
+    </span>
+    <span id="homeAvatar">
+      <img class="scale-90 absolute top-1/2 -translate-y-1/2" src="dist/image/Saly-15.png" alt="">
+    </span>
+  </section>
+  <!-- END TOP -->
+  <!-- BOTTOM -->
+  <section class="flex flex-col items-center md:items-start">
+    <!-- NAME -->
+    <h1 id="homeName" class="text-primary text-3xl flex items-center mb-2">
+      ArryPutra
+      <!-- <div class="h-1 w-20 bg-primary ml-3"></div> -->
+    </h1>
+    <!-- END NAME -->
+    <!-- TITLE -->
+    <div id="homeMainTitle" class="overflow-hidden h-8 text-center">
+      <h1 id="homeTitle" class="text-2xl">Web Developer</h1>
+      <h1 id="homeTitle" class="text-2xl">App Developer</h1>
+    </div>
+    <!-- END TITLE -->
+    <!-- DOWNLOAD CV (BUTTON) -->
+    <button id="homeDownloadCv" class="mt-3 text-xs font-medium flex items-center gap-3 bg-gradient-to-tl from-primary to-purple-600 text-white py-2 px-4 rounded-full">
+      <span x-text="$store.language.isEnLanguage ? 'Download CV' : 'Unduh CV'"></span>
+      <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+      </svg>        
+    </button>
+    <!-- END DOWNLOAD CV (BUTTON) -->
+    <!-- SOCIAL MEDIA -->
+    <div id="homeMainSocialMedia" class="flex gap-6 mt-5 items-center">
+      <a href="https://www.tiktok.com/@codewitharry" target="_blank">
+        <svg class="hover:-mt-2 duration-150" width="30" height="30" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M11.9715 0.739595C13.1481 0.721626 14.3161 0.73097 15.4833 0.721626C15.5221 2.18141 16.1144 3.49528 17.0566 4.46847L17.0552 4.46703C18.0694 5.38056 19.389 5.97281 20.8437 6.07344L20.8639 6.07488V9.6945C19.4896 9.66 18.1973 9.34303 17.0322 8.79822L17.0911 8.82266C16.5276 8.55169 16.0511 8.27353 15.5983 7.96303L15.6357 7.98747C15.6271 10.6102 15.6443 13.2329 15.6177 15.8463C15.5437 17.1781 15.1009 18.3928 14.3908 19.407L14.4052 19.3847C13.2178 21.0853 11.2944 22.2015 9.10727 22.2676H9.09721C9.0088 22.2719 8.90458 22.2741 8.79965 22.2741C7.55621 22.2741 6.39399 21.9276 5.40355 21.326L5.4323 21.3426C3.62968 20.258 2.38624 18.4022 2.15624 16.2438L2.15336 16.2143C2.1354 15.7651 2.12677 15.3158 2.14474 14.876C2.49693 11.4411 5.3748 8.78385 8.87296 8.78385C9.26612 8.78385 9.65137 8.81763 10.0258 8.8816L9.98558 8.87585C10.0036 10.2048 9.94965 11.5345 9.94965 12.8635C9.64562 12.7535 9.29487 12.6895 8.92902 12.6895C7.5864 12.6895 6.4443 13.5477 6.02168 14.7459L6.01521 14.7674C5.91962 15.0743 5.86427 15.4273 5.86427 15.7924C5.86427 15.9404 5.87362 16.0871 5.89086 16.2308L5.88943 16.2136C6.12805 17.6841 7.38874 18.7939 8.9089 18.7939C8.95274 18.7939 8.99587 18.7932 9.03899 18.791H9.03252C10.0841 18.7594 10.9969 18.1937 11.5129 17.3578L11.5201 17.3449C11.712 17.0775 11.8436 16.7541 11.8874 16.4026L11.8881 16.3925C11.978 14.7847 11.942 13.1862 11.9506 11.5783C11.9593 7.95872 11.942 4.34772 11.9686 0.737439L11.9715 0.739595Z" fill="currentcolor"/>
+        </svg>
+      </a>          
+      <a href="https://www.instagram.com/rryputra" target="_blank">
+        <svg class="hover:-mt-2 duration-150" width="30" height="30" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g clip-path="url(#clip0_3_28)">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M6.7501 0.141139C4.87804 0.225606 3.25543 0.683303 1.94522 1.98799C0.630424 3.29953 0.178413 4.92856 0.0937346 6.78115C0.0410968 7.93746 -0.266701 16.673 0.625848 18.964C1.22775 20.5095 2.41321 21.6978 3.97288 22.3017C4.70065 22.5847 5.53143 22.7764 6.7501 22.8323C16.94 23.2934 20.7173 23.0424 22.3102 18.964C22.5928 18.238 22.7874 17.4079 22.8412 16.1923C23.3069 5.97621 22.7656 3.76182 20.9897 1.98799C19.5811 0.58285 17.9241 -0.373659 6.7501 0.141139ZM6.84391 20.7777C5.72823 20.7275 5.1229 20.5416 4.71897 20.3852C3.70283 19.9902 2.93959 19.2301 2.5471 18.2199C1.86739 16.4792 2.09283 8.2116 2.15347 6.8738C2.21298 5.5634 2.47845 4.36579 3.40304 3.44121C4.54733 2.29974 6.02574 1.74032 16.0921 2.19463C17.4057 2.25398 18.6061 2.51891 19.533 3.44121C20.6773 4.58267 21.2449 6.07246 20.7826 16.1002C20.7322 17.2131 20.5457 17.817 20.3889 18.2199C19.3534 20.8738 16.9709 21.2423 6.84391 20.7777ZM16.2031 5.39307C16.2031 6.14872 16.8176 6.76318 17.5763 6.76318C18.3349 6.76318 18.9506 6.14872 18.9506 5.39307C18.9506 4.63743 18.3349 4.02351 17.5763 4.02351C16.8176 4.02351 16.2031 4.63743 16.2031 5.39307ZM5.59207 11.4862C5.59207 14.7233 8.22281 17.3479 11.468 17.3479C14.7132 17.3479 17.344 14.7233 17.344 11.4862C17.344 8.24898 14.7132 5.6261 11.468 5.6261C8.22281 5.6261 5.59207 8.24898 5.59207 11.4862ZM7.65409 11.4862C7.65409 9.38588 9.36138 7.68184 11.468 7.68184C13.5747 7.68184 15.282 9.38588 15.282 11.4862C15.282 13.5876 13.5747 15.2922 11.468 15.2922C9.36138 15.2922 7.65409 13.5876 7.65409 11.4862Z" fill="currentcolor"/>
+          </g>
+          <defs>
+          <clipPath id="clip0_3_28">
+          <rect width="30" height="30" fill="white"/>
+          </clipPath>
+          </defs>
+        </svg>
+      </a>          
+      <a href="https://api.whatsapp.com/send/?phone=6281350445065&text&type=phone_number&app_absent=0" target="_blank">
+        <svg class="hover:-mt-2 duration-150" width="30" height="30" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M3.3542 10.5C3.3542 6.00118 7.00121 2.35417 11.5 2.35417C15.9988 2.35417 19.6458 6.00118 19.6458 10.5C19.6458 14.9988 15.9988 18.6458 11.5 18.6458C9.89749 18.6458 8.40581 18.1841 7.14724 17.3867C6.91302 17.2383 6.626 17.1987 6.36032 17.2779L3.60113 18.1014L4.64 15.6705C4.76279 15.3832 4.73781 15.0541 4.57305 14.7886C3.80047 13.5437 3.3542 12.0754 3.3542 10.5ZM11.5 0.4375C5.94267 0.4375 1.43753 4.94263 1.43753 10.5C1.43753 12.2615 1.89096 13.9196 2.6878 15.3613L1.03546 19.2275C0.889391 19.5694 0.954138 19.9648 1.20159 20.2421C1.44904 20.5196 1.83457 20.6288 2.19075 20.5224L6.5027 19.2357C7.97569 20.08 9.68272 20.5625 11.5 20.5625C17.0574 20.5625 21.5625 16.0574 21.5625 10.5C21.5625 4.94263 17.0574 0.4375 11.5 0.4375ZM13.697 12.5915L12.4375 13.4786C11.8477 13.1426 11.1955 12.6736 10.5414 12.0194C9.86136 11.3394 9.3572 10.6373 8.98546 9.99333L9.78584 9.31397C10.1293 9.02244 10.2233 8.53094 10.0117 8.13318L8.9919 6.21652C8.85457 5.95843 8.60696 5.77714 8.31945 5.72418C8.03193 5.67124 7.73598 5.75242 7.51571 5.94465L7.21335 6.20854C6.48623 6.84313 6.0562 7.88595 6.41261 8.94184C6.78212 10.0365 7.57068 11.7592 9.18614 13.3747C10.9241 15.1127 12.6896 15.7972 13.722 16.063C14.5538 16.2771 15.341 15.9901 15.8957 15.5381L16.4626 15.0762C16.705 14.8787 16.8358 14.5752 16.813 14.2633C16.7901 13.9513 16.6165 13.6702 16.3477 13.51L14.7394 12.5517C14.4145 12.3582 14.0062 12.3737 13.697 12.5915Z" fill="currentcolor"/>
+        </svg>            
+      </a>          
+    </div>
+    <!-- END SOCIAL MEDIA -->
+  </section>
+  <!-- END BOTTOM -->
+</section>
+<!-- END MAIN HOME -->
+
+<!-- MAIN ABOUT -->
+<section id="about" class="relative">
+
+  <svg class="-z-20 w-full text-center text-gray-50 dark:text-slate-900" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+    <path fill="currentcolor" fill-opacity="1" d="M0,288L48,272C96,256,192,224,288,197.3C384,171,480,149,576,165.3C672,181,768,235,864,250.7C960,267,1056,245,1152,250.7C1248,256,1344,288,1392,304L1440,320L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+  </svg>
+  <article class="bg-gray-50 dark:bg-slate-900">
+    <div class="max-w-2xl m-auto px-8">
+      <div class="flex items-center flex-col gap-2">
+        <h1 id="titleSection" 
+        x-text="$store.language.isEnLanguage ? 'About Me' : 'Tentang Saya'"
+        class="text-2xl font-bold"></h1>
+        <div id="lineSection" class="w-20 h-1 bg-primary"></div>
+      </div>
+      <h1 id="aboutMyDesc"
+      x-data="{
+        test: '<span>Hello<span class=font-bold>\'World</span></span>',
+        en: 'I am<span class=font-bold> Arry Kusuma Putra</span>, a web and application developer<span class=font-bold> with 1 year experience in coding. I\'ve made coding a hobby</span> and am currently working on developing my skills in web development and apps.',
+        id: 'Saya adalah <span class=font-bold>Arry Kusuma Putra</span>, seorang pengembang web dan aplikasi <span class=font-bold> dengan pengalaman 1 tahun dalam coding. Saya telah menjadikan coding sebagai hobi</span> dan saat ini sedang mengembangkan keterampilan saya dalam pengembangan web dan aplikasi.'
+      }"
+      x-html="$store.language.isEnLanguage ? en : id"
+      class="font-medium text-center mt-8">
+        I am <span class="font-bold">Arry Kusuma Putra</span>, a web and application developer 
+        <span class="font-bold">with 1 year experience in coding. I've made coding a hobby</span> and am currently working on developing my skills in web development and apps.
+      </h1>
+      <div class="flex flex-col md:flex-row gap-10 justify-around mt-12 font-medium text-sm">
+        <div id="aboutIconAndTitle" class="flex flex-col items-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5" />
+          </svg>
+          <h1 
+          x-text="$store.language.isEnLanguage ? 'Polythecnic Banjarmasin' : 'Politeknik Banjarmasin'"
+          ></h1>
+        </div>
+        <div id="aboutIconAndTitle" class="flex flex-col items-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+          </svg> 
+          <h1>Indonesia, Banjarbaru</h1>
+        </div>       
+      </div>    
+    </div>
+  </article>
+  <svg class="rotate-180 relative -z-20 w-full text-center text-gray-50 dark:text-slate-900" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+    <path fill="currentcolor" fill-opacity="1" d="M0,288L48,272C96,256,192,224,288,197.3C384,171,480,149,576,165.3C672,181,768,235,864,250.7C960,267,1056,245,1152,250.7C1248,256,1344,288,1392,304L1440,320L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+  </svg>
+</section>
+<!-- END MAIN ABOUT -->
+<!-- MAIN SKILLS -->
+<section class="px-8 max-w-2xl m-auto">
+  <div id="skills" class="absolute -mt-20"></div>
+  <div class="flex items-center flex-col gap-2">
+    <h1 id="titleSection"
+    x-text="$store.language.isEnLanguage ? 'Skills' : 'Keterampilan'"
+    class="text-2xl font-bold"></h1>
+    <div id="lineSection" class="w-20 h-1 bg-primary"></div>
+  </div>
+  <div id="skillsMainIcon" class="flex justify-center mt-16 gap-12 flex-wrap">
+    <!-- TAILWINDCSS -->
+    <span>
+      <div class="flex flex-col items-center gap-4">
+        <div class="hover:bg-gray-50 dark:hover:bg-slate-900 hover:scale-95 duration-100 border-2 border-slate-100 dark:border-slate-900 w-[4.8rem] h-[4.4rem] rounded-lg flex items-center justify-center">
+          <svg width="51" height="30" viewBox="0 0 51 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M25.0061 0C18.3378 0 14.1701 3.3331 12.503 9.99931C15.0036 6.6662 17.921 5.41694 21.2552 6.24944C23.1577 6.72455 24.5174 8.1051 26.023 9.63255C28.4736 12.1196 31.3107 14.9995 37.5091 14.9995C44.1774 14.9995 48.3451 11.6664 50.0121 4.99913C47.5115 8.33223 44.5942 9.58254 41.26 8.75004C39.3585 8.27493 37.9988 6.89438 36.4932 5.36693C34.0416 2.87882 31.2034 0 25.0061 0ZM12.503 14.9995C5.83475 14.9995 1.66707 18.3326 0 24.9998C2.50061 21.6667 5.41798 20.4164 8.75212 21.25C10.6536 21.7261 12.0133 23.1056 13.5189 24.632C15.9705 27.1201 18.8087 30 25.0061 30C31.6744 30 35.842 26.6669 37.5091 19.9997C35.0085 23.3328 32.0911 24.5831 28.757 23.7495C26.8544 23.2744 25.4947 21.8939 23.9892 20.3675C21.5386 17.8793 18.7014 14.9995 12.503 14.9995Z" fill="#00ACC1"/>
+          </svg>     
+        </div>
+        <h1>TailwindCSS</h1>
+      </div>
+    </span>
+    <!-- LARAVEL -->
+    <span>
+      <div class="flex flex-col items-center gap-4">
+        <div class="hover:bg-gray-50 dark:hover:bg-slate-900 hover:scale-95 duration-100 border-2 border-slate-100 dark:border-slate-900 w-[4.8rem] h-[4.4rem] rounded-lg flex items-center justify-center">
+          <svg width="41" height="42" viewBox="0 0 41 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M40.7754 9.5015C40.7905 9.55749 40.7984 9.61523 40.7984 9.67323V18.6884C40.7984 18.9239 40.6724 19.1415 40.4681 19.2586L32.9015 23.6151V32.2498C32.9015 32.4848 32.7766 32.7017 32.5728 32.82L16.7782 41.9125C16.742 41.933 16.7026 41.9462 16.6631 41.9601C16.6484 41.9651 16.6344 41.9741 16.6188 41.9782C16.5084 42.0073 16.3923 42.0073 16.2819 41.9782C16.2638 41.9733 16.2474 41.9634 16.2301 41.9568C16.194 41.9437 16.1562 41.9322 16.1217 41.9125L0.330305 32.82C0.12612 32.7027 0 32.4853 0 32.2498V5.20425C0 5.14509 0.00821654 5.08758 0.0230063 5.0317C0.0279362 5.01281 0.0394394 4.99555 0.0460126 4.97665C0.0583374 4.94214 0.0698406 4.90681 0.087917 4.87477C0.100242 4.8534 0.118318 4.83615 0.133108 4.81643C0.152006 4.79014 0.169261 4.76302 0.191445 4.74002C0.210343 4.72112 0.234993 4.70715 0.256356 4.69072C0.280184 4.671 0.301547 4.64963 0.328662 4.63402H0.329483L8.22558 0.0878112C8.42904 -0.0292704 8.67943 -0.0292704 8.8829 0.0878112L16.779 4.63402H16.7806C16.8069 4.65046 16.8291 4.671 16.8529 4.6899C16.8743 4.70633 16.8981 4.72112 16.917 4.73919C16.94 4.76302 16.9565 4.79014 16.9762 4.81643C16.9902 4.83615 17.0091 4.8534 17.0206 4.87477C17.0395 4.90763 17.0501 4.94214 17.0633 4.97665C17.0699 4.99555 17.0814 5.01281 17.0863 5.03252C17.1014 5.08852 17.1092 5.14625 17.1093 5.20425V22.0966L23.6891 18.308V9.6724C23.6891 9.61489 23.6973 9.55655 23.7121 9.5015C23.7179 9.48178 23.7285 9.46453 23.7351 9.44563C23.7483 9.41112 23.7598 9.37579 23.7778 9.34374C23.7902 9.32238 23.8082 9.30513 23.8222 9.28541C23.8419 9.25911 23.8584 9.232 23.8814 9.20899C23.9003 9.19009 23.9241 9.17613 23.9455 9.15969C23.9701 9.13997 23.9915 9.11861 24.0178 9.103H24.0186L31.9155 4.55679C32.1189 4.43954 32.3694 4.43954 32.5728 4.55679L40.4689 9.103C40.4969 9.11943 40.5182 9.13997 40.5429 9.15887C40.5634 9.1753 40.5872 9.19009 40.6061 9.20817C40.6291 9.232 40.6456 9.25911 40.6653 9.28541C40.6801 9.30513 40.6982 9.32238 40.7097 9.34374C40.7286 9.37579 40.7392 9.41112 40.7524 9.44563C40.7598 9.46453 40.7705 9.48178 40.7754 9.5015ZM39.4821 18.308V10.8112L36.7189 12.4019L32.9015 14.5999V22.0966L39.4829 18.308H39.4821ZM31.586 31.8694V24.3677L27.8311 26.5122L17.1085 32.6319V40.2042L31.586 31.8694ZM1.31629 6.34224V31.8694L15.7922 40.2034V32.6327L8.22969 28.3527L8.22722 28.3511L8.22393 28.3494C8.19846 28.3346 8.1771 28.3133 8.15327 28.2952C8.13273 28.2788 8.1089 28.2656 8.09083 28.2475L8.08918 28.2451C8.06782 28.2245 8.05303 28.1991 8.03495 28.1761C8.01852 28.1539 7.9988 28.135 7.98565 28.112L7.98483 28.1095C7.97004 28.0849 7.96101 28.0553 7.95032 28.0273C7.93964 28.0027 7.92567 27.9797 7.9191 27.9534V27.9526C7.91088 27.9213 7.90924 27.8885 7.90595 27.8564C7.90267 27.8318 7.89609 27.8071 7.89609 27.7825V27.7808V10.1309L4.07951 7.93214L1.31629 6.34306V6.34224ZM8.55506 1.41725L1.97608 5.20425L8.55342 8.99125L15.1316 5.20343L8.55342 1.41725H8.55506ZM11.9764 25.0513L15.793 22.8542V6.34224L13.0298 7.93296L9.21238 10.1309V26.6428L11.9764 25.0513ZM32.2442 5.88622L25.666 9.67323L32.2442 13.4602L38.8215 9.6724L32.2442 5.88622ZM31.586 14.5999L27.7686 12.4019L25.0054 10.8112V18.308L28.822 20.5051L31.586 22.0966V14.5999ZM16.4495 31.4939L26.0982 25.9855L30.9213 23.233L24.3481 19.4484L16.7798 23.8057L9.88203 27.7767L16.4495 31.4939Z" fill="#FF2D20"/>
+          </svg>                                   
+        </div>
+        <h1>Laravel</h1>
+      </div>
+    </span>
+    <!-- ALPINEJS -->
+    <span>
+      <div class="flex flex-col items-center gap-4">
+        <div class="hover:bg-gray-50 dark:hover:bg-slate-900 hover:scale-95 duration-100 border-2 border-slate-100 dark:border-slate-900 w-[4.8rem] h-[4.4rem] rounded-lg flex items-center justify-center">
+          <svg width="59" height="27" viewBox="0 0 59 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M45.2081 0L58.125 12.8602L45.2081 25.7203L32.2917 12.8602L45.2081 0Z" fill="#77C1D2"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12.9169 0L39.6947 26.6606H13.8614L0 12.8602L12.9169 0Z" fill="#2D3441"/>
+          </svg>               
+        </div>
+        <h1>AlpineJS</h1>
+      </div>
+    </span>
+    <!-- FLUTTER -->
+    <span>
+      <div class="flex flex-col items-center gap-4">
+        <div class="hover:bg-gray-50 dark:hover:bg-slate-900 hover:scale-95 duration-100 border-2 border-slate-100 dark:border-slate-900 w-[4.8rem] h-[4.4rem] rounded-lg flex items-center justify-center">
+          <svg width="34" height="42" viewBox="0 0 34 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M21 0L0 21L6.3 27.3L33.6 0H21Z" fill="#40C4FF"/>
+            <path d="M33.6 18.9L22.05 30.45L15.75 24.15L21 18.9H33.6Z" fill="#40C4FF"/>
+            <path d="M15.7491 24.1502L9.44943 30.4501L15.7493 36.7498L22.049 30.4499L15.7491 24.1502Z" fill="#03A9F4"/>
+            <path d="M33.6 42H21L15.75 36.75L22.05 30.45L33.6 42Z" fill="#01579B"/>
+            <path d="M15.75 36.75L25.2 33.6L22.05 30.45L15.75 36.75Z" fill="#084994"/>
+          </svg>                                   
+        </div>
+        <h1>Flutter</h1>
+      </div>
+    </span>
+    <!-- DART -->
+    <span>
+      <div class="flex flex-col items-center gap-4">
+        <div class="hover:bg-gray-50 dark:hover:bg-slate-900 hover:scale-95 duration-100 border-2 border-slate-100 dark:border-slate-900 w-[4.8rem] h-[4.4rem] rounded-lg flex items-center justify-center">
+          <svg width="43" height="42" viewBox="0 0 43 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_115_37)">
+            <path d="M8.78014 33.3977L1.6432 26.2608C0.797073 25.3901 0.269775 24.1639 0.269775 22.9652C0.269775 22.4103 0.582475 21.5427 0.818533 21.043L7.40671 7.31787L8.78014 33.3977Z" fill="#01579B"/>
+            <path d="M33.2137 8.69127L26.0768 1.55434C25.4545 0.928939 24.1546 0.180908 23.0571 0.180908C22.1129 0.180908 21.187 0.370982 20.5861 0.729669L7.40979 7.31784L33.2137 8.69127Z" fill="#40C4FF"/>
+            <path d="M17.2905 41.908H34.5872V34.4952L21.6837 30.3779L9.88074 34.4952L17.2905 41.908Z" fill="#40C4FF"/>
+            <path d="M7.40979 29.5564C7.40979 31.7576 7.6857 32.3002 8.78322 33.4008L9.88074 34.4983H34.5872L22.5083 20.7732L7.40979 7.32092V29.5564Z" fill="#29B6F6"/>
+            <path d="M29.3693 7.31787H7.40671L34.5841 34.4952H41.9969V17.4745L33.2137 8.6913C31.9813 7.45276 30.8838 7.31787 29.3693 7.31787Z" fill="#01579B"/>
+            <path opacity="0.2" d="M9.05605 33.6736C7.95853 32.57 7.68262 31.4847 7.68262 29.5564V7.59378L7.40671 7.31787V29.5533C7.40977 31.4847 7.40977 32.0182 9.05605 33.6736Z" fill="white"/>
+            <path opacity="0.2" d="M41.7241 17.2017V34.2224H34.3112L34.5872 34.4952H42V17.4776L41.7241 17.2017Z" fill="#263238"/>
+            <path opacity="0.2" d="M33.2137 8.6913C31.8526 7.33013 30.7367 7.31787 29.0965 7.31787H7.40979L7.6857 7.59378H29.0996C29.915 7.59378 31.9844 7.45583 33.2137 8.6913Z" fill="white"/>
+            <path opacity="0.2" d="M41.7241 17.2016L33.2137 8.69127L26.0768 1.55434C25.4545 0.928939 24.1546 0.180908 23.0571 0.180908C22.1129 0.180908 21.187 0.370982 20.5861 0.729669L7.40979 7.31784L0.821615 21.043C0.585557 21.5427 0.272858 22.4103 0.272858 22.9651C0.272858 24.1638 0.800155 25.3901 1.64629 26.2608L8.22526 32.7907C8.38161 32.9838 8.56555 33.18 8.78628 33.3977L9.0622 33.6736L9.88687 34.4983L17.0238 41.6352L17.2997 41.9111H34.3204H34.5964V34.4983H42.0092V34.4799V17.4776L41.7241 17.2016Z" fill="url(#paint0_radial_115_37)"/>
+            </g>
+            <defs>
+            <radialGradient id="paint0_radial_115_37" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(21.1395 21.0449) scale(20.8666)">
+            <stop stop-color="white" stop-opacity="0.1"/>
+            <stop offset="1" stop-color="white" stop-opacity="0"/>
+            </radialGradient>
+            <clipPath id="clip0_115_37">
+            <rect width="42.3066" height="42" fill="white"/>
+            </clipPath>
+            </defs>
+          </svg>                                                           
+        </div>
+        <h1>Dart</h1>
+      </div>
+    </span>
+    <!-- REACTJS -->
+    <span>
+      <div class="flex flex-col items-center gap-4">
+        <div class="hover:bg-gray-50 dark:hover:bg-slate-900 hover:scale-95 duration-100 border-2 border-slate-100 dark:border-slate-900 w-[4.8rem] h-[4.4rem] rounded-lg flex items-center justify-center">
+          <svg width="46" height="42" viewBox="0 0 46 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M23 31C10.1 31 0 26.6 0 21C0 15.4 10.1 11 23 11C35.9 11 46 15.4 46 21C46 26.6 35.9 31 23 31ZM23 13C10.4 13 2 17.1 2 21C2 24.9 10.4 29 23 29C35.6 29 44 24.9 44 21C44 17.1 35.6 13 23 13Z" fill="#53C1DE"/>
+            <path d="M14.1 41.6C13.1 41.6 12.3 41.4 11.5 40.9C6.6 38.1 7.9 27.2 14.3 16C17.3 10.8 21 6.39996 24.6 3.59996C28.5 0.599962 32 -0.300038 34.4 1.09996C36.9 2.49996 37.8 5.99996 37.2 10.9C36.6 15.5 34.6 20.9 31.6 26.1C28.6 31.3 24.9 35.7 21.3 38.5C18.7 40.5 16.2 41.6 14.1 41.6ZM31.9 2.39996C30.3 2.39996 28.2 3.29996 25.9 5.09996C22.5 7.79996 19 12 16.1 17C9.8 27.9 9.2 37.3 12.5 39.2C14.2 40.2 17 39.3 20.1 36.9C23.5 34.2 27 30 29.9 25C32.8 20 34.7 14.9 35.3 10.6C35.8 6.59996 35.2 3.79996 33.5 2.79996C33 2.59996 32.5 2.39996 31.9 2.39996Z" fill="#53C1DE"/>
+            <path d="M32 41.5999C27 41.5999 19.8 35.4999 14.4 25.9999C7.89999 14.7999 6.59999 3.89995 11.5 1.09995C16.4 -1.70005 25.2 4.79995 31.7 15.9999C34.7 21.1999 36.7 26.5999 37.3 31.1999C38 36.0999 37 39.4999 34.5 40.9999C33.7 41.3999 32.9 41.5999 32 41.5999ZM12.5 2.79995C9.19999 4.69995 9.79999 14.0999 16.1 24.9999C22.4 35.8999 30.2 41.0999 33.5 39.1999C35.2 38.1999 35.8 35.4 35.3 31.4C34.7 27.0999 32.8 21.9999 29.9 16.9999C23.6 6.09995 15.8 0.899948 12.5 2.79995Z" fill="#53C1DE"/>
+            <path d="M23 25C25.2091 25 27 23.2091 27 21C27 18.7909 25.2091 17 23 17C20.7909 17 19 18.7909 19 21C19 23.2091 20.7909 25 23 25Z" fill="#53C1DE"/>
+          </svg>                                
+        </div>
+        <h1>ReactJS</h1>
+      </div>
+    </span>
+  </div>
+</section>
+<!-- END MAIN SKILLS -->
+<!-- SECTION CERTIFICATE -->
+<section class="px-8 pt-28 max-w-3xl m-auto">
+  <div id="certificate" class="absolute -mt-20"></div>
+  <div class="flex items-center flex-col gap-2">
+    <h1 id="titleSection"
+    x-text="$store.language.isEnLanguage ? 'Certificate' : 'Sertifikat'"
+    class="text-2xl font-bold"></h1>
+    <div id="lineSection" class="w-20 h-1 bg-primary"></div>
+  </div>
+  <main class="mt-10 flex justify-evenly flex-wrap gap-14">
+
+    <div x-data="{showCertificate: false}">
+      <div id="certificate"
+      class="text-center w-72">
+        <div class="group w-72 h-44 overflow-hidden m-auto mb-2.5 rounded-lg relative">
+          <img class="object-cover mb-2 group-hover:scale-110 duration-300
+          group-hover:brightness-50" 
+          src="dist/image/sertifikat-1.jpg" alt="">
+          <button @click="showCertificate = true" class="text-white opacity-0 
+          group-hover:opacity-100 duration-200 top-1/2 left-1/2 
+          -translate-x-1/2 -translate-y-1/2 absolute border-b-2 px-2 py-1 font-medium"
+          >Detail</button>
+        </div>
+        <h1 
+        x-text="$store.language.isEnLanguage ? 'Gemastik 2022 UX Division Participants' 
+        : 'Peserta Gemastik 2022 Divisi UX'"
+        class=""></h1>
+        <p 
+        x-text="$store.language.isEnLanguage ? 'Gemastik is a prestigious annual performance in Indonesia attended by university students.' 
+        : 'Gemastik adalah pergelaran bergengsi tahunan di Indonesia yang diikuti oleh mahasiswa perguruan tinggi.'"
+        class="text-sm font-medium opacity-70">
+        </p>
+      </div>
+      <div @keyup.escape.window="showCertificate = false" x-show="showCertificate" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 w-full h-screen flex justify-center items-center bg-black/70" style="display: none;">
+        <img @click.outside="showCertificate = false" class="w-[90%]" src="dist/image/sertifikat-1.jpg" alt="">
+      </div>
+    </div>
+
+    <div 
+    x-data="{showCertificate: false}" >
+      <div id="certificate" class="text-center w-72">
+        <div class="group w-72 h-44 overflow-hidden m-auto mb-2.5 rounded-lg relative">
+          <img class="object-cover mb-2 group-hover:scale-110 duration-300
+          group-hover:brightness-50" 
+          src="dist/image/sertifikat-2.jpg" alt="">
+          <button @click="showCertificate = true" class="text-white opacity-0 
+          group-hover:opacity-100 duration-200 top-1/2 left-1/2 
+          -translate-x-1/2 -translate-y-1/2 absolute border-b-2 px-2 py-1 font-medium"
+          >Detail</button>
+        </div>
+        <h1 
+        x-text="$store.language.isEnLanguage ? '1st Place in Software Development' 
+        : 'Juara 1 Pengembangan Perangkat Lunak'"
+        class=""></h1>
+        <p 
+        x-text="$store.language.isEnLanguage ? 'iTech Poliban Competition is an annual competition held at the Banjarmasin State Polytechnic.' 
+        : 'iTech Poliban Competition adalah lomba tahunan yang diadakan di Politeknik Negeri Banjarmasin.'"
+        class="text-sm font-medium opacity-70">
+        </p>
+      </div>
+      <div @keyup.escape.window="showCertificate = false" x-show="showCertificate" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 w-full h-screen flex justify-center items-center bg-black/70" style="display: none;">
+        <img @click.outside="showCertificate = false" class="w-[90%]" src="dist/image/sertifikat-2.jpg" alt="">
+      </div>
+    </div>
+
+  </main>
+</section>
+<!-- END SECTION CERTIFICATE -->
+<!-- SECTION PROJECT -->
+<section class="pt-28 px-8 max-w-3xl m-auto">
+  <div id="project" class="absolute -mt-20"></div>
+  <div class="flex items-center flex-col gap-2">
+    <h1 id="titleSection"
+    x-text="$store.language.isEnLanguage ? 'Project' : 'Projek'"
+    class="text-2xl font-bold"></h1>
+    <div id="lineSection" class="w-20 h-1 bg-primary"></div>
+  </div>
+  <main class="mt-10 flex justify-evenly flex-wrap gap-14">
+
+    <div id="project" class="w-72">
+      <div class="group w-72 h-44 overflow-hidden m-auto mb-2.5 rounded-lg relative">
+        <img class="object-cover mb-2 hover:scale-110 hover:brightness-50
+        duration-300" 
+        src="dist/image/project-1.jpg" alt="">
+      </div>
+      <a href="#" class="flex items-center justify-between">
+        <h1 class="text-xl">Tewiter</h1>
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M11.25 5H4.375C3.87772 5 3.40081 5.19754 3.04917 5.54917C2.69754 5.90081 2.5 6.37772 2.5 6.875V15.625C2.5 16.1223 2.69754 16.5992 3.04917 16.9508C3.40081 17.3025 3.87772 17.5 4.375 17.5H13.125C13.6223 17.5 14.0992 17.3025 14.4508 16.9508C14.8025 16.5992 15 16.1223 15 15.625V8.75M6.25 13.75L17.5 2.5M17.5 2.5H13.125M17.5 2.5V6.875" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>          
+      </a>
+      <p 
+      x-text="$store.language.isEnLanguage ? '' 
+      : 'Sebuah website cloning twitter sederhana, pembuatan menggunakan framework Laravel. Website ini dibuat oleh diri saya sendiri.'"
+      class="text-sm font-medium opacity-70 mt-1.5 mb-5">
+      </p>
+      <span class="text-sm font-medium border border-slate-200 
+      dark:border-slate-800 p-2 rounded-md hover:bg-gray-50
+      dark:hover:bg-slate-900">TailwindCSS</span>
+      <span class="text-sm font-medium border border-slate-200 
+      dark:border-slate-800 p-2 rounded-md ml-2 hover:bg-gray-50
+      dark:hover:bg-slate-900">Laravel</span>
+    </div>
+
+  </main>
+</section>
+<!-- END SECTION PROJECT -->
+<!-- SECTION MOTIVATION -->
+<section class="max-w-2xl m-auto pt-28 px-8">
+  <h1 id="motivation"
+  x-text="$store.language.isEnLanguage ? '&quot;Success is like building a solid building. Every brick that is carefully and meticulously laid is an important part of the process to glory. 🚀&quot;' : '&quot;Kesuksesan adalah seperti membangun sebuah bangunan yang kokoh. Setiap batu bata yang diletakkan dengan hati-hati dan teliti adalah bagian penting dari proses menuju kejayaan. 🚀&quot;'" 
+  class="text-center font-medium">
+  </h1>
+</section>
+<!-- END SECTION MOTIVATION -->
+<!-- SECTION CONTACT -->
+<svg id="contact" class="-z-20 w-full text-center text-gray-50 dark:text-slate-900" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+  <path fill="#5700FF" fill-opacity="1" d="M0,288L48,272C96,256,192,224,288,197.3C384,171,480,149,576,165.3C672,181,768,235,864,250.7C960,267,1056,245,1152,250.7C1248,256,1344,288,1392,304L1440,320L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+</svg>
+<div class="w-full bg-gradient-to-b from-primary to-[#5200FF]">
+  <h1 class="text-2xl text-white text-center lg:text-start max-w-4xl m-auto">Let's Get in Touch 👋</h1>
+  <section class="max-w-4xl m-auto pb-12 flex flex-col lg:flex-row-reverse lg:justify-between">
+    <form action="https://formsubmit.co/bcaada81c10df6e89b6a81e2af00286f" method="POST" class="flex justify-center mt-8 flex-col m-auto lg:m-0 gap-4 w-3/4 lg:w-1/2">
+      <input name="name" class="bg-darkPrimary outline-none rounded-md p-2 placeholder:text-sm text-white" placeholder="Name" type="text">
+      <input name="email" class="bg-darkPrimary outline-none rounded-md p-2 placeholder:text-sm text-white" placeholder="Email" type="text">
+      <textarea name="desc" class="p-2 rounded-md outline-none bg-darkPrimary resize-none placeholder:text-sm text-white" placeholder="Type Here ..." rows="6"></textarea>
+      <button name="submit" class="text-white flex justify-center items-center gap-2 bg-gradient-to-r from-secondary to-tertiary p-2 rounded-xl text-sm" type="submit">
+        Send
+        <svg width="16" height="16" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4.5 8.99998L2.45175 2.34448C7.35136 3.76924 11.9717 6.02008 16.1138 8.99998C11.9721 11.9803 7.35193 14.2317 2.4525 15.657L4.5 8.99998ZM4.5 8.99998H10.125" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>          
+      </button>
+    </form>
+    <div class="flex items-center flex-col gap-8 lg:items-end mt-8 lg:mt-0">
+      <img class="w-48 hidden lg:block" src="dist/image/Saly-10.png" alt="">
+      <div class="flex flex-wrap justify-center gap-6 lg:flex-col px-8 lg:px-0">
+        <a href="https://www.tiktok.com/@codewitharry" target="_blank" class="flex items-center gap-2 text-white font-medium">
+          <svg width="24" height="24" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M11.9715 0.739595C13.1481 0.721626 14.3161 0.73097 15.4833 0.721626C15.5221 2.18141 16.1144 3.49528 17.0566 4.46847L17.0552 4.46703C18.0694 5.38056 19.389 5.97281 20.8437 6.07344L20.8639 6.07488V9.6945C19.4896 9.66 18.1973 9.34303 17.0322 8.79822L17.0911 8.82266C16.5276 8.55169 16.0511 8.27353 15.5983 7.96303L15.6357 7.98747C15.6271 10.6102 15.6443 13.2329 15.6177 15.8463C15.5437 17.1781 15.1009 18.3928 14.3908 19.407L14.4052 19.3847C13.2178 21.0853 11.2944 22.2015 9.10727 22.2676H9.09721C9.0088 22.2719 8.90458 22.2741 8.79965 22.2741C7.55621 22.2741 6.39399 21.9276 5.40355 21.326L5.4323 21.3426C3.62968 20.258 2.38624 18.4022 2.15624 16.2438L2.15336 16.2143C2.1354 15.7651 2.12677 15.3158 2.14474 14.876C2.49693 11.4411 5.3748 8.78385 8.87296 8.78385C9.26612 8.78385 9.65137 8.81763 10.0258 8.8816L9.98558 8.87585C10.0036 10.2048 9.94965 11.5345 9.94965 12.8635C9.64562 12.7535 9.29487 12.6895 8.92902 12.6895C7.5864 12.6895 6.4443 13.5477 6.02168 14.7459L6.01521 14.7674C5.91962 15.0743 5.86427 15.4273 5.86427 15.7924C5.86427 15.9404 5.87362 16.0871 5.89086 16.2308L5.88943 16.2136C6.12805 17.6841 7.38874 18.7939 8.9089 18.7939C8.95274 18.7939 8.99587 18.7932 9.03899 18.791H9.03252C10.0841 18.7594 10.9969 18.1937 11.5129 17.3578L11.5201 17.3449C11.712 17.0775 11.8436 16.7541 11.8874 16.4026L11.8881 16.3925C11.978 14.7847 11.942 13.1862 11.9506 11.5783C11.9593 7.95872 11.942 4.34772 11.9686 0.737439L11.9715 0.739595Z" fill="currentcolor"/>
+          </svg>
+          <h1>@codewitharry</h1>
+        </a>
+        <a href="https://instagram.com/rryputra?igshid=NTc4MTIwNjQ2YQ==" target="_blank" class="flex items-center gap-2 text-white font-medium">
+          <svg class="hover:-mt-2 duration-150" width="24" height="24" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_3_28)">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M6.7501 0.141139C4.87804 0.225606 3.25543 0.683303 1.94522 1.98799C0.630424 3.29953 0.178413 4.92856 0.0937346 6.78115C0.0410968 7.93746 -0.266701 16.673 0.625848 18.964C1.22775 20.5095 2.41321 21.6978 3.97288 22.3017C4.70065 22.5847 5.53143 22.7764 6.7501 22.8323C16.94 23.2934 20.7173 23.0424 22.3102 18.964C22.5928 18.238 22.7874 17.4079 22.8412 16.1923C23.3069 5.97621 22.7656 3.76182 20.9897 1.98799C19.5811 0.58285 17.9241 -0.373659 6.7501 0.141139ZM6.84391 20.7777C5.72823 20.7275 5.1229 20.5416 4.71897 20.3852C3.70283 19.9902 2.93959 19.2301 2.5471 18.2199C1.86739 16.4792 2.09283 8.2116 2.15347 6.8738C2.21298 5.5634 2.47845 4.36579 3.40304 3.44121C4.54733 2.29974 6.02574 1.74032 16.0921 2.19463C17.4057 2.25398 18.6061 2.51891 19.533 3.44121C20.6773 4.58267 21.2449 6.07246 20.7826 16.1002C20.7322 17.2131 20.5457 17.817 20.3889 18.2199C19.3534 20.8738 16.9709 21.2423 6.84391 20.7777ZM16.2031 5.39307C16.2031 6.14872 16.8176 6.76318 17.5763 6.76318C18.3349 6.76318 18.9506 6.14872 18.9506 5.39307C18.9506 4.63743 18.3349 4.02351 17.5763 4.02351C16.8176 4.02351 16.2031 4.63743 16.2031 5.39307ZM5.59207 11.4862C5.59207 14.7233 8.22281 17.3479 11.468 17.3479C14.7132 17.3479 17.344 14.7233 17.344 11.4862C17.344 8.24898 14.7132 5.6261 11.468 5.6261C8.22281 5.6261 5.59207 8.24898 5.59207 11.4862ZM7.65409 11.4862C7.65409 9.38588 9.36138 7.68184 11.468 7.68184C13.5747 7.68184 15.282 9.38588 15.282 11.4862C15.282 13.5876 13.5747 15.2922 11.468 15.2922C9.36138 15.2922 7.65409 13.5876 7.65409 11.4862Z" fill="currentcolor"/>
+            </g>
+            <defs>
+            <clipPath id="clip0_3_28">
+            <rect width="30" height="30" fill="white"/>
+            </clipPath>
+            </defs>
+          </svg>
+          <h1>@rryputra</h1>
+        </a>
+        <a href="https://api.whatsapp.com/send/?phone=6281350445065&text&type=phone_number&app_absent=0" target="_blank" class="flex items-center gap-2 text-white font-medium">
+          <svg class="hover:-mt-2 duration-150" width="24" height="24" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M3.3542 10.5C3.3542 6.00118 7.00121 2.35417 11.5 2.35417C15.9988 2.35417 19.6458 6.00118 19.6458 10.5C19.6458 14.9988 15.9988 18.6458 11.5 18.6458C9.89749 18.6458 8.40581 18.1841 7.14724 17.3867C6.91302 17.2383 6.626 17.1987 6.36032 17.2779L3.60113 18.1014L4.64 15.6705C4.76279 15.3832 4.73781 15.0541 4.57305 14.7886C3.80047 13.5437 3.3542 12.0754 3.3542 10.5ZM11.5 0.4375C5.94267 0.4375 1.43753 4.94263 1.43753 10.5C1.43753 12.2615 1.89096 13.9196 2.6878 15.3613L1.03546 19.2275C0.889391 19.5694 0.954138 19.9648 1.20159 20.2421C1.44904 20.5196 1.83457 20.6288 2.19075 20.5224L6.5027 19.2357C7.97569 20.08 9.68272 20.5625 11.5 20.5625C17.0574 20.5625 21.5625 16.0574 21.5625 10.5C21.5625 4.94263 17.0574 0.4375 11.5 0.4375ZM13.697 12.5915L12.4375 13.4786C11.8477 13.1426 11.1955 12.6736 10.5414 12.0194C9.86136 11.3394 9.3572 10.6373 8.98546 9.99333L9.78584 9.31397C10.1293 9.02244 10.2233 8.53094 10.0117 8.13318L8.9919 6.21652C8.85457 5.95843 8.60696 5.77714 8.31945 5.72418C8.03193 5.67124 7.73598 5.75242 7.51571 5.94465L7.21335 6.20854C6.48623 6.84313 6.0562 7.88595 6.41261 8.94184C6.78212 10.0365 7.57068 11.7592 9.18614 13.3747C10.9241 15.1127 12.6896 15.7972 13.722 16.063C14.5538 16.2771 15.341 15.9901 15.8957 15.5381L16.4626 15.0762C16.705 14.8787 16.8358 14.5752 16.813 14.2633C16.7901 13.9513 16.6165 13.6702 16.3477 13.51L14.7394 12.5517C14.4145 12.3582 14.0062 12.3737 13.697 12.5915Z" fill="currentcolor"/>
+          </svg> 
+          <h1>+62 81350445065</h1>
+        </a>
+      </div>
+    </div>
+  </section>
+</div>
+<!-- END SECTION CONTACT -->
+<script>
+  ScrollReveal({
+    reset: false,
+    distance: '40px',
+    duration: 2500,
+    delay: 0
+  })
+  ScrollReveal().reveal('#titleSection', { delay: 50, origin: 'left' });
+  ScrollReveal().reveal('#lineSection', { delay: 0, origin: 'left' });
+  
+  // NAVIGATION
+  // ScrollReveal().reveal('#navigationMainIcon a', { delay: 0, interval: 250, reset: false });
+  
+  // HOME
+  ScrollReveal().reveal('#homeAvatar', { delay: 300, origin: 'bottom' });
+  ScrollReveal().reveal('#homeAvatarBg', { delay: 300, origin: 'bottom' });
+
+  ScrollReveal().reveal('#homeName', { delay: 300 });
+  ScrollReveal().reveal('#homeTitle', { delay: 400 });
+  ScrollReveal().reveal('#homeDownloadCv', { delay: 500 });
+  ScrollReveal().reveal('#homeMainSocialMedia a', { delay: 600, interval: 200 });
+
+  // ABOUT
+  ScrollReveal().reveal('#aboutMyDesc', { delay: 0 });
+  ScrollReveal().reveal('#aboutIconAndTitle', { delay: 100 });
+
+  // SKILLS
+  ScrollReveal().reveal('#skillsMainIcon span', { delay: 0, interval: 200 });
+  
+  // CERFICATE
+  ScrollReveal().reveal('#certificate', { delay: 0, interval: 800 });
+  
+  // PROJECT
+  ScrollReveal().reveal('#project', { delay: 0, interval: 800 });
+
+  // MOTIVATION
+  ScrollReveal().reveal('#motivation', { delay: 0 });
+</script>
+<script>
+
+</script>
+</body>
+</html>
