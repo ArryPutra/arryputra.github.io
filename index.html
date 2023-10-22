@@ -74,21 +74,23 @@ class="font-semibold font-poppins m-auto w-full bg-white dark:bg-slate-950 dark:
     class="font-bold text-2xl">Arry<span class="text-primary">Putra</span></h1>
     <!-- END LOGO -->
     <article class="flex items-center gap-4">
-      <!-- DARK MODE -->
-      <button 
-      x-on:click="$store.darkMode.toggle()"
-      class="flex bg-gray-50 p-2 rounded-full relative gap-10 dark:bg-slate-900">
-        <div
-        x-bind:class="$store.darkMode.isDarkMode ? 'left-16' : 'left-0'"
-        class="duration-200 absolute scale w-7 h-7 rounded-full top-1/2 -translate-y-1/2 left-1 bg-white dark:bg-slate-800"></div>
-        <svg class="w-5 h-5 z-10" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
-        </svg>      
-        <svg class="w-5 h-5 z-10" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
-        </svg>      
-      </button>
-      <!-- END DARK MODE -->
+      <div class="w-full absolute top-24 left-1/2 -translate-x-1/2 max-w-2xl flex justify-end px-8 md:px-0">
+        <!-- DARK MODE -->
+        <button 
+        x-on:click="$store.darkMode.toggle()"
+        class="flex relative bg-gray-50 p-2 rounded-full gap-10 border-2 border-gray-100 dark:bg-slate-900 dark:border-slate-800">
+          <div
+          x-bind:class="$store.darkMode.isDarkMode ? 'left-16' : 'left-0'"
+          class="duration-200 absolute scale w-7 h-7 rounded-full top-1/2 -translate-y-1/2 left-1 bg-white dark:bg-slate-800"></div>
+          <svg class="w-5 h-5 z-10" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+          </svg>      
+          <svg class="w-5 h-5 z-10" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+          </svg>      
+        </button>
+        <!-- END DARK MODE -->
+      </div>
       <!-- SWITCH LANGUANGE -->
       <button
       x-on:click="$store.language.toggle()"
@@ -169,7 +171,7 @@ class="font-semibold font-poppins m-auto w-full bg-white dark:bg-slate-950 dark:
     </div>
     <!-- END TITLE -->
     <!-- DOWNLOAD CV (BUTTON) -->
-    <a href="dist/pdf/Arry Kusuma Putra - Curriculum Vitae.pdf" download id="homeDownloadCv" class="mt-3 text-xs font-medium flex items-center gap-3 bg-gradient-to-tl from-primary to-purple-600 text-white py-2.5 px-4 rounded-full">
+    <a href="dist/pdf/Arry Kusuma Putra - Curriculum Vitae.pdf" download id="homeDownloadCv" class="mt-3 text-sm font-medium flex items-center gap-3 bg-gradient-to-tl from-primary to-purple-600 text-white py-2.5 px-4 rounded-full">
       <span x-text="$store.language.isEnLanguage ? 'Download CV' : 'Unduh CV'"></span>
       <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
@@ -223,9 +225,8 @@ class="font-semibold font-poppins m-auto w-full bg-white dark:bg-slate-950 dark:
       </div>
       <h1 id="aboutMyDesc"
       x-data="{
-        test: '<span>Hello<span class=font-bold>\'World</span></span>',
-        en: 'I am<span class=font-bold> Arry Kusuma Putra</span>, a web and application developer<span class=font-bold> with 1 year experience in coding. I\'ve made coding a hobby</span> and am currently working on developing my skills in web development and apps.',
-        id: 'Saya adalah <span class=font-bold>Arry Kusuma Putra</span>, seorang pengembang web dan aplikasi <span class=font-bold> dengan pengalaman 1 tahun dalam coding. Saya telah menjadikan coding sebagai hobi</span> dan saat ini sedang mengembangkan keterampilan saya dalam pengembangan web dan aplikasi.'
+        en: '<span>I am Arry Kusuma Putra, a web and application developer with 1 year experience in coding. I\'ve made coding a hobby.</span>',
+        id: '<span>Saya adalah Arry Kusuma Putra, seorang pengembang web dan aplikasi dengan pengalaman 1 tahun dalam coding. Saya telah menjadikan coding sebagai hobi.</span>'
       }"
       x-html="$store.language.isEnLanguage ? en : id"
       class="font-medium text-center mt-8">
@@ -381,7 +382,7 @@ class="font-semibold font-poppins m-auto w-full bg-white dark:bg-slate-950 dark:
     <div id="lineSection" class="w-20 h-1 bg-primary"></div>
   </div>
   <main class="mt-10 flex justify-evenly flex-wrap gap-14">
-
+    <!-- SERTIFIKAT 1 -->
     <div x-data="{showCertificate: false}">
       <div id="certificate"
       class="text-center w-72">
@@ -404,14 +405,14 @@ class="font-semibold font-poppins m-auto w-full bg-white dark:bg-slate-950 dark:
         class="text-sm font-medium opacity-70">
         </p>
       </div>
-      <div @keyup.escape.window="showCertificate = false" x-show="showCertificate" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 w-full h-screen flex justify-center items-center bg-black/70" style="display: none;">
-        <img @click.outside="showCertificate = false" class="w-[90%]" src="dist/image/sertifikat-1.jpg" alt="">
+      <div @click="showCertificate = false" @keyup.escape.window="showCertificate = false" x-show="showCertificate" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 w-full h-screen flex justify-center items-center bg-black/70" style="display: none;">
+        <div @click="showCertificate = false" class="w-[90%] h-[90%] bg-contain bg-center bg-no-repeat" style="background-image: url(dist/image/sertifikat-1.jpg);"></div>
       </div>
     </div>
-
-    <div 
-    x-data="{showCertificate: false}" >
-      <div id="certificate" class="text-center w-72">
+    <!-- SERTIFIKAT 2 -->
+    <div x-data="{showCertificate: false}">
+      <div id="certificate"
+      class="text-center w-72">
         <div class="group w-72 h-44 overflow-hidden m-auto mb-2.5 rounded-lg relative">
           <img class="object-cover mb-2 group-hover:scale-110 duration-300
           group-hover:brightness-50" 
@@ -431,8 +432,143 @@ class="font-semibold font-poppins m-auto w-full bg-white dark:bg-slate-950 dark:
         class="text-sm font-medium opacity-70">
         </p>
       </div>
-      <div @keyup.escape.window="showCertificate = false" x-show="showCertificate" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 w-full h-screen flex justify-center items-center bg-black/70" style="display: none;">
-          <img @click.outside="showCertificate = false" class="w-[90%]" src="dist/image/sertifikat-2.jpg" alt="">
+      <div @click="showCertificate = false" @keyup.escape.window="showCertificate = false" x-show="showCertificate" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 w-full h-screen flex justify-center items-center bg-black/70" style="display: none;">
+        <div @click="showCertificate = false" class="w-[90%] h-[90%] bg-contain bg-center bg-no-repeat" style="background-image: url(dist/image/sertifikat-2.jpg);"></div>
+      </div>
+    </div>
+    <!-- SERTIFIKAT 3 -->
+    <div x-data="{showCertificate: false}">
+      <div id="certificate"
+      class="text-center w-72">
+        <div class="group w-72 h-44 overflow-hidden m-auto mb-2.5 rounded-lg relative">
+          <img class="object-cover mb-2 group-hover:scale-110 duration-300
+          group-hover:brightness-50" 
+          src="dist/image/sertifikat-3.jpg" alt="">
+          <button @click="showCertificate = true" class="text-white opacity-0 
+          group-hover:opacity-100 duration-200 top-1/2 left-1/2 
+          -translate-x-1/2 -translate-y-1/2 absolute border-b-2 px-2 py-1 font-medium"
+          >Detail</button>
+        </div>
+        <h1 
+        x-text="$store.language.isEnLanguage ? 'Programming Basics to Become a Developer' 
+        : 'Dasar Pemrograman untuk Menjadi Pengembang'"
+        class=""></h1>
+        <p 
+        x-text="$store.language.isEnLanguage ? 'Dicoding for University scholarship program.' 
+        : 'Program beasiswa Dicoding for University.'"
+        class="text-sm font-medium opacity-70">
+        </p>
+      </div>
+      <div @click="showCertificate = false" @keyup.escape.window="showCertificate = false" x-show="showCertificate" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 w-full h-screen flex justify-center items-center bg-black/70" style="display: none;">
+        <div @click="showCertificate = false" class="w-[90%] h-[90%] bg-contain bg-center bg-no-repeat" style="background-image: url(dist/image/sertifikat-3.jpg);"></div>
+      </div>
+    </div>
+
+    <div x-data="{showCertificate: false}">
+      <div id="certificate"
+      class="text-center w-72">
+        <div class="group w-72 h-44 overflow-hidden m-auto mb-2.5 rounded-lg relative">
+          <img class="object-cover mb-2 group-hover:scale-110 duration-300
+          group-hover:brightness-50" 
+          src="dist/image/sertifikat-4.jpg" alt="">
+          <button @click="showCertificate = true" class="text-white opacity-0 
+          group-hover:opacity-100 duration-200 top-1/2 left-1/2 
+          -translate-x-1/2 -translate-y-1/2 absolute border-b-2 px-2 py-1 font-medium"
+          >Detail</button>
+        </div>
+        <h1 
+        x-text="$store.language.isEnLanguage ? 'Learn Basic Git and Github' 
+        : 'Belajar Dasar Git dan Github'"
+        class=""></h1>
+        <p 
+        x-text="$store.language.isEnLanguage ? 'Dicoding for University scholarship program.' 
+        : 'Program beasiswa Dicoding for University.'"
+        class="text-sm font-medium opacity-70">
+        </p>
+      </div>
+      <div @click="showCertificate = false" @keyup.escape.window="showCertificate = false" x-show="showCertificate" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 w-full h-screen flex justify-center items-center bg-black/70" style="display: none;">
+        <div @click="showCertificate = false" class="w-[90%] h-[90%] bg-contain bg-center bg-no-repeat" style="background-image: url(dist/image/sertifikat-4.jpg);"></div>
+      </div>
+    </div>
+
+    <div x-data="{showCertificate: false}">
+      <div id="certificate"
+      class="text-center w-72">
+        <div class="group w-72 h-44 overflow-hidden m-auto mb-2.5 rounded-lg relative">
+          <img class="object-cover mb-2 group-hover:scale-110 duration-300
+          group-hover:brightness-50" 
+          src="dist/image/sertifikat-5.jpg" alt="">
+          <button @click="showCertificate = true" class="text-white opacity-0 
+          group-hover:opacity-100 duration-200 top-1/2 left-1/2 
+          -translate-x-1/2 -translate-y-1/2 absolute border-b-2 px-2 py-1 font-medium"
+          >Detail</button>
+        </div>
+        <h1 
+        x-text="$store.language.isEnLanguage ? 'Learn the Basics of UX Design' 
+        : 'Belajar Dasar UX Design'"
+        class=""></h1>
+        <p 
+        x-text="$store.language.isEnLanguage ? 'Dicoding for University scholarship program.' 
+        : 'Program beasiswa Dicoding for University.'"
+        class="text-sm font-medium opacity-70">
+        </p>
+      </div>
+      <div @click="showCertificate = false" @keyup.escape.window="showCertificate = false" x-show="showCertificate" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 w-full h-screen flex justify-center items-center bg-black/70" style="display: none;">
+        <div @click="showCertificate = false" class="w-[90%] h-[90%] bg-contain bg-center bg-no-repeat" style="background-image: url(dist/image/sertifikat-5.jpg);"></div>
+      </div>
+    </div>
+
+    <div x-data="{showCertificate: false}">
+      <div id="certificate"
+      class="text-center w-72">
+        <div class="group w-72 h-44 overflow-hidden m-auto mb-2.5 rounded-lg relative">
+          <img class="object-cover mb-2 group-hover:scale-110 duration-300
+          group-hover:brightness-50" 
+          src="dist/image/sertifikat-6.jpg" alt="">
+          <button @click="showCertificate = true" class="text-white opacity-0 
+          group-hover:opacity-100 duration-200 top-1/2 left-1/2 
+          -translate-x-1/2 -translate-y-1/2 absolute border-b-2 px-2 py-1 font-medium"
+          >Detail</button>
+        </div>
+        <h1 
+        x-text="$store.language.isEnLanguage ? 'Learn Basic SQL Language' 
+        : 'Belajar Dasar Bahasa SQL'"
+        class=""></h1>
+        <p 
+        x-text="$store.language.isEnLanguage ? 'Dicoding for University scholarship program.' 
+        : 'Program beasiswa Dicoding for University.'"
+        class="text-sm font-medium opacity-70">
+        </p>
+      </div>
+      <div @click="showCertificate = false" @keyup.escape.window="showCertificate = false" x-show="showCertificate" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 w-full h-screen flex justify-center items-center bg-black/70" style="display: none;">
+        <div @click="showCertificate = false" class="w-[90%] h-[90%] bg-contain bg-center bg-no-repeat" style="background-image: url(dist/image/sertifikat-6.jpg);"></div>
+      </div>
+    </div>
+
+    <div x-data="{showCertificate: false}">
+      <div id="certificate"
+      class="text-center w-72">
+        <div class="group w-72 h-44 overflow-hidden m-auto mb-2.5 rounded-lg relative">
+          <img class="object-cover mb-2 group-hover:scale-110 duration-300
+          group-hover:brightness-50" 
+          src="dist/image/sertifikat-7.jpg" alt="">
+          <button @click="showCertificate = true" class="text-white opacity-0 
+          group-hover:opacity-100 duration-200 top-1/2 left-1/2 
+          -translate-x-1/2 -translate-y-1/2 absolute border-b-2 px-2 py-1 font-medium"
+          >Detail</button>
+        </div>
+        <h1 
+        x-text="$store.language.isEnLanguage ? 'Learn Basic Haskell Language' 
+        : 'Belajar Dasar Bahasa Haskell'"
+        class=""></h1>
+        <p 
+        x-text="$store.language.isEnLanguage ? 'Dicoding for University scholarship program.' 
+        : 'Program beasiswa Dicoding for University.'"
+        class="text-sm font-medium opacity-70">
+        </p>
+      </div>
+      <div @click="showCertificate = false" @keyup.escape.window="showCertificate = false" x-show="showCertificate" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 w-full h-screen flex justify-center items-center bg-black/70" style="display: none;">
+        <div @click="showCertificate = false" class="w-[90%] h-[90%] bg-contain bg-center bg-no-repeat" style="background-image: url(dist/image/sertifikat-7.jpg);"></div>
       </div>
     </div>
 
@@ -449,12 +585,16 @@ class="font-semibold font-poppins m-auto w-full bg-white dark:bg-slate-950 dark:
     <div id="lineSection" class="w-20 h-1 bg-primary"></div>
   </div>
   <main class="mt-10 flex justify-evenly flex-wrap gap-14">
-
+    <!-- PROJECT 1 -->
     <div id="project" class="w-72">
       <div class="group w-72 h-44 overflow-hidden m-auto mb-2.5 rounded-lg relative">
-        <img class="object-cover mb-2 hover:scale-110 hover:brightness-50
-        duration-300" 
+        <img class="h-full object-cover group-hover:scale-110 duration-300
+        group-hover:brightness-50" 
         src="dist/image/project-1.jpg" alt="">
+        <a target="_blank" href="https://github.com/ArryPutra/tewiter" class="text-white opacity-0 group-hover:opacity-100
+        top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
+        absolute border-b-2 px-2 py-1 font-medium duration-150"
+        >Explore 🚀</a>
       </div>
       <a href="https://github.com/ArryPutra/tewiter" target="_blank" class="flex justify-between">
         <h1 class="text-xl">Tewiter</h1>
@@ -475,12 +615,16 @@ class="font-semibold font-poppins m-auto w-full bg-white dark:bg-slate-950 dark:
       dark:border-slate-800 p-2 rounded-md ml-2 hover:bg-gray-50
       dark:hover:bg-slate-900">Laravel</span>
     </div>
-
+    <!-- PROJECT 2 -->
     <div id="project" class="w-72">
       <div class="group w-72 h-44 overflow-hidden m-auto mb-2.5 rounded-lg relative">
-        <img class="object-cover mb-2 hover:scale-110 hover:brightness-50
-        duration-300" 
+        <img class="h-full object-cover group-hover:scale-110 duration-300
+        group-hover:brightness-50" 
         src="dist/image/project-2.jpg" alt="">
+        <a target="_blank" href="https://qr-code-generator-and-qr-code-scanner.en.uptodown.com/android" class="text-white opacity-0 group-hover:opacity-100
+        top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
+        absolute border-b-2 px-2 py-1 font-medium duration-150"
+        >Explore 🚀</a>
       </div>
       <a href="https://qr-code-generator-and-qr-code-scanner.en.uptodown.com/android" target="_blank" class="flex justify-between">
         <h1 class="text-xl">QR Code Scanner & Generate</h1>
@@ -501,6 +645,36 @@ class="font-semibold font-poppins m-auto w-full bg-white dark:bg-slate-950 dark:
       dark:border-slate-800 p-2 rounded-md ml-2 hover:bg-gray-50
       dark:hover:bg-slate-900">Dart</span>
     </div>
+    <!-- PROJECT 3 -->
+    <div id="project" class="w-72">
+      <div class="group w-72 h-44 overflow-hidden m-auto mb-2.5 rounded-lg relative">
+        <img class="h-full object-cover group-hover:scale-110 duration-300
+        group-hover:brightness-50" 
+        src="dist/image/project-3.jpg" alt="">
+        <a target="_blank" href="https://play.google.com/store/apps/details?id=com.arryputra.catatankeuangan" class="text-white opacity-0 group-hover:opacity-100
+        top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
+        absolute border-b-2 px-2 py-1 font-medium duration-150"
+        >Explore 🚀</a>
+      </div>
+      <a href="https://play.google.com/store/apps/details?id=com.arryputra.catatankeuangan" target="_blank" class="flex justify-between">
+        <h1 class="text-xl">Catatan Keuangan</h1>
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M11.25 5H4.375C3.87772 5 3.40081 5.19754 3.04917 5.54917C2.69754 5.90081 2.5 6.37772 2.5 6.875V15.625C2.5 16.1223 2.69754 16.5992 3.04917 16.9508C3.40081 17.3025 3.87772 17.5 4.375 17.5H13.125C13.6223 17.5 14.0992 17.3025 14.4508 16.9508C14.8025 16.5992 15 16.1223 15 15.625V8.75M6.25 13.75L17.5 2.5M17.5 2.5H13.125M17.5 2.5V6.875" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>          
+      </a>
+      <p 
+      x-text="$store.language.isEnLanguage ? 
+      'An application that can record finances digitally, track income and expenses.' 
+      : 'Aplikasi yang dapat mencatat keuangan secara digital, melacak pendapatan dan pengeluaran.'"
+      class="text-sm font-medium opacity-70 mt-1.5 mb-5">
+      </p>
+      <span class="text-sm font-medium border border-slate-200 
+      dark:border-slate-800 p-2 rounded-md hover:bg-gray-50
+      dark:hover:bg-slate-900">Flutter</span>
+      <span class="text-sm font-medium border border-slate-200 
+      dark:border-slate-800 p-2 rounded-md ml-2 hover:bg-gray-50
+      dark:hover:bg-slate-900">Dart</span>
+    </div>
 
   </main>
 </section>
@@ -508,7 +682,7 @@ class="font-semibold font-poppins m-auto w-full bg-white dark:bg-slate-950 dark:
 <!-- SECTION MOTIVATION -->
 <section class="max-w-2xl m-auto pt-28 px-8">
   <h1 id="motivation"
-  x-text="$store.language.isEnLanguage ? '&quot;Success is like building a solid building. Every brick that is carefully and meticulously laid is an important part of the process to glory. 🚀&quot;' : '&quot;Kesuksesan adalah seperti membangun sebuah bangunan yang kokoh. Setiap batu bata yang diletakkan dengan hati-hati dan teliti adalah bagian penting dari proses menuju kejayaan. 🚀&quot;'" 
+  x-text="$store.language.isEnLanguage ? '&quot;Success is like building a solid building. Every brick that is carefully and meticulously laid is an important part of the process to glory 🚀. &quot;' : '&quot;Kesuksesan adalah seperti membangun sebuah bangunan yang kokoh. Setiap batu bata yang diletakkan dengan hati-hati dan teliti adalah bagian penting dari proses menuju kejayaan 🚀. &quot;'" 
   class="text-center font-medium">
   </h1>
 </section>
@@ -564,7 +738,7 @@ class="font-semibold font-poppins m-auto w-full bg-white dark:bg-slate-950 dark:
   </section>
 </div>
 <!-- END SECTION CONTACT -->
-<script>
+<!-- <script>
   ScrollReveal({
     reset: false,
     distance: '40px',
@@ -601,7 +775,7 @@ class="font-semibold font-poppins m-auto w-full bg-white dark:bg-slate-950 dark:
 
   // MOTIVATION
   ScrollReveal().reveal('#motivation', { delay: 0 });
-</script>
+</script> -->
 <script>
 
 </script>
