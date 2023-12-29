@@ -393,33 +393,6 @@ class="font-semibold font-poppins m-auto w-full bg-white dark:bg-slate-950 dark:
     <div id="lineSection" class="w-20 h-1 bg-primary"></div>
   </div>
   <main class="mt-10 flex justify-evenly flex-wrap gap-14">
-    <!-- SERTIFIKAT 1 -->
-    <div x-data="{showCertificate: false}">
-      <div id="certificate"
-      class="text-center w-72">
-        <div class="group w-72 h-44 overflow-hidden m-auto mb-2.5 rounded-lg relative">
-          <img class="object-cover mb-2 group-hover:scale-110 duration-300
-          group-hover:brightness-50" 
-          src="dist/image/sertifikat-1.jpg" alt="">
-          <button @click="showCertificate = true" class="text-white opacity-0 
-          group-hover:opacity-100 duration-200 top-1/2 left-1/2 
-          -translate-x-1/2 -translate-y-1/2 absolute border-b-2 px-2 py-1 font-medium"
-          >Detail</button>
-        </div>
-        <h1 
-        x-text="$store.language.isEnLanguage ? 'Gemastik 2022 UX Division Participants' 
-        : 'Peserta Gemastik 2022 Divisi UX'"
-        class=""></h1>
-        <p 
-        x-text="$store.language.isEnLanguage ? 'Gemastik is a prestigious annual performance in Indonesia attended by university students.' 
-        : 'Gemastik adalah pergelaran bergengsi tahunan di Indonesia yang diikuti oleh mahasiswa perguruan tinggi.'"
-        class="text-sm font-medium opacity-70">
-        </p>
-      </div>
-      <div @click="showCertificate = false" @keyup.escape.window="showCertificate = false" x-show="showCertificate" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 w-full h-screen flex justify-center items-center bg-black/70" style="display: none;">
-        <div @click="showCertificate = false" class="w-[90%] h-[90%] bg-contain bg-center bg-no-repeat" style="background-image: url(dist/image/sertifikat-1.jpg);"></div>
-      </div>
-    </div>
     <!-- SERTIFIKAT 2 -->
     <div x-data="{showCertificate: false}">
       <div id="certificate"
@@ -447,60 +420,6 @@ class="font-semibold font-poppins m-auto w-full bg-white dark:bg-slate-950 dark:
         <div @click="showCertificate = false" class="w-[90%] h-[90%] bg-contain bg-center bg-no-repeat" style="background-image: url(dist/image/sertifikat-2.jpg);"></div>
       </div>
     </div>
-    <!-- SERTIFIKAT 3 -->
-    <div x-data="{showCertificate: false}">
-      <div id="certificate"
-      class="text-center w-72">
-        <div class="group w-72 h-44 overflow-hidden m-auto mb-2.5 rounded-lg relative">
-          <img class="object-cover mb-2 group-hover:scale-110 duration-300
-          group-hover:brightness-50" 
-          src="dist/image/sertifikat-3.jpg" alt="">
-          <button @click="showCertificate = true" class="text-white opacity-0 
-          group-hover:opacity-100 duration-200 top-1/2 left-1/2 
-          -translate-x-1/2 -translate-y-1/2 absolute border-b-2 px-2 py-1 font-medium"
-          >Detail</button>
-        </div>
-        <h1 
-        x-text="$store.language.isEnLanguage ? 'Programming Basics to Become a Developer' 
-        : 'Dasar Pemrograman untuk Menjadi Pengembang'"
-        class=""></h1>
-        <p 
-        x-text="$store.language.isEnLanguage ? 'Dicoding for University scholarship program.' 
-        : 'Program beasiswa Dicoding for University.'"
-        class="text-sm font-medium opacity-70">
-        </p>
-      </div>
-      <div @click="showCertificate = false" @keyup.escape.window="showCertificate = false" x-show="showCertificate" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 w-full h-screen flex justify-center items-center bg-black/70" style="display: none;">
-        <div @click="showCertificate = false" class="w-[90%] h-[90%] bg-contain bg-center bg-no-repeat" style="background-image: url(dist/image/sertifikat-3.jpg);"></div>
-      </div>
-    </div>
-
-    <div x-data="{showCertificate: false}">
-      <div id="certificate"
-      class="text-center w-72">
-        <div class="group w-72 h-44 overflow-hidden m-auto mb-2.5 rounded-lg relative">
-          <img class="object-cover mb-2 group-hover:scale-110 duration-300
-          group-hover:brightness-50" 
-          src="dist/image/sertifikat-4.jpg" alt="">
-          <button @click="showCertificate = true" class="text-white opacity-0 
-          group-hover:opacity-100 duration-200 top-1/2 left-1/2 
-          -translate-x-1/2 -translate-y-1/2 absolute border-b-2 px-2 py-1 font-medium"
-          >Detail</button>
-        </div>
-        <h1 
-        x-text="$store.language.isEnLanguage ? 'Learn Basic Git and Github' 
-        : 'Belajar Dasar Git dan Github'"
-        class=""></h1>
-        <p 
-        x-text="$store.language.isEnLanguage ? 'Dicoding for University scholarship program.' 
-        : 'Program beasiswa Dicoding for University.'"
-        class="text-sm font-medium opacity-70">
-        </p>
-      </div>
-      <div @click="showCertificate = false" @keyup.escape.window="showCertificate = false" x-show="showCertificate" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 w-full h-screen flex justify-center items-center bg-black/70" style="display: none;">
-        <div @click="showCertificate = false" class="w-[90%] h-[90%] bg-contain bg-center bg-no-repeat" style="background-image: url(dist/image/sertifikat-4.jpg);"></div>
-      </div>
-    </div>
 
     <div x-data="{showCertificate: false}">
       <div id="certificate"
@@ -526,60 +445,6 @@ class="font-semibold font-poppins m-auto w-full bg-white dark:bg-slate-950 dark:
       </div>
       <div @click="showCertificate = false" @keyup.escape.window="showCertificate = false" x-show="showCertificate" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 w-full h-screen flex justify-center items-center bg-black/70" style="display: none;">
         <div @click="showCertificate = false" class="w-[90%] h-[90%] bg-contain bg-center bg-no-repeat" style="background-image: url(dist/image/sertifikat-5.jpg);"></div>
-      </div>
-    </div>
-
-    <div x-data="{showCertificate: false}">
-      <div id="certificate"
-      class="text-center w-72">
-        <div class="group w-72 h-44 overflow-hidden m-auto mb-2.5 rounded-lg relative">
-          <img class="object-cover mb-2 group-hover:scale-110 duration-300
-          group-hover:brightness-50" 
-          src="dist/image/sertifikat-6.jpg" alt="">
-          <button @click="showCertificate = true" class="text-white opacity-0 
-          group-hover:opacity-100 duration-200 top-1/2 left-1/2 
-          -translate-x-1/2 -translate-y-1/2 absolute border-b-2 px-2 py-1 font-medium"
-          >Detail</button>
-        </div>
-        <h1 
-        x-text="$store.language.isEnLanguage ? 'Learn Basic SQL Language' 
-        : 'Belajar Dasar Bahasa SQL'"
-        class=""></h1>
-        <p 
-        x-text="$store.language.isEnLanguage ? 'Dicoding for University scholarship program.' 
-        : 'Program beasiswa Dicoding for University.'"
-        class="text-sm font-medium opacity-70">
-        </p>
-      </div>
-      <div @click="showCertificate = false" @keyup.escape.window="showCertificate = false" x-show="showCertificate" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 w-full h-screen flex justify-center items-center bg-black/70" style="display: none;">
-        <div @click="showCertificate = false" class="w-[90%] h-[90%] bg-contain bg-center bg-no-repeat" style="background-image: url(dist/image/sertifikat-6.jpg);"></div>
-      </div>
-    </div>
-
-    <div x-data="{showCertificate: false}">
-      <div id="certificate"
-      class="text-center w-72">
-        <div class="group w-72 h-44 overflow-hidden m-auto mb-2.5 rounded-lg relative">
-          <img class="object-cover mb-2 group-hover:scale-110 duration-300
-          group-hover:brightness-50" 
-          src="dist/image/sertifikat-7.jpg" alt="">
-          <button @click="showCertificate = true" class="text-white opacity-0 
-          group-hover:opacity-100 duration-200 top-1/2 left-1/2 
-          -translate-x-1/2 -translate-y-1/2 absolute border-b-2 px-2 py-1 font-medium"
-          >Detail</button>
-        </div>
-        <h1 
-        x-text="$store.language.isEnLanguage ? 'Learn Basic Haskell Language' 
-        : 'Belajar Dasar Bahasa Haskell'"
-        class=""></h1>
-        <p 
-        x-text="$store.language.isEnLanguage ? 'Dicoding for University scholarship program.' 
-        : 'Program beasiswa Dicoding for University.'"
-        class="text-sm font-medium opacity-70">
-        </p>
-      </div>
-      <div @click="showCertificate = false" @keyup.escape.window="showCertificate = false" x-show="showCertificate" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 w-full h-screen flex justify-center items-center bg-black/70" style="display: none;">
-        <div @click="showCertificate = false" class="w-[90%] h-[90%] bg-contain bg-center bg-no-repeat" style="background-image: url(dist/image/sertifikat-7.jpg);"></div>
       </div>
     </div>
 
@@ -691,12 +556,12 @@ class="font-semibold font-poppins m-auto w-full bg-white dark:bg-slate-950 dark:
 </section>
 <!-- END SECTION PROJECT -->
 <!-- SECTION MOTIVATION -->
-<section class="max-w-2xl m-auto pt-28 px-8">
+<!-- <section class="max-w-2xl m-auto pt-28 px-8">
   <h1 id="motivation"
   x-text="$store.language.isEnLanguage ? '&quot;Success is like building a solid building. Every brick that is carefully and meticulously laid is an important part of the process to glory 🚀. &quot;' : '&quot;Kesuksesan adalah seperti membangun sebuah bangunan yang kokoh. Setiap batu bata yang diletakkan dengan hati-hati dan teliti adalah bagian penting dari proses menuju kejayaan 🚀. &quot;'" 
   class="text-center font-medium">
   </h1>
-</section>
+</section> -->
 <!-- END SECTION MOTIVATION -->
 <!-- SECTION CONTACT -->
 <svg id="contact" class="-z-20 w-full text-center text-gray-50 dark:text-slate-900" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
@@ -749,7 +614,7 @@ class="font-semibold font-poppins m-auto w-full bg-white dark:bg-slate-950 dark:
   </section>
 </div>
 <!-- END SECTION CONTACT -->
-<!-- <script>
+<script>
   ScrollReveal({
     reset: false,
     distance: '40px',
@@ -786,9 +651,6 @@ class="font-semibold font-poppins m-auto w-full bg-white dark:bg-slate-950 dark:
 
   // MOTIVATION
   ScrollReveal().reveal('#motivation', { delay: 0 });
-</script> -->
-<script>
-
 </script>
 </body>
 </html>
