@@ -382,7 +382,7 @@ class="font-semibold font-poppins m-auto w-full bg-white dark:bg-slate-950 dark:
         <h1>Kotlin</h1>
       </div>
     </span>
-    <!-- KOTLIN -->
+    <!-- ANDROID STUDIO -->
     <span>
       <div class="flex flex-col items-center gap-4">
         <div class="hover:bg-gray-50 dark:hover:bg-slate-900 hover:scale-95 duration-100 border-2 border-slate-100 dark:border-slate-900 w-[4.8rem] h-[4.4rem] rounded-lg flex items-center justify-center">
@@ -396,7 +396,7 @@ class="font-semibold font-poppins m-auto w-full bg-white dark:bg-slate-950 dark:
             <path d="M36.6986 22.122H35.0291C34.9371 22.1483 34.8713 22.2403 34.8845 22.3455V48.6364C34.8845 48.7416 34.9765 48.8336 35.0817 48.8468H36.8037C38.815 48.8336 40.445 47.2036 40.445 45.1923V18.4675C40.445 20.4919 38.815 22.122 36.7906 22.122H36.6986Z" fill="#073042"/>
           </svg>                                                                     
         </div>
-        <h1>Android Studio</h1>
+        <h1>Android</h1>
       </div>
     </span>
     <!-- MYSQL -->
@@ -445,7 +445,7 @@ class="font-semibold font-poppins m-auto w-full bg-white dark:bg-slate-950 dark:
         <div class="group w-72 h-44 overflow-hidden m-auto mb-2.5 rounded-lg relative">
           <img class="object-cover mb-2 group-hover:scale-110 duration-300
           group-hover:brightness-50" 
-          src="dist/image/sertifikat-2.jpg" alt="">
+          src="dist/image/sertifikat-1.jpg" alt="">
           <button @click="showCertificate = true" class="text-white opacity-0 
           group-hover:opacity-100 duration-200 top-1/2 left-1/2 
           -translate-x-1/2 -translate-y-1/2 absolute border-b-2 px-2 py-1 font-medium"
@@ -462,7 +462,7 @@ class="font-semibold font-poppins m-auto w-full bg-white dark:bg-slate-950 dark:
         </p>
       </div>
       <div @click="showCertificate = false" @keyup.escape.window="showCertificate = false" x-show="showCertificate" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 w-full h-screen flex justify-center items-center bg-black/70" style="display: none;">
-        <div @click="showCertificate = false" class="w-[90%] h-[90%] bg-contain bg-center bg-no-repeat" style="background-image: url(dist/image/sertifikat-2.jpg);"></div>
+        <div @click="showCertificate = false" class="w-[90%] h-[90%] bg-contain bg-center bg-no-repeat" style="background-image: url(dist/image/sertifikat-1.jpg);"></div>
       </div>
     </div>
 
@@ -472,7 +472,7 @@ class="font-semibold font-poppins m-auto w-full bg-white dark:bg-slate-950 dark:
         <div class="group w-72 h-44 overflow-hidden m-auto mb-2.5 rounded-lg relative">
           <img class="object-cover mb-2 group-hover:scale-110 duration-300
           group-hover:brightness-50" 
-          src="dist/image/sertifikat-5.jpg" alt="">
+          src="dist/image/sertifikat-2.jpg" alt="">
           <button @click="showCertificate = true" class="text-white opacity-0 
           group-hover:opacity-100 duration-200 top-1/2 left-1/2 
           -translate-x-1/2 -translate-y-1/2 absolute border-b-2 px-2 py-1 font-medium"
@@ -489,7 +489,34 @@ class="font-semibold font-poppins m-auto w-full bg-white dark:bg-slate-950 dark:
         </p>
       </div>
       <div @click="showCertificate = false" @keyup.escape.window="showCertificate = false" x-show="showCertificate" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 w-full h-screen flex justify-center items-center bg-black/70" style="display: none;">
-        <div @click="showCertificate = false" class="w-[90%] h-[90%] bg-contain bg-center bg-no-repeat" style="background-image: url(dist/image/sertifikat-5.jpg);"></div>
+        <div @click="showCertificate = false" class="w-[90%] h-[90%] bg-contain bg-center bg-no-repeat" style="background-image: url(dist/image/sertifikat-2.jpg);"></div>
+      </div>
+    </div>
+
+    <div x-data="{showCertificate: false}">
+      <div id="certificate"
+      class="text-center w-72">
+        <div class="group w-72 h-44 overflow-hidden m-auto mb-2.5 rounded-lg relative">
+          <img class="object-cover mb-2 group-hover:scale-110 duration-300
+          group-hover:brightness-50" 
+          src="dist/image/sertifikat-3.jpg" alt="">
+          <button @click="showCertificate = true" class="text-white opacity-0 
+          group-hover:opacity-100 duration-200 top-1/2 left-1/2 
+          -translate-x-1/2 -translate-y-1/2 absolute border-b-2 px-2 py-1 font-medium"
+          >Detail</button>
+        </div>
+        <h1 
+        x-text="$store.language.isEnLanguage ? 'Learn Android App Fundamentals' 
+        : 'Belajar Fundamental Aplikasi Android'"
+        class=""></h1>
+        <p 
+        x-text="$store.language.isEnLanguage ? 'Learn to build Apps using Android Studio and the Kotlin language.' 
+        : 'Belajar membuat Aplikasi menggunakan Android Studio dan bahasa Kotlin.'"
+        class="text-sm font-medium opacity-70">
+        </p>
+      </div>
+      <div @click="showCertificate = false" @keyup.escape.window="showCertificate = false" x-show="showCertificate" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 w-full h-screen flex justify-center items-center bg-black/70" style="display: none;">
+        <div @click="showCertificate = false" class="w-[90%] h-[90%] bg-contain bg-center bg-no-repeat" style="background-image: url(dist/image/sertifikat-3.jpg);"></div>
       </div>
     </div>
 
