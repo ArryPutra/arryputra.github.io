@@ -1,391 +1,882 @@
 <!-- npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch -->
 <!DOCTYPE html>
-<html
-  lang="en"
-  x-data
-  x-bind:class="localStorage.getItem('isDarkMode') == 'true' ? 'dark' : ''"
-  class="scroll-smooth"
->
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ArryPutra</title>
-    <!-- CONNECT TAILWINDCSS -->
-    <link href="dist/output.css" rel="stylesheet" />
-    <!-- CONNECT ALPINEJS -->
-    <script src="//unpkg.com/alpinejs" defer></script>
-    <!-- CONNECT SCROLL REVEAL (ANIMATE ON SCROLL) -->
-    <script src="https://unpkg.com/scrollreveal"></script>
-    <!-- CONNECT GOOGLE FONT -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!-- IMPORT POPPINS GOOGLE FONT -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <script>
-    document.addEventListener("alpine:init", () => {
-      Alpine.store("darkMode", {
-        isDarkMode:
-          localStorage.getItem("isDarkMode") === "true" ? true : false,
-        toggle() {
-          this.isDarkMode = !this.isDarkMode;
-          this.isDarkMode
-            ? document.documentElement.classList.add("dark")
-            : document.documentElement.classList.remove("dark");
-          localStorage.setItem("isDarkMode", this.isDarkMode);
-        },
-      });
+<html lang="en" x-data x-bind:class="localStorage.getItem('isDarkMode') == 'true' ? 'dark' : ''" class="scroll-smooth">
 
-      Alpine.store("language", {
-        isEnLanguage:
-          localStorage.getItem("isEnLanguage") === "true" ? true : false,
-        toggle() {
-          this.isEnLanguage = !this.isEnLanguage;
-          localStorage.setItem("isEnLanguage", this.isEnLanguage);
-        },
-      });
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ArryPutra</title>
+  <!-- CONNECT TAILWINDCSS -->
+  <link href="dist/output.css" rel="stylesheet" />
+  <!-- CONNECT ALPINEJS -->
+  <script src="//unpkg.com/alpinejs" defer></script>
+  <!-- CONNECT SCROLL REVEAL (ANIMATE ON SCROLL) -->
+  <script src="https://unpkg.com/scrollreveal"></script>
+  <!-- CONNECT GOOGLE FONT -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- IMPORT POPPINS GOOGLE FONT -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap" rel="stylesheet" />
+</head>
+<script>
+  document.addEventListener("alpine:init", () => {
+    Alpine.store("darkMode", {
+      isDarkMode:
+        localStorage.getItem("isDarkMode") === "true" ? true : false,
+      toggle() {
+        this.isDarkMode = !this.isDarkMode;
+        this.isDarkMode
+          ? document.documentElement.classList.add("dark")
+          : document.documentElement.classList.remove("dark");
+        localStorage.setItem("isDarkMode", this.isDarkMode);
+      },
     });
-  </script>
-  <style>
-    #homeMainTitle h1:nth-child(1) {
-      animation: homeMainTitleAnimation 3s alternate infinite ease-in-out;
+
+    Alpine.store("language", {
+      isEnLanguage:
+        localStorage.getItem("isEnLanguage") === "true" ? true : false,
+      toggle() {
+        this.isEnLanguage = !this.isEnLanguage;
+        localStorage.setItem("isEnLanguage", this.isEnLanguage);
+      },
+    });
+  });
+</script>
+<style>
+  #homeMainTitle h1:nth-child(1) {
+    animation: homeMainTitleAnimation 3s alternate infinite ease-in-out;
+  }
+
+  @keyframes homeMainTitleAnimation {
+    0% {
+      margin-top: 0px;
     }
-    @keyframes homeMainTitleAnimation {
-      0% {
-        margin-top: 0px;
-      }
-      20% {
-        margin-top: 0px;
-      }
-      40% {
-        margin-top: -34px;
-      }
-      60% {
-        margin-top: -34px;
-      }
-      80% {
-        margin-top: -68px;
-      }
-      100% {
-        margin-top: -68px;
-      }
+
+    20% {
+      margin-top: 0px;
     }
-  </style>
-  <body
-    x-data
-    class="font-semibold font-poppins m-auto w-full bg-white dark:bg-slate-950 dark:text-white"
-  >
-    <!-- HEADER -->
-    <header
-      class="backdrop-filter backdrop-blur-xl z-30 h-20 px-8 flex items-center justify-between fixed w-full left-1/2 -translate-x-1/2"
-    >
-      <div class="flex m-auto w-full max-w-2xl justify-between">
-        <!-- LOGO -->
-        <h1 class="font-bold text-2xl">
-          Arry<span class="text-primary">Putra</span>
-        </h1>
-        <!-- END LOGO -->
-        <article class="flex items-center gap-4">
-          <div
-            class="w-full absolute top-24 left-1/2 -translate-x-1/2 max-w-2xl flex justify-end px-8 md:px-0"
-          >
-            <!-- DARK MODE -->
-            <button
-              x-on:click="$store.darkMode.toggle()"
-              class="flex relative bg-gray-50 p-2 rounded-full gap-10 border-2 border-gray-100 dark:bg-slate-900 dark:border-slate-800"
-            >
-              <div
-                x-bind:class="$store.darkMode.isDarkMode ? 'left-16' : 'left-0'"
-                class="duration-200 absolute scale w-7 h-7 rounded-full top-1/2 -translate-y-1/2 left-1 bg-white dark:bg-slate-800"
-              ></div>
-              <svg
-                class="w-5 h-5 z-10"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
-                />
-              </svg>
-              <svg
-                class="w-5 h-5 z-10"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"
-                />
-              </svg>
-            </button>
-            <!-- END DARK MODE -->
-          </div>
-          <!-- SWITCH LANGUANGE -->
-          <button
-            x-on:click="$store.language.toggle()"
-            class="relative text-center overflow-hidden bg-gradient-to-tr w-14 h-9 from-secondary to-tertiary text-white p-1.5 px-4 rounded-xl"
-          >
-            <h1
-              x-bind:class="$store.language.isEnLanguage ? 'ml-0' : '-ml-10'"
-              class="duration-300 absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2"
-            >
-              EN
-            </h1>
-            <h1
-              x-bind:class="$store.language.isEnLanguage ? 'ml-10' : 'ml-0'"
-              class="duration-300 absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2"
-            >
-              ID
-            </h1>
+
+    40% {
+      margin-top: -34px;
+    }
+
+    60% {
+      margin-top: -34px;
+    }
+
+    80% {
+      margin-top: -68px;
+    }
+
+    100% {
+      margin-top: -68px;
+    }
+  }
+</style>
+
+<body x-data class="font-semibold font-poppins m-auto w-full bg-white dark:bg-slate-950 dark:text-white">
+  <!-- HEADER -->
+  <header
+    class="backdrop-filter backdrop-blur-xl z-30 h-20 px-8 flex items-center justify-between fixed w-full left-1/2 -translate-x-1/2">
+    <div class="flex m-auto w-full max-w-2xl justify-between">
+      <!-- LOGO -->
+      <h1 class="font-bold text-2xl">
+        Arry<span class="text-primary">Putra</span>
+      </h1>
+      <!-- END LOGO -->
+      <article class="flex items-center gap-4">
+        <div class="w-full absolute top-24 left-1/2 -translate-x-1/2 max-w-2xl flex justify-end px-8 md:px-0">
+          <!-- DARK MODE -->
+          <button x-on:click="$store.darkMode.toggle()"
+            class="flex relative bg-gray-50 p-2 rounded-full gap-10 border-2 border-gray-100 dark:bg-slate-900 dark:border-slate-800">
+            <div x-bind:class="$store.darkMode.isDarkMode ? 'left-16' : 'left-0'"
+              class="duration-200 absolute scale w-7 h-7 rounded-full top-1/2 -translate-y-1/2 left-1 bg-white dark:bg-slate-800">
+            </div>
+            <svg class="w-5 h-5 z-10" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+              stroke-width="1.5" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+            </svg>
+            <svg class="w-5 h-5 z-10" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+              stroke-width="1.5" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+            </svg>
           </button>
-          <!-- END SWITCH LANGUANGE -->
-        </article>
-      </div>
-    </header>
-    <!-- END HEADER -->
-    <!-- NAVIGATION -->
-    <div
-      id="navigationMainIcon"
-      class="backdrop-filter backdrop-blur-md fixed shadow h-12 gap-2 px-3 items-center flex rounded-full bottom-0 mb-[10vh] right-1/2 translate-x-1/2 z-10"
-    >
-      <a href="#home" class="p-2 rounded-full">
-        <svg
-          class="w-6 h-6"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
-          />
-        </svg>
-      </a>
-      <a href="#about" class="p-2 rounded-full">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          class="w-6 h-6"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
-          />
-        </svg>
-      </a>
-      <a href="#skills" class="p-2 rounded-full">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          class="w-6 h-6"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"
-          />
-        </svg>
-      </a>
-      <a href="#certificate" class="p-2 rounded-full">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          class="w-6 h-6"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M11.35 3.836c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m8.9-4.414c.376.023.75.05 1.124.08 1.131.094 1.976 1.057 1.976 2.192V16.5A2.25 2.25 0 0118 18.75h-2.25m-7.5-10.5H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V18.75m-7.5-10.5h6.375c.621 0 1.125.504 1.125 1.125v9.375m-8.25-3l1.5 1.5 3-3.75"
-          />
-        </svg>
-      </a>
-      <a href="#project" class="p-2 rounded-full">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          class="w-6 h-6"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5M9 11.25v1.5M12 9v3.75m3-6v6"
-          />
-        </svg>
-      </a>
-      <a href="#contact" class="p-2 rounded-full">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          class="w-6 h-6"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 01.865-.501 48.172 48.172 0 003.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z"
-          />
-        </svg>
-      </a>
+          <!-- END DARK MODE -->
+        </div>
+        <!-- SWITCH LANGUANGE -->
+        <button x-on:click="$store.language.toggle()"
+          class="relative text-center overflow-hidden bg-gradient-to-tr w-14 h-9 from-secondary to-tertiary text-white p-1.5 px-4 rounded-xl">
+          <h1 x-bind:class="$store.language.isEnLanguage ? 'ml-0' : '-ml-10'"
+            class="duration-300 absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2">
+            EN
+          </h1>
+          <h1 x-bind:class="$store.language.isEnLanguage ? 'ml-10' : 'ml-0'"
+            class="duration-300 absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2">
+            ID
+          </h1>
+        </button>
+        <!-- END SWITCH LANGUANGE -->
+      </article>
     </div>
-    <!-- END NAVIGATION -->
-    <!-- MAIN HOME -->
-    <section
-      id="home"
-      class="font-bold px-8 h-screen flex flex-col items-center justify-center gap-4 md:flex-row-reverse md:justify-between max-w-2xl m-auto"
-    >
-      <div class="h-20 md:hidden"></div>
-      <!-- TOP -->
-      <section class="relative scale-75 md:scale-90">
-        <span id="homeAvatarBg">
-          <svg
-            version="1.1"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 500 500"
-            width="100%"
-            id="blobSvg"
-            filter="blur(0px)"
-            style="opacity: 1; scale: 1.2"
-            transform="rotate(0)"
-          >
-            <path id="blob" fill="url(#gradient)" style="opacity: 1">
-              <animate
-                attributeName="d"
-                dur="10000ms"
-                repeatCount="indefinite"
-                values="M440.5,320.5Q418,391,355.5,442.5Q293,494,226,450.5Q159,407,99,367Q39,327,31.5,247.5Q24,168,89,125.5Q154,83,219.5,68Q285,53,335.5,94.5Q386,136,424.5,193Q463,250,440.5,320.5Z;M453.78747,319.98894Q416.97789,389.97789,353.96683,436.87838Q290.95577,483.77887,223.95577,447.43366Q156.95577,411.08845,105.64373,365.97789Q54.33169,320.86732,62.67444,252.61056Q71.01719,184.3538,113.01965,135.21007Q155.02211,86.06634,220.52211,66.46683Q286.02211,46.86732,335.5,91.94472Q384.97789,137.02211,437.78747,193.51106Q490.59704,250,453.78747,319.98894Z;M411.39826,313.90633Q402.59677,377.81265,342.92059,407.63957Q283.24442,437.46649,215.13648,432.5428Q147.02853,427.61911,82.23325,380.9572Q17.43796,334.29529,20.45223,250.83809Q23.46649,167.38089,82.5856,115.05707Q141.70471,62.73325,212.19045,63.73015Q282.67618,64.72705,352.67308,84.79839Q422.66998,104.86972,421.43486,177.43486Q420.19974,250,411.39826,313.90633Z;M440.5,320.5Q418,391,355.5,442.5Q293,494,226,450.5Q159,407,99,367Q39,327,31.5,247.5Q24,168,89,125.5Q154,83,219.5,68Q285,53,335.5,94.5Q386,136,424.5,193Q463,250,440.5,320.5Z;"
-              ></animate>
-            </path>
+  </header>
+  <!-- END HEADER -->
+  <!-- NAVIGATION -->
+  <div id="navigationMainIcon"
+    class="backdrop-filter backdrop-blur-md fixed shadow h-12 gap-2 px-3 items-center flex rounded-full bottom-0 mb-[10vh] right-1/2 translate-x-1/2 z-10">
+    <a href="#home" class="p-2 rounded-full">
+      <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+        stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+      </svg>
+    </a>
+    <a href="#about" class="p-2 rounded-full">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+        class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+      </svg>
+    </a>
+    <a href="#skills" class="p-2 rounded-full">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+        class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />
+      </svg>
+    </a>
+    <a href="#certificate" class="p-2 rounded-full">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+        class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M11.35 3.836c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m8.9-4.414c.376.023.75.05 1.124.08 1.131.094 1.976 1.057 1.976 2.192V16.5A2.25 2.25 0 0118 18.75h-2.25m-7.5-10.5H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V18.75m-7.5-10.5h6.375c.621 0 1.125.504 1.125 1.125v9.375m-8.25-3l1.5 1.5 3-3.75" />
+      </svg>
+    </a>
+    <a href="#project" class="p-2 rounded-full">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+        class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5M9 11.25v1.5M12 9v3.75m3-6v6" />
+      </svg>
+    </a>
+    <a href="#contact" class="p-2 rounded-full">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+        class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 01.865-.501 48.172 48.172 0 003.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" />
+      </svg>
+    </a>
+  </div>
+  <!-- END NAVIGATION -->
+  <!-- MAIN HOME -->
+  <section id="home"
+    class="font-bold px-8 h-screen flex flex-col items-center justify-center gap-4 md:flex-row-reverse md:justify-between max-w-2xl m-auto">
+    <div class="h-20 md:hidden"></div>
+    <!-- TOP -->
+    <section class="relative scale-75 md:scale-90">
+      <span id="homeAvatarBg">
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" id="blobSvg"
+          filter="blur(0px)" style="opacity: 1; scale: 1.2" transform="rotate(0)">
+          <path id="blob" fill="url(#gradient)" style="opacity: 1">
+            <animate attributeName="d" dur="10000ms" repeatCount="indefinite"
+              values="M440.5,320.5Q418,391,355.5,442.5Q293,494,226,450.5Q159,407,99,367Q39,327,31.5,247.5Q24,168,89,125.5Q154,83,219.5,68Q285,53,335.5,94.5Q386,136,424.5,193Q463,250,440.5,320.5Z;M453.78747,319.98894Q416.97789,389.97789,353.96683,436.87838Q290.95577,483.77887,223.95577,447.43366Q156.95577,411.08845,105.64373,365.97789Q54.33169,320.86732,62.67444,252.61056Q71.01719,184.3538,113.01965,135.21007Q155.02211,86.06634,220.52211,66.46683Q286.02211,46.86732,335.5,91.94472Q384.97789,137.02211,437.78747,193.51106Q490.59704,250,453.78747,319.98894Z;M411.39826,313.90633Q402.59677,377.81265,342.92059,407.63957Q283.24442,437.46649,215.13648,432.5428Q147.02853,427.61911,82.23325,380.9572Q17.43796,334.29529,20.45223,250.83809Q23.46649,167.38089,82.5856,115.05707Q141.70471,62.73325,212.19045,63.73015Q282.67618,64.72705,352.67308,84.79839Q422.66998,104.86972,421.43486,177.43486Q420.19974,250,411.39826,313.90633Z;M440.5,320.5Q418,391,355.5,442.5Q293,494,226,450.5Q159,407,99,367Q39,327,31.5,247.5Q24,168,89,125.5Q154,83,219.5,68Q285,53,335.5,94.5Q386,136,424.5,193Q463,250,440.5,320.5Z;">
+            </animate>
+          </path>
+          <defs>
+            <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" style="stop-color: rgb(87, 0, 255)"></stop>
+              <stop offset="100%" style="stop-color: rgb(158, 0, 255)"></stop>
+            </linearGradient>
+          </defs>
+        </svg>
+      </span>
+      <span id="homeAvatar">
+        <img class="scale-90 absolute top-1/2 -translate-y-1/2" src="dist/image/Saly-15.png" alt="" />
+      </span>
+    </section>
+    <!-- END TOP -->
+    <!-- BOTTOM -->
+    <section class="flex flex-col items-center md:items-start">
+      <!-- NAME -->
+      <h1 id="homeName" class="text-primary text-3xl flex items-center mb-2">
+        ArryPutra
+        <!-- <div class="h-1 w-20 bg-primary ml-3"></div> -->
+      </h1>
+      <!-- END NAME -->
+      <!-- TITLE -->
+      <div id="homeMainTitle" class="overflow-hidden h-8 text-center md:text-start">
+        <h1 id="homeTitle" class="text-2xl">Web Developer</h1>
+        <h1 id="homeTitle" class="text-2xl">App Developer</h1>
+        <h1 id="homeTitle" class="text-2xl">UI Designer</h1>
+      </div>
+      <!-- END TITLE -->
+      <!-- DOWNLOAD CV (BUTTON) -->
+      <a target="_blank" href="dist/pdf/CV ATS - ARRY KUSUMA PUTRA.pdf" download id="homeDownloadCv"
+        class="mt-3 text-sm font-medium flex items-center gap-3 bg-gradient-to-tl from-primary to-purple-600 text-white py-2.5 px-4 rounded-full">
+        <span x-text="$store.language.isEnLanguage ? 'Download CV' : 'Unduh CV'"></span>
+        <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+          stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+        </svg>
+      </a>
+      <!-- END DOWNLOAD CV (BUTTON) -->
+      <!-- SOCIAL MEDIA -->
+      <div id="homeMainSocialMedia" class="flex gap-6 mt-5 items-center">
+        <a href="https://www.linkedin.com/in/arry-kusuma-putra/" target="_blank">
+          <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M6.22877 8.99637C7.73927 8.99637 8.96377 7.77187 8.96377 6.26137C8.96377 4.75087 7.73927 3.52637 6.22877 3.52637C4.71828 3.52637 3.49377 4.75087 3.49377 6.26137C3.49377 7.77187 4.71828 8.99637 6.22877 8.99637Z"
+              fill="currentcolor" />
+            <path
+              d="M11.5463 11.0684V26.2421H16.2575V18.7384C16.2575 16.7584 16.63 14.8409 19.085 14.8409C21.5063 14.8409 21.5363 17.1046 21.5363 18.8634V26.2434H26.25V17.9221C26.25 13.8346 25.37 10.6934 20.5925 10.6934C18.2988 10.6934 16.7613 11.9521 16.1325 13.1434H16.0688V11.0684H11.5463ZM3.86877 11.0684H8.58752V26.2421H3.86877V11.0684Z"
+              fill="currentcolor" />
+          </svg>
+
+        </a>
+        <a href="https://www.youtube.com/@CodeArry" target="_blank">
+          <svg class="hover:-mt-2 duration-150" height="30" viewBox="0 0 20 14" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_107_2)">
+              <path
+                d="M19.593 2.20301C19.4791 1.78041 19.2565 1.39501 18.9473 1.08518C18.6382 0.775338 18.2533 0.551868 17.831 0.437007C16.265 0.00700739 9.99996 7.59651e-06 9.99996 7.59651e-06C9.99996 7.59651e-06 3.73596 -0.00699261 2.16896 0.404007C1.74689 0.524154 1.36279 0.750785 1.05353 1.06214C0.744273 1.3735 0.520249 1.75913 0.402964 2.18201C-0.0100364 3.74801 -0.0140366 6.99601 -0.0140366 6.99601C-0.0140366 6.99601 -0.0180366 10.26 0.391963 11.81C0.621963 12.667 1.29696 13.344 2.15496 13.575C3.73696 14.005 9.98496 14.012 9.98496 14.012C9.98496 14.012 16.25 14.019 17.816 13.609C18.2385 13.4943 18.6237 13.2714 18.9336 12.9622C19.2435 12.653 19.4673 12.2682 19.583 11.846C19.997 10.281 20 7.03401 20 7.03401C20 7.03401 20.02 3.76901 19.593 2.20301ZM7.99596 10.005L8.00096 4.00501L13.208 7.01001L7.99596 10.005Z"
+                fill="currentColor" />
+            </g>
             <defs>
-              <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" style="stop-color: rgb(87, 0, 255)"></stop>
-                <stop offset="100%" style="stop-color: rgb(158, 0, 255)"></stop>
-              </linearGradient>
+              <clipPath id="clip0_107_2">
+                <rect width="20" height="14" fill="white" />
+              </clipPath>
             </defs>
           </svg>
-        </span>
-        <span id="homeAvatar">
-          <img
-            class="scale-90 absolute top-1/2 -translate-y-1/2"
-            src="dist/image/Saly-15.png"
-            alt=""
-          />
-        </span>
-      </section>
-      <!-- END TOP -->
-      <!-- BOTTOM -->
-      <section class="flex flex-col items-center md:items-start">
-        <!-- NAME -->
-        <h1 id="homeName" class="text-primary text-3xl flex items-center mb-2">
-          ArryPutra
-          <!-- <div class="h-1 w-20 bg-primary ml-3"></div> -->
-        </h1>
-        <!-- END NAME -->
-        <!-- TITLE -->
-        <div
-          id="homeMainTitle"
-          class="overflow-hidden h-8 text-center md:text-start"
-        >
-          <h1 id="homeTitle" class="text-2xl">Web Developer</h1>
-          <h1 id="homeTitle" class="text-2xl">App Developer</h1>
-          <h1 id="homeTitle" class="text-2xl">UI Designer</h1>
-        </div>
-        <!-- END TITLE -->
-        <!-- DOWNLOAD CV (BUTTON) -->
-        <a
-          target="_blank"
-          href="dist/pdf/CV ATS - ARRY KUSUMA PUTRA.pdf"
-          download
-          id="homeDownloadCv"
-          class="mt-3 text-sm font-medium flex items-center gap-3 bg-gradient-to-tl from-primary to-purple-600 text-white py-2.5 px-4 rounded-full"
-        >
-          <span
-            x-text="$store.language.isEnLanguage ? 'Download CV' : 'Unduh CV'"
-          ></span>
-          <svg
-            class="w-4 h-4"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"
-            />
+        </a>
+        <a href="https://api.whatsapp.com/send/?phone=6281350445065&text&type=phone_number&app_absent=0"
+          target="_blank">
+          <svg class="hover:-mt-2 duration-150" width="30" height="30" viewBox="0 0 22 21" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M3.3542 10.5C3.3542 6.00118 7.00121 2.35417 11.5 2.35417C15.9988 2.35417 19.6458 6.00118 19.6458 10.5C19.6458 14.9988 15.9988 18.6458 11.5 18.6458C9.89749 18.6458 8.40581 18.1841 7.14724 17.3867C6.91302 17.2383 6.626 17.1987 6.36032 17.2779L3.60113 18.1014L4.64 15.6705C4.76279 15.3832 4.73781 15.0541 4.57305 14.7886C3.80047 13.5437 3.3542 12.0754 3.3542 10.5ZM11.5 0.4375C5.94267 0.4375 1.43753 4.94263 1.43753 10.5C1.43753 12.2615 1.89096 13.9196 2.6878 15.3613L1.03546 19.2275C0.889391 19.5694 0.954138 19.9648 1.20159 20.2421C1.44904 20.5196 1.83457 20.6288 2.19075 20.5224L6.5027 19.2357C7.97569 20.08 9.68272 20.5625 11.5 20.5625C17.0574 20.5625 21.5625 16.0574 21.5625 10.5C21.5625 4.94263 17.0574 0.4375 11.5 0.4375ZM13.697 12.5915L12.4375 13.4786C11.8477 13.1426 11.1955 12.6736 10.5414 12.0194C9.86136 11.3394 9.3572 10.6373 8.98546 9.99333L9.78584 9.31397C10.1293 9.02244 10.2233 8.53094 10.0117 8.13318L8.9919 6.21652C8.85457 5.95843 8.60696 5.77714 8.31945 5.72418C8.03193 5.67124 7.73598 5.75242 7.51571 5.94465L7.21335 6.20854C6.48623 6.84313 6.0562 7.88595 6.41261 8.94184C6.78212 10.0365 7.57068 11.7592 9.18614 13.3747C10.9241 15.1127 12.6896 15.7972 13.722 16.063C14.5538 16.2771 15.341 15.9901 15.8957 15.5381L16.4626 15.0762C16.705 14.8787 16.8358 14.5752 16.813 14.2633C16.7901 13.9513 16.6165 13.6702 16.3477 13.51L14.7394 12.5517C14.4145 12.3582 14.0062 12.3737 13.697 12.5915Z"
+              fill="currentcolor" />
           </svg>
         </a>
-        <!-- END DOWNLOAD CV (BUTTON) -->
-        <!-- SOCIAL MEDIA -->
-        <div id="homeMainSocialMedia" class="flex gap-6 mt-5 items-center">
-          <a href="https://www.instagram.com/rryputra" target="_blank">
-            <svg
-              class="hover:-mt-2 duration-150"
-              width="30"
-              height="30"
-              viewBox="0 0 23 23"
-              fill="red"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <g clip-path="url(#clip0_3_28)">
+      </div>
+      <!-- END SOCIAL MEDIA -->
+    </section>
+    <!-- END BOTTOM -->
+  </section>
+  <!-- END MAIN HOME -->
+
+  <!-- MAIN ABOUT -->
+  <section id="about" class="relative">
+    <svg class="-z-20 w-full text-center text-gray-50 dark:text-slate-900" xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 1440 320">
+      <path fill="currentcolor" fill-opacity="1"
+        d="M0,288L48,272C96,256,192,224,288,197.3C384,171,480,149,576,165.3C672,181,768,235,864,250.7C960,267,1056,245,1152,250.7C1248,256,1344,288,1392,304L1440,320L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
+      </path>
+    </svg>
+    <article class="bg-gray-50 dark:bg-slate-900">
+      <div class="max-w-2xl m-auto px-8">
+        <div class="flex items-center flex-col gap-2">
+          <h1 id="titleSection" x-text="$store.language.isEnLanguage ? 'About Me' : 'Tentang Saya'"
+            class="text-2xl font-bold"></h1>
+          <div id="lineSection" class="w-20 h-1 bg-primary"></div>
+        </div>
+        <h1 id="aboutMyDesc" x-data="{
+        en: '<span>I am Arry Kusuma Putra, a web and application developer with 1 year experience in coding. I\'ve made coding a hobby.</span>',
+        id: '<span>Saya adalah Arry Kusuma Putra, seorang pengembang web dan aplikasi dengan pengalaman 1 tahun dalam coding. Saya telah menjadikan coding sebagai hobi.</span>'
+      }" x-html="$store.language.isEnLanguage ? en : id" class="font-medium text-center mt-8">
+          I am <span class="font-bold">Arry Kusuma Putra</span>, a web and
+          application developer
+          <span class="font-bold">with 1 year experience in coding. I've made coding a hobby</span>
+          and am currently working on developing my skills in web development
+          and apps.
+        </h1>
+        <div class="flex flex-col md:flex-row gap-10 justify-around mt-12 font-medium text-sm">
+          <div id="aboutIconAndTitle" class="flex flex-col items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5" />
+            </svg>
+            <h1 x-text="$store.language.isEnLanguage ? 'Polythecnic Banjarmasin' : 'Politeknik Banjarmasin'"></h1>
+          </div>
+          <div id="aboutIconAndTitle" class="flex flex-col items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+            </svg>
+            <h1>Indonesia, Banjarbaru</h1>
+          </div>
+        </div>
+      </div>
+    </article>
+    <svg class="rotate-180 relative -z-20 w-full text-center text-gray-50 dark:text-slate-900"
+      xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+      <path fill="currentcolor" fill-opacity="1"
+        d="M0,288L48,272C96,256,192,224,288,197.3C384,171,480,149,576,165.3C672,181,768,235,864,250.7C960,267,1056,245,1152,250.7C1248,256,1344,288,1392,304L1440,320L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
+      </path>
+    </svg>
+  </section>
+  <!-- END MAIN ABOUT -->
+  <!-- MAIN SKILLS -->
+  <section class="px-8 max-w-2xl m-auto">
+    <div id="skills" class="absolute -mt-20"></div>
+    <div class="flex items-center flex-col gap-2">
+      <h1 id="titleSection" x-text="$store.language.isEnLanguage ? 'Skills' : 'Keterampilan'"
+        class="text-2xl font-bold"></h1>
+      <div id="lineSection" class="w-20 h-1 bg-primary"></div>
+    </div>
+    <div id="skillsMainIcon" class="flex justify-center mt-16 gap-12 flex-wrap">
+      <!-- TAILWINDCSS -->
+      <span>
+        <div class="flex flex-col items-center gap-4">
+          <div
+            class="hover:bg-gray-50 dark:hover:bg-slate-900 hover:scale-95 duration-100 border-2 border-slate-100 dark:border-slate-900 w-[4.8rem] h-[4.4rem] rounded-lg flex items-center justify-center">
+            <svg width="51" height="30" viewBox="0 0 51 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M25.0061 0C18.3378 0 14.1701 3.3331 12.503 9.99931C15.0036 6.6662 17.921 5.41694 21.2552 6.24944C23.1577 6.72455 24.5174 8.1051 26.023 9.63255C28.4736 12.1196 31.3107 14.9995 37.5091 14.9995C44.1774 14.9995 48.3451 11.6664 50.0121 4.99913C47.5115 8.33223 44.5942 9.58254 41.26 8.75004C39.3585 8.27493 37.9988 6.89438 36.4932 5.36693C34.0416 2.87882 31.2034 0 25.0061 0ZM12.503 14.9995C5.83475 14.9995 1.66707 18.3326 0 24.9998C2.50061 21.6667 5.41798 20.4164 8.75212 21.25C10.6536 21.7261 12.0133 23.1056 13.5189 24.632C15.9705 27.1201 18.8087 30 25.0061 30C31.6744 30 35.842 26.6669 37.5091 19.9997C35.0085 23.3328 32.0911 24.5831 28.757 23.7495C26.8544 23.2744 25.4947 21.8939 23.9892 20.3675C21.5386 17.8793 18.7014 14.9995 12.503 14.9995Z"
+                fill="#00ACC1" />
+            </svg>
+          </div>
+          <h1>TailwindCSS</h1>
+        </div>
+      </span>
+      <!-- BOOTSTRAP -->
+      <span>
+        <div class="flex flex-col items-center gap-4">
+          <div
+            class="hover:bg-gray-50 dark:hover:bg-slate-900 hover:scale-95 duration-100 border-2 border-slate-100 dark:border-slate-900 w-[4.8rem] h-[4.4rem] rounded-lg flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="55" height="55" viewBox="0 0 48 48">
+              <path fill="#6c19ff"
+                d="M6.391,10.671c-0.085-2.448,1.822-4.706,4.401-4.706h26.42c2.578,0,4.486,2.258,4.401,4.706	c-0.082,2.352,0.024,5.398,0.791,7.882c0.769,2.492,2.066,4.067,4.19,4.269v2.295c-2.124,0.202-3.421,1.777-4.19,4.269	c-0.767,2.484-0.873,5.53-0.791,7.882c0.085,2.448-1.822,4.706-4.401,4.706h-26.42c-2.578,0-4.486-2.258-4.4-4.706	c0.082-2.352-0.025-5.398-0.791-7.882c-0.769-2.492-2.069-4.067-4.194-4.269v-2.295c2.124-0.202,3.425-1.777,4.194-4.269	C6.367,16.07,6.473,13.023,6.391,10.671z">
+              </path>
+              <linearGradient id="Is-EGaxKcc0Cic9QMqyzGa_EzPCiQUqWWEa_gr1" x1="17.846" x2="27.078" y1="-147.541"
+                y2="-163.153" gradientTransform="matrix(1 0 0 -1 0 -132)" gradientUnits="userSpaceOnUse">
+                <stop offset="0" stop-color="#fff"></stop>
+                <stop offset="1" stop-color="#f1e5fc"></stop>
+              </linearGradient>
+              <path fill="url(#Is-EGaxKcc0Cic9QMqyzGa_EzPCiQUqWWEa_gr1)"
+                d="M25.042,34.016c4.366,0,6.997-2.138,6.997-5.664c0-2.665-1.877-4.595-4.665-4.9v-0.111	c2.048-0.333,3.655-2.235,3.655-4.359c0-3.026-2.389-4.997-6.03-4.997h-8.192v20.031H25.042z M19.994,16.525h4.238	c2.304,0,3.612,1.027,3.612,2.887c0,1.985-1.522,3.096-4.281,3.096h-3.57V16.525z M19.994,31.475v-6.594h4.21	c3.015,0,4.579,1.11,4.579,3.276c0,2.165-1.522,3.318-4.394,3.318H19.994z">
+              </path>
+            </svg>
+          </div>
+          <h1>Bootstrap</h1>
+        </div>
+      </span>
+      <!-- LARAVEL -->
+      <span>
+        <div class="flex flex-col items-center gap-4">
+          <div
+            class="hover:bg-gray-50 dark:hover:bg-slate-900 hover:scale-95 duration-100 border-2 border-slate-100 dark:border-slate-900 w-[4.8rem] h-[4.4rem] rounded-lg flex items-center justify-center">
+            <svg width="41" height="42" viewBox="0 0 41 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M40.7754 9.5015C40.7905 9.55749 40.7984 9.61523 40.7984 9.67323V18.6884C40.7984 18.9239 40.6724 19.1415 40.4681 19.2586L32.9015 23.6151V32.2498C32.9015 32.4848 32.7766 32.7017 32.5728 32.82L16.7782 41.9125C16.742 41.933 16.7026 41.9462 16.6631 41.9601C16.6484 41.9651 16.6344 41.9741 16.6188 41.9782C16.5084 42.0073 16.3923 42.0073 16.2819 41.9782C16.2638 41.9733 16.2474 41.9634 16.2301 41.9568C16.194 41.9437 16.1562 41.9322 16.1217 41.9125L0.330305 32.82C0.12612 32.7027 0 32.4853 0 32.2498V5.20425C0 5.14509 0.00821654 5.08758 0.0230063 5.0317C0.0279362 5.01281 0.0394394 4.99555 0.0460126 4.97665C0.0583374 4.94214 0.0698406 4.90681 0.087917 4.87477C0.100242 4.8534 0.118318 4.83615 0.133108 4.81643C0.152006 4.79014 0.169261 4.76302 0.191445 4.74002C0.210343 4.72112 0.234993 4.70715 0.256356 4.69072C0.280184 4.671 0.301547 4.64963 0.328662 4.63402H0.329483L8.22558 0.0878112C8.42904 -0.0292704 8.67943 -0.0292704 8.8829 0.0878112L16.779 4.63402H16.7806C16.8069 4.65046 16.8291 4.671 16.8529 4.6899C16.8743 4.70633 16.8981 4.72112 16.917 4.73919C16.94 4.76302 16.9565 4.79014 16.9762 4.81643C16.9902 4.83615 17.0091 4.8534 17.0206 4.87477C17.0395 4.90763 17.0501 4.94214 17.0633 4.97665C17.0699 4.99555 17.0814 5.01281 17.0863 5.03252C17.1014 5.08852 17.1092 5.14625 17.1093 5.20425V22.0966L23.6891 18.308V9.6724C23.6891 9.61489 23.6973 9.55655 23.7121 9.5015C23.7179 9.48178 23.7285 9.46453 23.7351 9.44563C23.7483 9.41112 23.7598 9.37579 23.7778 9.34374C23.7902 9.32238 23.8082 9.30513 23.8222 9.28541C23.8419 9.25911 23.8584 9.232 23.8814 9.20899C23.9003 9.19009 23.9241 9.17613 23.9455 9.15969C23.9701 9.13997 23.9915 9.11861 24.0178 9.103H24.0186L31.9155 4.55679C32.1189 4.43954 32.3694 4.43954 32.5728 4.55679L40.4689 9.103C40.4969 9.11943 40.5182 9.13997 40.5429 9.15887C40.5634 9.1753 40.5872 9.19009 40.6061 9.20817C40.6291 9.232 40.6456 9.25911 40.6653 9.28541C40.6801 9.30513 40.6982 9.32238 40.7097 9.34374C40.7286 9.37579 40.7392 9.41112 40.7524 9.44563C40.7598 9.46453 40.7705 9.48178 40.7754 9.5015ZM39.4821 18.308V10.8112L36.7189 12.4019L32.9015 14.5999V22.0966L39.4829 18.308H39.4821ZM31.586 31.8694V24.3677L27.8311 26.5122L17.1085 32.6319V40.2042L31.586 31.8694ZM1.31629 6.34224V31.8694L15.7922 40.2034V32.6327L8.22969 28.3527L8.22722 28.3511L8.22393 28.3494C8.19846 28.3346 8.1771 28.3133 8.15327 28.2952C8.13273 28.2788 8.1089 28.2656 8.09083 28.2475L8.08918 28.2451C8.06782 28.2245 8.05303 28.1991 8.03495 28.1761C8.01852 28.1539 7.9988 28.135 7.98565 28.112L7.98483 28.1095C7.97004 28.0849 7.96101 28.0553 7.95032 28.0273C7.93964 28.0027 7.92567 27.9797 7.9191 27.9534V27.9526C7.91088 27.9213 7.90924 27.8885 7.90595 27.8564C7.90267 27.8318 7.89609 27.8071 7.89609 27.7825V27.7808V10.1309L4.07951 7.93214L1.31629 6.34306V6.34224ZM8.55506 1.41725L1.97608 5.20425L8.55342 8.99125L15.1316 5.20343L8.55342 1.41725H8.55506ZM11.9764 25.0513L15.793 22.8542V6.34224L13.0298 7.93296L9.21238 10.1309V26.6428L11.9764 25.0513ZM32.2442 5.88622L25.666 9.67323L32.2442 13.4602L38.8215 9.6724L32.2442 5.88622ZM31.586 14.5999L27.7686 12.4019L25.0054 10.8112V18.308L28.822 20.5051L31.586 22.0966V14.5999ZM16.4495 31.4939L26.0982 25.9855L30.9213 23.233L24.3481 19.4484L16.7798 23.8057L9.88203 27.7767L16.4495 31.4939Z"
+                fill="#FF2D20" />
+            </svg>
+          </div>
+          <h1>Laravel</h1>
+        </div>
+      </span>
+      <!-- ALPINEJS -->
+      <span>
+        <div class="flex flex-col items-center gap-4">
+          <div
+            class="hover:bg-gray-50 dark:hover:bg-slate-900 hover:scale-95 duration-100 border-2 border-slate-100 dark:border-slate-900 w-[4.8rem] h-[4.4rem] rounded-lg flex items-center justify-center">
+            <svg width="59" height="27" viewBox="0 0 59 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M45.2081 0L58.125 12.8602L45.2081 25.7203L32.2917 12.8602L45.2081 0Z" fill="#77C1D2" />
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M12.9169 0L39.6947 26.6606H13.8614L0 12.8602L12.9169 0Z"
+                fill="#2D3441" />
+            </svg>
+          </div>
+          <h1>AlpineJS</h1>
+        </div>
+      </span>
+      <!-- FLUTTER -->
+      <span>
+        <div class="flex flex-col items-center gap-4">
+          <div
+            class="hover:bg-gray-50 dark:hover:bg-slate-900 hover:scale-95 duration-100 border-2 border-slate-100 dark:border-slate-900 w-[4.8rem] h-[4.4rem] rounded-lg flex items-center justify-center">
+            <svg width="34" height="42" viewBox="0 0 34 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M21 0L0 21L6.3 27.3L33.6 0H21Z" fill="#40C4FF" />
+              <path d="M33.6 18.9L22.05 30.45L15.75 24.15L21 18.9H33.6Z" fill="#40C4FF" />
+              <path d="M15.7491 24.1502L9.44943 30.4501L15.7493 36.7498L22.049 30.4499L15.7491 24.1502Z"
+                fill="#03A9F4" />
+              <path d="M33.6 42H21L15.75 36.75L22.05 30.45L33.6 42Z" fill="#01579B" />
+              <path d="M15.75 36.75L25.2 33.6L22.05 30.45L15.75 36.75Z" fill="#084994" />
+            </svg>
+          </div>
+          <h1>Flutter</h1>
+        </div>
+      </span>
+      <!-- DART -->
+      <span>
+        <div class="flex flex-col items-center gap-4">
+          <div
+            class="hover:bg-gray-50 dark:hover:bg-slate-900 hover:scale-95 duration-100 border-2 border-slate-100 dark:border-slate-900 w-[4.8rem] h-[4.4rem] rounded-lg flex items-center justify-center">
+            <svg width="43" height="42" viewBox="0 0 43 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0_115_37)">
                 <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                  d="M6.7501 0.141139C4.87804 0.225606 3.25543 0.683303 1.94522 1.98799C0.630424 3.29953 0.178413 4.92856 0.0937346 6.78115C0.0410968 7.93746 -0.266701 16.673 0.625848 18.964C1.22775 20.5095 2.41321 21.6978 3.97288 22.3017C4.70065 22.5847 5.53143 22.7764 6.7501 22.8323C16.94 23.2934 20.7173 23.0424 22.3102 18.964C22.5928 18.238 22.7874 17.4079 22.8412 16.1923C23.3069 5.97621 22.7656 3.76182 20.9897 1.98799C19.5811 0.58285 17.9241 -0.373659 6.7501 0.141139ZM6.84391 20.7777C5.72823 20.7275 5.1229 20.5416 4.71897 20.3852C3.70283 19.9902 2.93959 19.2301 2.5471 18.2199C1.86739 16.4792 2.09283 8.2116 2.15347 6.8738C2.21298 5.5634 2.47845 4.36579 3.40304 3.44121C4.54733 2.29974 6.02574 1.74032 16.0921 2.19463C17.4057 2.25398 18.6061 2.51891 19.533 3.44121C20.6773 4.58267 21.2449 6.07246 20.7826 16.1002C20.7322 17.2131 20.5457 17.817 20.3889 18.2199C19.3534 20.8738 16.9709 21.2423 6.84391 20.7777ZM16.2031 5.39307C16.2031 6.14872 16.8176 6.76318 17.5763 6.76318C18.3349 6.76318 18.9506 6.14872 18.9506 5.39307C18.9506 4.63743 18.3349 4.02351 17.5763 4.02351C16.8176 4.02351 16.2031 4.63743 16.2031 5.39307ZM5.59207 11.4862C5.59207 14.7233 8.22281 17.3479 11.468 17.3479C14.7132 17.3479 17.344 14.7233 17.344 11.4862C17.344 8.24898 14.7132 5.6261 11.468 5.6261C8.22281 5.6261 5.59207 8.24898 5.59207 11.4862ZM7.65409 11.4862C7.65409 9.38588 9.36138 7.68184 11.468 7.68184C13.5747 7.68184 15.282 9.38588 15.282 11.4862C15.282 13.5876 13.5747 15.2922 11.468 15.2922C9.36138 15.2922 7.65409 13.5876 7.65409 11.4862Z"
-                  fill="currentcolor"
-                />
+                  d="M8.78014 33.3977L1.6432 26.2608C0.797073 25.3901 0.269775 24.1639 0.269775 22.9652C0.269775 22.4103 0.582475 21.5427 0.818533 21.043L7.40671 7.31787L8.78014 33.3977Z"
+                  fill="#01579B" />
+                <path
+                  d="M33.2137 8.69127L26.0768 1.55434C25.4545 0.928939 24.1546 0.180908 23.0571 0.180908C22.1129 0.180908 21.187 0.370982 20.5861 0.729669L7.40979 7.31784L33.2137 8.69127Z"
+                  fill="#40C4FF" />
+                <path d="M17.2905 41.908H34.5872V34.4952L21.6837 30.3779L9.88074 34.4952L17.2905 41.908Z"
+                  fill="#40C4FF" />
+                <path
+                  d="M7.40979 29.5564C7.40979 31.7576 7.6857 32.3002 8.78322 33.4008L9.88074 34.4983H34.5872L22.5083 20.7732L7.40979 7.32092V29.5564Z"
+                  fill="#29B6F6" />
+                <path
+                  d="M29.3693 7.31787H7.40671L34.5841 34.4952H41.9969V17.4745L33.2137 8.6913C31.9813 7.45276 30.8838 7.31787 29.3693 7.31787Z"
+                  fill="#01579B" />
+                <path opacity="0.2"
+                  d="M9.05605 33.6736C7.95853 32.57 7.68262 31.4847 7.68262 29.5564V7.59378L7.40671 7.31787V29.5533C7.40977 31.4847 7.40977 32.0182 9.05605 33.6736Z"
+                  fill="white" />
+                <path opacity="0.2" d="M41.7241 17.2017V34.2224H34.3112L34.5872 34.4952H42V17.4776L41.7241 17.2017Z"
+                  fill="#263238" />
+                <path opacity="0.2"
+                  d="M33.2137 8.6913C31.8526 7.33013 30.7367 7.31787 29.0965 7.31787H7.40979L7.6857 7.59378H29.0996C29.915 7.59378 31.9844 7.45583 33.2137 8.6913Z"
+                  fill="white" />
+                <path opacity="0.2"
+                  d="M41.7241 17.2016L33.2137 8.69127L26.0768 1.55434C25.4545 0.928939 24.1546 0.180908 23.0571 0.180908C22.1129 0.180908 21.187 0.370982 20.5861 0.729669L7.40979 7.31784L0.821615 21.043C0.585557 21.5427 0.272858 22.4103 0.272858 22.9651C0.272858 24.1638 0.800155 25.3901 1.64629 26.2608L8.22526 32.7907C8.38161 32.9838 8.56555 33.18 8.78628 33.3977L9.0622 33.6736L9.88687 34.4983L17.0238 41.6352L17.2997 41.9111H34.3204H34.5964V34.4983H42.0092V34.4799V17.4776L41.7241 17.2016Z"
+                  fill="url(#paint0_radial_115_37)" />
               </g>
               <defs>
-                <clipPath id="clip0_3_28">
-                  <rect width="30" height="30" fill="white" />
+                <radialGradient id="paint0_radial_115_37" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse"
+                  gradientTransform="translate(21.1395 21.0449) scale(20.8666)">
+                  <stop stop-color="white" stop-opacity="0.1" />
+                  <stop offset="1" stop-color="white" stop-opacity="0" />
+                </radialGradient>
+                <clipPath id="clip0_115_37">
+                  <rect width="42.3066" height="42" fill="white" />
                 </clipPath>
               </defs>
             </svg>
-          </a>
-          <a href="https://www.youtube.com/@CodeArry" target="_blank">
-            <svg
-              class="hover:-mt-2 duration-150"
-              height="30"
-              viewBox="0 0 20 14"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+          </div>
+          <h1>Dart</h1>
+        </div>
+      </span>
+      <!-- KOTLIN -->
+      <span>
+        <div class="flex flex-col items-center gap-4">
+          <div
+            class="hover:bg-gray-50 dark:hover:bg-slate-900 hover:scale-95 duration-100 border-2 border-slate-100 dark:border-slate-900 w-[4.8rem] h-[4.4rem] rounded-lg flex items-center justify-center">
+            <svg width="49" height="49" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M21 5.25L15.7412 10.8063L10.4738 16.3538L5.25 21.875V5.25H21Z" fill="#0D91D6" />
+              <path
+                d="M21 5.25H20.965L15.7237 10.7887L10.465 16.345L5.25 21.8487V21.875V21.9538V36.75L12.8537 29.1463L18.2613 23.7387L23.6775 18.3225L29.0938 12.9062L36.75 5.25H21Z"
+                fill="#F88909" />
+              <path d="M12.8537 29.1462L5.25 36.75V21.9537L12.8537 29.1462Z" fill="#C757BC" />
+              <path d="M18.2613 23.7388L12.8537 29.1463L5.25 21.9538V21.875L10.4738 16.3538L18.2613 23.7388Z"
+                fill="#D3638F" />
+              <path d="M23.6774 18.3225L18.2611 23.7388L10.4736 16.3538L15.7411 10.8063L23.6774 18.3225Z"
+                fill="#E07063" />
+              <path d="M29.0937 12.9062L23.6775 18.3225L15.7412 10.8063L21 5.25L29.0937 12.9062Z" fill="#EC7D36" />
+              <path d="M36.75 5.25L29.0938 12.9062L21 5.25H36.75Z" fill="#F88909" />
+              <path d="M10.0712 16.7563L6.99125 20.02L5.25 18.375V12.1975L10.0712 16.7563Z" fill="#0095D5" />
+              <path d="M13.1512 13.4925L10.0712 16.7562L5.25 12.1975V6.01123L13.1512 13.4925Z" fill="#2B88DA" />
+              <path d="M16.24 10.2375L13.1512 13.4925L5.25 6.01125V5.25H10.9637L16.24 10.2375Z" fill="#557BDE" />
+              <path d="M19.3201 6.97375L16.2401 10.2375L10.9639 5.25H21.0001L19.3201 6.97375Z" fill="#806EE3" />
+              <path d="M20.125 21.875L5.25 36.75H8.18125H15.33H35L20.125 21.875Z" fill="#0095D5" />
+              <path d="M22.47 36.7501H15.33L10.29 31.7188L13.86 28.1488L22.47 36.7501Z" fill="#2B88DA" />
+              <path d="M29.6274 36.75H22.4699L13.8599 28.1487L17.4299 24.5787L29.6274 36.75Z" fill="#557BDE" />
+              <path d="M36.7502 36.75H29.6277L17.4302 24.5788L21.0002 21L36.7502 36.75Z" fill="#806EE3" />
+            </svg>
+          </div>
+          <h1>Kotlin</h1>
+        </div>
+      </span>
+      <!-- ANDROID STUDIO -->
+      <span>
+        <div class="flex flex-col items-center gap-4">
+          <div
+            class="hover:bg-gray-50 dark:hover:bg-slate-900 hover:scale-95 duration-100 border-2 border-slate-100 dark:border-slate-900 w-[4.8rem] h-[4.4rem] rounded-lg flex items-center justify-center">
+            <svg width="41" height="49" viewBox="0 0 41 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M15.1664 6.1897H4.05842C1.81054 6.20284 -0.00353698 8.01692 -0.00353698 10.2648C-0.0692644 12.447 1.63965 14.261 3.8218 14.3268H15.2452L15.1664 6.1897Z"
+                fill="#073042" />
+              <path
+                d="M40.3402 42.4055H4.04547C1.81073 42.3924 0.00979852 40.5783 -0.00334697 38.3436V10.2385C-0.0164925 12.4864 1.79759 14.3268 4.04547 14.3399H34.4247C34.4247 14.3399 40.3402 13.8272 40.3402 18.2836V42.4055Z"
+                fill="#4285F4" />
+              <path
+                d="M23.4085 28.0112C25.0254 26.8018 25.3409 24.5014 24.1315 22.8976C23.461 22.0169 22.4226 21.4779 21.3183 21.4385H21.4366C21.647 21.4122 21.8704 21.4122 22.0808 21.4385V19.1774C22.0939 18.9145 21.9625 18.6779 21.739 18.5333C21.3972 18.3361 20.9634 18.4544 20.7662 18.7962C20.7005 18.9145 20.6611 19.046 20.6742 19.1774V21.4779C18.6761 21.7803 17.309 23.6469 17.6244 25.645C17.6244 25.6582 17.6244 25.6582 17.6244 25.6713C17.769 26.6309 18.2949 27.4854 19.0705 28.0507L12.3794 42.3529H16.7437L19.8329 35.7802C20.201 34.9915 21.1606 34.6497 21.9493 35.0178C22.2911 35.1755 22.554 35.4516 22.7118 35.7802L25.893 42.3529H30.3098L23.4085 28.0112ZM21.1737 27.3671C19.9249 27.3539 18.9127 26.3417 18.9259 25.0929C18.939 23.8441 19.9643 22.845 21.2132 22.8582C21.7916 22.8713 22.3305 23.0948 22.7512 23.4892C23.6451 24.3568 23.6582 25.7896 22.7906 26.6835C22.37 27.1173 21.7784 27.3671 21.1737 27.3671Z"
+                fill="#3870B2" />
+              <path d="M12.7344 8.18787H28.3118V11.0404H12.7344V8.18787Z" fill="white" />
+              <path
+                d="M19.9645 22.8582C21.2002 22.8713 22.1993 23.8967 22.1861 25.1324C22.173 26.368 21.1476 27.3671 19.912 27.3539C18.6763 27.3408 17.6904 26.3286 17.6904 25.0929C17.7035 24.5014 17.9401 23.9361 18.3608 23.5155C18.7814 23.0948 19.3598 22.8582 19.9645 22.8582ZM20.8584 21.5436V19.1774C20.8716 18.9145 20.7401 18.6779 20.5166 18.5333C20.1749 18.3361 19.7411 18.4544 19.5439 18.7962C19.4782 18.9145 19.4387 19.046 19.4519 19.1774V21.4779C17.4537 21.7803 16.0866 23.6469 16.4021 25.645C16.4021 25.6582 16.4021 25.6582 16.4021 25.6713C16.5467 26.6309 17.0725 27.4854 17.8481 28.0507L9.44814 46.1257C9.1195 46.7698 9.18523 47.5454 9.59274 48.137C10.2106 49.044 11.4463 49.2675 12.3533 48.6496C12.6556 48.4393 12.9054 48.1501 13.05 47.8083L18.65 35.7802C19.0181 34.9915 19.9777 34.6497 20.7664 35.0178C21.1082 35.1755 21.3711 35.4516 21.5288 35.7802L27.2734 47.7426C27.7598 48.7285 28.9429 49.136 29.9288 48.6628C30.9147 48.1895 31.3222 46.9933 30.849 46.0074L22.1993 28.0112C23.803 26.7492 24.0659 24.4225 22.7908 22.8187C22.3044 22.2009 21.634 21.7671 20.8847 21.5568"
+                fill="#073042" />
+              <path
+                d="M26.0113 10.6986C25.4329 10.7117 24.9465 10.2517 24.9333 9.67325C24.9202 9.38405 25.0385 9.09485 25.2488 8.89767C25.6695 8.49016 26.3267 8.49016 26.7474 8.89767C26.9446 9.09485 27.0498 9.35776 27.0629 9.63381C27.0629 10.2122 26.5897 10.6855 26.0113 10.6855M14.3249 10.6855C13.7465 10.6986 13.2733 10.2254 13.2601 9.64696C13.2601 9.35776 13.3653 9.0817 13.5756 8.88452C13.9437 8.43758 14.601 8.3587 15.0479 8.72678C15.0611 8.72678 15.0611 8.73992 15.0742 8.73992C15.508 9.13429 15.5606 9.80471 15.1662 10.2517L15.0216 10.3963C14.8244 10.5934 14.5484 10.6986 14.2723 10.6986M26.3399 4.32304L28.4432 0.668589C28.5483 0.471407 28.4958 0.221643 28.3117 0.0901876C28.1277 0.0113147 27.9174 0.0638965 27.799 0.221642L25.6037 3.94182C22.1465 2.39065 18.2028 2.39065 14.7456 3.94182L12.6029 0.221642C12.524 0.0901875 12.3794 -0.00183105 12.2216 -0.00183105C12.0639 0.0113144 11.9193 0.0901875 11.8404 0.221642C11.7615 0.366243 11.7615 0.523989 11.8404 0.668589L13.9568 4.32304C10.2498 6.34744 7.8179 10.1202 7.48926 14.3268H32.8601C32.5314 10.1202 30.0995 6.34744 26.3925 4.32304"
+                fill="#3DDC84" />
+              <path
+                d="M36.6986 22.122H35.0291C34.9371 22.1483 34.8713 22.2403 34.8845 22.3455V48.6364C34.8845 48.7416 34.9765 48.8336 35.0817 48.8468H36.8037C38.815 48.8336 40.445 47.2036 40.445 45.1923V18.4675C40.445 20.4919 38.815 22.122 36.7906 22.122H36.6986Z"
+                fill="#073042" />
+            </svg>
+          </div>
+          <h1>Android</h1>
+        </div>
+      </span>
+      <!-- MYSQL -->
+      <span>
+        <div class="flex flex-col items-center gap-4">
+          <div
+            class="hover:bg-gray-50 dark:hover:bg-slate-900 hover:scale-95 duration-100 border-2 border-slate-100 dark:border-slate-900 w-[4.8rem] h-[4.4rem] rounded-lg flex items-center justify-center">
+            <svg width="52" height="52" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M0.00208333 36.5009H2.00208V29.1207L4.78021 35.4301C5.12292 36.2165 5.59167 36.4947 6.51146 36.4947C7.43125 36.4947 7.88125 36.2165 8.22396 35.4301L11.0021 29.2822V36.5009H13.0021V28.9405C13.0021 28.2145 12.7135 27.8624 12.1177 27.6811C10.6937 27.2332 9.7375 27.6197 9.30521 28.5895L6.45625 35.0061L3.69687 28.5895C3.28229 27.6207 2.30937 27.2332 0.884375 27.6811C0.288542 27.8624 0 28.2134 0 28.9395V36.4999L0.00208333 36.5009Z"
+                fill="#00796B" />
+              <path
+                d="M14.002 30.501H16.002V34.7249C15.9863 34.9333 16.0686 35.4864 17.0332 35.501C17.5249 35.5093 19.9717 35.501 20.002 35.501V30.501H22.002C22.0103 30.501 22.002 36.7176 22.002 36.7437C22.0124 38.277 20.0978 38.4749 19.2176 38.501H14.003V37.501C14.0134 37.501 18.9895 37.502 19.004 37.501C20.1374 37.3812 20.003 36.7572 20.003 36.5676V36.501H16.8655C15.1259 36.4854 14.0165 35.7187 14.004 34.8447C14.002 34.7635 14.0415 30.5385 14.002 30.501Z"
+                fill="#00796B" />
+              <path
+                d="M23.0012 36.501H28.0085C28.6647 36.501 29.3022 36.3635 29.8085 36.126C30.6522 35.7385 31.0001 35.2145 31.0001 34.526V33.101C31.0001 31.5635 29.0939 31.501 28.0001 31.501H26.0001C25.2137 31.501 25.0939 31.026 25.0001 30.501V29.501C25.0939 29.101 25.2689 28.5635 25.9616 28.501C26.7668 28.501 30.9991 28.501 30.9991 28.501V27.501H26.2428C25.4564 27.501 22.9991 27.5947 22.9991 29.501V30.7374C22.9991 31.6124 23.7678 32.3249 25.4366 32.4999C25.6241 32.5124 25.8116 32.5249 25.998 32.5249C25.998 32.5249 27.9418 32.4874 27.998 32.4999C29.123 32.4999 28.998 33.3749 28.998 33.4999V34.4999C28.998 34.6374 28.9668 35.4999 27.9866 35.4999C27.9116 35.4999 22.998 35.4999 22.998 35.4999V36.501H23.0012Z"
+                fill="#F57F17" />
+              <path
+                d="M42 34.4583C42 35.6656 42.6823 36.3427 44.4917 36.4781C44.6604 36.4896 44.8302 36.5 45 36.5H50V35.5H45.3802C44.3479 35.5 44 35.0667 44 34.4469V27.5H42V34.4583Z"
+                fill="#F57F17" />
+              <path
+                d="M31.9824 34.501V29.501C31.9824 28.4385 32.5033 27.7051 33.9783 27.501H34.6783H38.2689H38.8158C40.2908 27.7051 40.9824 28.4374 40.9824 29.501V34.4822C40.9824 35.3437 40.7585 35.8062 40.0283 36.1062L41.5783 37.4999H39.3283L38.2137 36.4999H36.9043L34.6793 36.5124C34.3574 36.5124 34.0178 36.4676 33.6449 36.3656C32.5262 36.0604 31.9824 35.4729 31.9824 34.501ZM33.9824 34.501C34.0845 34.9874 34.4751 35.501 35.1699 35.501H37.1116L35.9991 34.501H38.2647L38.8053 35.0031C38.8053 35.0031 38.9991 34.8447 38.9991 34.501C38.9991 34.1572 38.9824 29.501 38.9824 29.501C38.8803 29.0489 38.422 28.501 37.7449 28.501H35.171C34.3908 28.501 33.9835 29.0718 33.9835 29.6031L33.9824 34.501Z"
+                fill="#F57F17" />
+              <path
+                d="M48.1244 26.4468C47.0504 26.4176 46.2306 26.5176 45.5296 26.8124C45.3306 26.8968 45.0129 26.8989 44.9796 27.1489C45.0889 27.2635 45.1056 27.4353 45.1931 27.576C45.3598 27.8468 45.6431 28.2103 45.8952 28.3999C46.1712 28.6083 46.4556 28.8312 46.7504 29.0114C47.2754 29.3312 47.8618 29.5145 48.3681 29.8353C48.666 30.0239 48.9619 30.2635 49.2535 30.476C49.3973 30.5822 49.4931 30.7458 49.6806 30.8124C49.6806 30.802 49.6806 30.7926 49.6806 30.7822C49.5827 30.6572 49.5566 30.4853 49.4671 30.3541C49.3348 30.2218 49.2025 30.0895 49.0702 29.9572C48.6827 29.4426 48.1889 28.9895 47.666 28.6145C47.2483 28.3145 46.3139 27.9093 46.1389 27.4239C46.1285 27.4135 46.1191 27.4041 46.1077 27.3926C46.4035 27.3593 46.7504 27.252 47.0233 27.1791C47.4827 27.0562 47.8921 27.0885 48.366 26.9655C48.5796 26.9041 48.7931 26.8437 49.0066 26.7822C49.0066 26.7416 49.0066 26.701 49.0066 26.6603C48.7671 26.4145 48.5952 26.0895 48.3348 25.8666C47.6504 25.2843 46.9046 24.7031 46.1369 24.2176C45.7108 23.9489 45.1837 23.7739 44.7327 23.5458C44.5806 23.4687 44.3139 23.4291 44.2139 23.302C43.9764 22.9999 43.8483 22.6156 43.665 22.2645C43.2816 21.527 42.9046 20.7208 42.566 19.9447C42.3337 19.4155 42.1827 18.8926 41.8941 18.4176C40.5077 16.1385 39.015 14.7624 36.7046 13.4103C36.2129 13.1228 35.6202 13.0093 34.9941 12.8603C34.6577 12.8406 34.3223 12.8197 33.9858 12.7989C33.7806 12.7124 33.5681 12.4624 33.3744 12.3406C32.6087 11.8562 30.6441 10.8041 30.0775 12.1874C29.7191 13.0603 30.6129 13.9124 30.9327 14.3551C31.1566 14.6656 31.4441 15.0135 31.6046 15.3635C31.7098 15.5926 31.7285 15.8228 31.8181 16.0656C32.04 16.6635 32.391 17.3447 32.6785 17.8978C32.8233 18.178 32.9837 18.4718 33.1671 18.7218C33.2796 18.8749 33.4723 18.9426 33.5035 19.1801C33.315 19.4437 33.3046 19.8531 33.1983 20.1885C32.7212 21.6937 32.9014 23.5635 33.5952 24.676C33.8077 25.0176 34.3098 25.751 34.9993 25.4697C35.6025 25.2239 35.4681 24.4624 35.64 23.7906C35.6785 23.6385 35.6546 23.527 35.7316 23.4249C35.7316 23.4353 35.7316 23.4447 35.7316 23.4562C35.915 23.8218 36.0973 24.1895 36.2816 24.5551C36.6889 25.2103 37.4108 25.8947 38.0212 26.3572C38.3379 26.5968 38.5879 27.0114 38.9983 27.151C38.9983 27.1406 38.9983 27.1312 38.9983 27.1197C38.9879 27.1197 38.9785 27.1197 38.9671 27.1197C38.8879 26.9958 38.7629 26.9447 38.6619 26.8447C38.4233 26.6103 38.1566 26.3197 37.9598 26.051C37.4035 25.2958 36.9119 24.4687 36.4639 23.6083C36.2504 23.1968 36.0639 22.7447 35.8837 22.326C35.8139 22.1645 35.815 21.9208 35.6702 21.8374C35.4723 22.1437 35.1827 22.3916 35.0296 22.7531C34.7858 23.3312 34.7535 24.0374 34.6639 24.7676C34.6098 24.7864 34.6337 24.7739 34.6025 24.7978C34.1775 24.6947 34.0275 24.2583 33.8691 23.8822C33.4691 22.9322 33.3952 21.403 33.7473 20.3103C33.8379 20.027 34.2494 19.1364 34.0837 18.8749C34.0046 18.6135 33.7421 18.4624 33.5962 18.2635C33.4139 18.0176 33.2337 17.6926 33.1077 17.4083C32.7806 16.6676 32.4702 15.8062 32.1254 15.0572C31.9608 14.6989 31.6827 14.3374 31.4535 14.0197C31.2004 13.6676 30.916 13.4083 30.7202 12.9822C30.6504 12.8312 30.5556 12.5885 30.6587 12.4322C30.6921 12.327 30.7379 12.2833 30.8421 12.2489C31.0191 12.1114 31.5119 12.2937 31.6973 12.3708C32.1869 12.5739 32.5952 12.7676 33.0098 13.0426C33.2087 13.1749 33.4098 13.4301 33.6504 13.501C33.7421 13.501 33.8337 13.501 33.9254 13.501C34.3556 13.5999 34.8368 13.5322 35.2379 13.6541C35.9483 13.8697 36.5837 14.2051 37.1608 14.5697C38.9212 15.6812 40.3598 17.2624 41.3441 19.1499C41.5025 19.4541 41.5712 19.7437 41.7098 20.0656C41.991 20.7156 42.3462 21.3843 42.6254 22.0197C42.9046 22.6541 43.1775 23.2937 43.5723 23.8218C43.7806 24.0989 44.5827 24.2478 44.9462 24.402C45.2014 24.5103 45.6202 24.6218 45.8619 24.7676C46.3244 25.0468 46.7723 25.3791 47.2046 25.6833C47.4254 25.8364 48.091 26.1708 48.1244 26.4468Z"
+                fill="#00796B" />
+              <path
+                d="M34.4777 14.8158C34.2538 14.8117 34.0954 14.8398 33.9277 14.8773C33.9277 14.8877 33.9277 14.8971 33.9277 14.9085C33.9382 14.9085 33.9475 14.9085 33.959 14.9085C34.0663 15.1273 34.2538 15.27 34.3861 15.4585C34.4881 15.6721 34.5892 15.8856 34.6913 16.0992C34.7017 16.0888 34.7111 16.0794 34.7215 16.069C34.91 15.9356 34.9975 15.7231 34.9965 15.3971C34.9204 15.3169 34.909 15.2169 34.8434 15.1221C34.7559 14.994 34.5871 14.9221 34.4777 14.8158Z"
+                fill="#00796B" />
+            </svg>
+          </div>
+          <h1>MySQL</h1>
+        </div>
+      </span>
+      <!-- FIGMA -->
+      <span>
+        <div class="flex flex-col items-center gap-4">
+          <div
+            class="hover:bg-gray-50 dark:hover:bg-slate-900 hover:scale-95 duration-100 border-2 border-slate-100 dark:border-slate-900 w-[4.8rem] h-[4.4rem] rounded-lg flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="42px" height="42px">
+              <path fill="#e64a19" d="M26,17h-8c-3.866,0-7-3.134-7-7v0c0-3.866,3.134-7,7-7h8V17z" />
+              <path fill="#7c4dff" d="M25,31h-7c-3.866,0-7-3.134-7-7v0c0-3.866,3.134-7,7-7h7V31z" />
+              <path fill="#66bb6a"
+                d="M18,45L18,45c-3.866,0-7-3.134-7-7v0c0-3.866,3.134-7,7-7h7v7C25,41.866,21.866,45,18,45z" />
+              <path fill="#ff7043" d="M32,17h-7V3h7c3.866,0,7,3.134,7,7v0C39,13.866,35.866,17,32,17z" />
+              <circle cx="32" cy="24" r="7" fill="#29b6f6" />
+            </svg>
+          </div>
+          <h1>Figma</h1>
+        </div>
+      </span>
+    </div>
+  </section>
+  <!-- END MAIN SKILLS -->
+  <!-- SECTION CERTIFICATE -->
+  <section class="px-8 pt-28 max-w-3xl m-auto">
+    <div id="certificate" class="absolute -mt-20"></div>
+    <div class="flex items-center flex-col gap-2">
+      <h1 id="titleSection" x-text="$store.language.isEnLanguage ? 'Certificates' : 'Sertifikat'"
+        class="text-2xl font-bold"></h1>
+      <div id="lineSection" class="w-20 h-1 bg-primary"></div>
+    </div>
+    <main class="mt-10 flex justify-evenly flex-wrap gap-14">
+      <!-- SERTIFIKAT 1 -->
+      <div x-data="{showCertificate: false}">
+        <div id="certificate" class="text-center w-72">
+          <div class="group w-72 h-44 overflow-hidden m-auto mb-2.5 rounded-lg relative">
+            <img class="object-cover mb-2 group-hover:scale-110 duration-300 group-hover:brightness-50"
+              src="dist/image/sertifikat-1.jpg" alt="" />
+            <button @click="showCertificate = true"
+              class="text-white opacity-0 group-hover:opacity-100 duration-200 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 absolute border-b-2 px-2 py-1 font-medium">
+              Detail
+            </button>
+          </div>
+          <h1 x-text="$store.language.isEnLanguage ? '1st Place in Software Development' 
+        : 'Juara 1 Pengembangan Perangkat Lunak'" class=""></h1>
+          <p x-text="$store.language.isEnLanguage ? 'iTech Poliban Competition is an annual competition held at the Banjarmasin State Polytechnic.' 
+        : 'iTech Poliban Competition adalah lomba tahunan yang diadakan di Politeknik Negeri Banjarmasin.'"
+            class="text-sm font-medium opacity-70"></p>
+        </div>
+        <div @click="showCertificate = false" @keyup.escape.window="showCertificate = false" x-show="showCertificate"
+          class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 w-full h-screen flex justify-center items-center bg-black/70"
+          style="display: none">
+          <div @click="showCertificate = false" class="w-[90%] h-[90%] bg-contain bg-center bg-no-repeat"
+            style="background-image: url(dist/image/sertifikat-1.jpg)"></div>
+        </div>
+      </div>
+      <!-- CERTIFICATE 2 -->
+      <div x-data="{showCertificate: false}">
+        <div id="certificate" class="text-center w-72">
+          <div class="group w-72 h-44 overflow-hidden m-auto mb-2.5 rounded-lg relative">
+            <img class="object-cover mb-2 group-hover:scale-110 duration-300 group-hover:brightness-50"
+              src="dist/image/sertifikat-2.jpg" alt="" />
+            <button @click="showCertificate = true"
+              class="text-white opacity-0 group-hover:opacity-100 duration-200 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 absolute border-b-2 px-2 py-1 font-medium">
+              Detail
+            </button>
+          </div>
+          <h1 x-text="$store.language.isEnLanguage ? 'Bangkit Academy Training 2024 Batch 1' 
+        : 'Pelatihan Bangkit Academy 2024 Batch 1'" class=""></h1>
+          <p x-text="$store.language.isEnLanguage ? 'MSIB (Internship and Certified Independent Study) Program at Merdeka Campus.' 
+        : 'Program MSIB (Magang dan Studi Idependen Bersertifikar) Kampus Merdeka.'"
+            class="text-sm font-medium opacity-70"></p>
+        </div>
+        <div @click="showCertificate = false" @keyup.escape.window="showCertificate = false" x-show="showCertificate"
+          class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 w-full h-screen flex justify-center items-center bg-black/70"
+          style="display: none">
+          <div @click="showCertificate = false" class="w-[90%] h-[90%] bg-contain bg-center bg-no-repeat"
+            style="background-image: url(dist/image/sertifikat-2.jpg)"></div>
+        </div>
+      </div>
+      <!-- CERTIFICATE 3 -->
+      <div x-data="{showCertificate: false}">
+        <div id="certificate" class="text-center w-72">
+          <div class="group w-72 h-44 overflow-hidden m-auto mb-2.5 rounded-lg relative">
+            <img class="object-cover mb-2 group-hover:scale-110 duration-300 group-hover:brightness-50"
+              src="dist/image/sertifikat-3.jpg" alt="" />
+            <button @click="showCertificate = true"
+              class="text-white opacity-0 group-hover:opacity-100 duration-200 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 absolute border-b-2 px-2 py-1 font-medium">
+              Detail
+            </button>
+          </div>
+          <h1 x-text="$store.language.isEnLanguage ? 'IBAC 2024 Web Design Participant' 
+        : 'Peserta Lomba IBAC 2024 Bidang Web Design'" class=""></h1>
+          <p x-text="$store.language.isEnLanguage ? 'IBAC is an international competition at Polytechnics which is held every year.' 
+        : 'IBAC adalah lomba internasional pada Politeknik yang diadakan setiap tahun.'"
+            class="text-sm font-medium opacity-70"></p>
+        </div>
+        <div @click="showCertificate = false" @keyup.escape.window="showCertificate = false" x-show="showCertificate"
+          class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 w-full h-screen flex justify-center items-center bg-black/70"
+          style="display: none">
+          <div @click="showCertificate = false" class="w-[90%] h-[90%] bg-contain bg-center bg-no-repeat"
+            style="background-image: url(dist/image/sertifikat-3.jpg)"></div>
+        </div>
+      </div>
+      <!-- CERTIFICATE 4 -->
+      <div x-data="{showCertificate: false}">
+        <div id="certificate" class="text-center w-72">
+          <div class="group w-72 h-44 overflow-hidden m-auto mb-2.5 rounded-lg relative">
+            <img class="object-cover mb-2 group-hover:scale-110 duration-300 group-hover:brightness-50"
+              src="dist/image/sertifikat-4.jpg" alt="" />
+            <button @click="showCertificate = true"
+              class="text-white opacity-0 group-hover:opacity-100 duration-200 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 absolute border-b-2 px-2 py-1 font-medium">
+              Detail
+            </button>
+          </div>
+          <h1 x-text="$store.language.isEnLanguage ? '1st Place in 2024 WCC Competition Bank Kalsel' 
+        : 'Juara 1 Lomba WCC 2024 Bank Kalsel'" class=""></h1>
+          <p x-text="$store.language.isEnLanguage ? 'WCC is a competition held by Bank Kalsel to find digital talent.' 
+        : 'WCC adalah lomba yang diadakan oleh Bank Kalsel untuk mencari talenta digital.'"
+            class="text-sm font-medium opacity-70"></p>
+        </div>
+        <div @click="showCertificate = false" @keyup.escape.window="showCertificate = false" x-show="showCertificate"
+          class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 w-full h-screen flex justify-center items-center bg-black/70"
+          style="display: none">
+          <div @click="showCertificate = false" class="w-[90%] h-[90%] bg-contain bg-center bg-no-repeat"
+            style="background-image: url(dist/image/sertifikat-4.jpg)"></div>
+        </div>
+      </div>
+    </main>
+  </section>
+  <!-- END SECTION CERTIFICATE -->
+  <!-- SECTION PROJECT -->
+  <section class="pt-28 px-8 max-w-3xl m-auto">
+    <div id="project" class="absolute -mt-20"></div>
+    <div class="flex items-center flex-col gap-2">
+      <h1 id="titleSection" x-text="$store.language.isEnLanguage ? 'Projects' : 'Projek'" class="text-2xl font-bold">
+      </h1>
+      <div id="lineSection" class="w-20 h-1 bg-primary"></div>
+    </div>
+    <main class="mt-10 flex justify-evenly flex-wrap gap-14">
+      <!-- PROJECT 1 -->
+      <div id="project" class="w-72">
+        <div class="group w-72 h-44 overflow-hidden m-auto mb-2.5 rounded-lg relative">
+          <img class="h-full object-cover group-hover:scale-110 duration-300 group-hover:brightness-50"
+            src="dist/image/project-1.jpg" alt="" />
+          <a target="_blank" href="https://github.com/ArryPutra/tewiter"
+            class="text-white opacity-0 group-hover:opacity-100 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 absolute border-b-2 px-2 py-1 font-medium duration-150">Explore
+            🚀</a>
+        </div>
+        <a href="https://github.com/ArryPutra/tewiter" target="_blank" class="flex justify-between">
+          <h1 class="text-xl">Tewiter</h1>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M11.25 5H4.375C3.87772 5 3.40081 5.19754 3.04917 5.54917C2.69754 5.90081 2.5 6.37772 2.5 6.875V15.625C2.5 16.1223 2.69754 16.5992 3.04917 16.9508C3.40081 17.3025 3.87772 17.5 4.375 17.5H13.125C13.6223 17.5 14.0992 17.3025 14.4508 16.9508C14.8025 16.5992 15 16.1223 15 15.625V8.75M6.25 13.75L17.5 2.5M17.5 2.5H13.125M17.5 2.5V6.875"
+              stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </a>
+        <p x-text="$store.language.isEnLanguage ? 
+      'A simple twitter cloning website, creation using the Laravel framework. This website was created by myself.' 
+      : 'Sebuah website cloning twitter sederhana, pembuatan menggunakan framework Laravel. Website ini dibuat oleh diri saya sendiri.'"
+          class="text-sm font-medium opacity-70 mt-1.5 mb-5"></p>
+        <span
+          class="text-sm font-medium border border-slate-200 dark:border-slate-800 p-2 rounded-md hover:bg-gray-50 dark:hover:bg-slate-900">TailwindCSS</span>
+        <span
+          class="text-sm font-medium border border-slate-200 dark:border-slate-800 p-2 rounded-md ml-2 hover:bg-gray-50 dark:hover:bg-slate-900">Laravel</span>
+      </div>
+      <!-- PROJECT 2 -->
+      <div id="project" class="w-72">
+        <div class="group w-72 h-44 overflow-hidden m-auto mb-2.5 rounded-lg relative">
+          <img class="h-full object-cover group-hover:scale-110 duration-300 group-hover:brightness-50"
+            src="dist/image/project-2.jpg" alt="" />
+          <a target="_blank" href="https://qr-code-generator-and-qr-code-scanner.en.uptodown.com/android"
+            class="text-white opacity-0 group-hover:opacity-100 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 absolute border-b-2 px-2 py-1 font-medium duration-150">Explore
+            🚀</a>
+        </div>
+        <a href="https://qr-code-generator-and-qr-code-scanner.en.uptodown.com/android" target="_blank"
+          class="flex justify-between">
+          <h1 class="text-xl">QR Code Scanner & Generate</h1>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M11.25 5H4.375C3.87772 5 3.40081 5.19754 3.04917 5.54917C2.69754 5.90081 2.5 6.37772 2.5 6.875V15.625C2.5 16.1223 2.69754 16.5992 3.04917 16.9508C3.40081 17.3025 3.87772 17.5 4.375 17.5H13.125C13.6223 17.5 14.0992 17.3025 14.4508 16.9508C14.8025 16.5992 15 16.1223 15 15.625V8.75M6.25 13.75L17.5 2.5M17.5 2.5H13.125M17.5 2.5V6.875"
+              stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </a>
+        <p x-text="$store.language.isEnLanguage ? 
+      'The app allows you to scan QR codes and create beautiful custom QR codes. The manufacturing process takes about 2 months.' 
+      : 'Aplikasi ini memungkinkan Anda untuk memindai QR code dan membuat QR code kustom yang cantik. Proses pembuatannya memakan waktu sekitar 2 bulan.'"
+          class="text-sm font-medium opacity-70 mt-1.5 mb-5"></p>
+        <span
+          class="text-sm font-medium border border-slate-200 dark:border-slate-800 p-2 rounded-md hover:bg-gray-50 dark:hover:bg-slate-900">Flutter</span>
+        <span
+          class="text-sm font-medium border border-slate-200 dark:border-slate-800 p-2 rounded-md ml-2 hover:bg-gray-50 dark:hover:bg-slate-900">Dart</span>
+      </div>
+      <!-- PROJECT 3 -->
+      <div id="project" class="w-72">
+        <div class="group w-72 h-44 overflow-hidden m-auto mb-2.5 rounded-lg relative">
+          <img class="h-full object-cover group-hover:scale-110 duration-300 group-hover:brightness-50"
+            src="dist/image/project-3.jpg" alt="" />
+          <a target="_blank" href="https://play.google.com/store/apps/details?id=com.arryputra.catatankeuangan"
+            class="text-white opacity-0 group-hover:opacity-100 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 absolute border-b-2 px-2 py-1 font-medium duration-150">Explore
+            🚀</a>
+        </div>
+        <a href="https://play.google.com/store/apps/details?id=com.arryputra.catatankeuangan" target="_blank"
+          class="flex justify-between">
+          <h1 class="text-xl">Catatan Keuangan</h1>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M11.25 5H4.375C3.87772 5 3.40081 5.19754 3.04917 5.54917C2.69754 5.90081 2.5 6.37772 2.5 6.875V15.625C2.5 16.1223 2.69754 16.5992 3.04917 16.9508C3.40081 17.3025 3.87772 17.5 4.375 17.5H13.125C13.6223 17.5 14.0992 17.3025 14.4508 16.9508C14.8025 16.5992 15 16.1223 15 15.625V8.75M6.25 13.75L17.5 2.5M17.5 2.5H13.125M17.5 2.5V6.875"
+              stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </a>
+        <p x-text="$store.language.isEnLanguage ? 
+      'An application that can record finances digitally, track income and expenses.' 
+      : 'Aplikasi yang dapat mencatat keuangan secara digital, melacak pendapatan dan pengeluaran.'"
+          class="text-sm font-medium opacity-70 mt-1.5 mb-5"></p>
+        <span
+          class="text-sm font-medium border border-slate-200 dark:border-slate-800 p-2 rounded-md hover:bg-gray-50 dark:hover:bg-slate-900">Flutter</span>
+        <span
+          class="text-sm font-medium border border-slate-200 dark:border-slate-800 p-2 rounded-md ml-2 hover:bg-gray-50 dark:hover:bg-slate-900">Dart</span>
+      </div>
+      <!-- PROJECT 4 -->
+      <div id="project" class="w-72">
+        <div class="group w-72 h-44 overflow-hidden m-auto mb-2.5 rounded-lg relative">
+          <img class="h-full object-cover group-hover:scale-110 duration-300 group-hover:brightness-50"
+            src="dist/image/project-4.jpg" alt="" />
+          <a target="_blank" href="https://github.com/ArryPutra/website-kasir-mozee"
+            class="text-white opacity-0 group-hover:opacity-100 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 absolute border-b-2 px-2 py-1 font-medium duration-150">Explore
+            🚀</a>
+        </div>
+        <a href="https://github.com/ArryPutra/website-kasir-mozee" target="_blank" class="flex justify-between">
+          <h1 class="text-xl">Kasir Mozee</h1>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M11.25 5H4.375C3.87772 5 3.40081 5.19754 3.04917 5.54917C2.69754 5.90081 2.5 6.37772 2.5 6.875V15.625C2.5 16.1223 2.69754 16.5992 3.04917 16.9508C3.40081 17.3025 3.87772 17.5 4.375 17.5H13.125C13.6223 17.5 14.0992 17.3025 14.4508 16.9508C14.8025 16.5992 15 16.1223 15 15.625V8.75M6.25 13.75L17.5 2.5M17.5 2.5H13.125M17.5 2.5V6.875"
+              stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </a>
+        <p x-text="$store.language.isEnLanguage ? 
+      'PBL college assignments creates an MSME website with a cashier case study. There are two types of users, admin and employees.' 
+      : 'Tugas kuliah PBL membuat website UMKM dengan studi kasus kasir. Terdapat dua jenis pengguna, yaitu admin dan karyawan.'"
+          class="text-sm font-medium opacity-70 mt-1.5 mb-5"></p>
+        <span
+          class="text-sm font-medium border border-slate-200 dark:border-slate-800 p-2 rounded-md hover:bg-gray-50 dark:hover:bg-slate-900">Javascript</span>
+        <span
+          class="text-sm font-medium border border-slate-200 dark:border-slate-800 p-2 rounded-md ml-2 hover:bg-gray-50 dark:hover:bg-slate-900">PHP</span>
+      </div>
+      <!-- PROJECT 5 -->
+      <div id="project" class="w-72">
+        <div class="group w-72 h-44 overflow-hidden m-auto mb-2.5 rounded-lg relative">
+          <img class="h-full object-cover group-hover:scale-110 duration-300 group-hover:brightness-50"
+            src="dist/image/project-5.jpg" alt="" />
+          <a target="_blank" href="https://indeks-kami-vercel.vercel.app"
+            class="text-white opacity-0 group-hover:opacity-100 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 absolute border-b-2 px-2 py-1 font-medium duration-150">Explore
+            🚀</a>
+        </div>
+        <a href="https://indeks-kami-vercel.vercel.app" target="_blank" class="flex justify-between">
+          <h1 class="text-xl">Website Indeks KAMI</h1>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M11.25 5H4.375C3.87772 5 3.40081 5.19754 3.04917 5.54917C2.69754 5.90081 2.5 6.37772 2.5 6.875V15.625C2.5 16.1223 2.69754 16.5992 3.04917 16.9508C3.40081 17.3025 3.87772 17.5 4.375 17.5H13.125C13.6223 17.5 14.0992 17.3025 14.4508 16.9508C14.8025 16.5992 15 16.1223 15 15.625V8.75M6.25 13.75L17.5 2.5M17.5 2.5H13.125M17.5 2.5V6.875"
+              stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </a>
+        <p x-text="$store.language.isEnLanguage ? 
+      'Information security evaluation and monitoring system website for SKPD and OPD in South Kalimantan Province.' 
+      : 'Website sistem evaluasi dan monitoring keamanan informasi untuk SKPD dan OPD di Provinsi Kalimantan Selatan.'"
+          class="text-sm font-medium opacity-70 mt-1.5 mb-5"></p>
+        <span
+          class="text-sm font-medium border border-slate-200 dark:border-slate-800 p-2 rounded-md hover:bg-gray-50 dark:hover:bg-slate-900">Tailwind
+          CSS</span>
+        <span
+          class="text-sm font-medium border border-slate-200 dark:border-slate-800 p-2 rounded-md ml-2 hover:bg-gray-50 dark:hover:bg-slate-900">Alpine
+          JS</span>
+        <span
+          class="text-sm font-medium border border-slate-200 dark:border-slate-800 p-2 rounded-md ml-2 hover:bg-gray-50 dark:hover:bg-slate-900">Laravel</span>
+      </div>
+    </main>
+  </section>
+  <!-- END SECTION PROJECT -->
+  <!-- SECTION MOTIVATION -->
+  <section class="max-w-2xl m-auto pt-28 px-8">
+    <h1 id="motivation"
+      x-text="$store.language.isEnLanguage ? '&quot;Success is like building a solid building. Every brick that is carefully and meticulously laid is an important part of the process to glory 🚀. &quot;' : '&quot;Kesuksesan adalah seperti membangun sebuah bangunan yang kokoh. Setiap batu bata yang diletakkan dengan hati-hati dan teliti adalah bagian penting dari proses menuju kejayaan 🚀. &quot;'"
+      class="text-center font-medium"></h1>
+  </section>
+  <!-- END SECTION MOTIVATION -->
+  <!-- SECTION CONTACT -->
+  <svg id="contact" class="-z-20 w-full text-center text-gray-50 dark:text-slate-900" xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 1440 320">
+    <path fill="#5700FF" fill-opacity="1"
+      d="M0,288L48,272C96,256,192,224,288,197.3C384,171,480,149,576,165.3C672,181,768,235,864,250.7C960,267,1056,245,1152,250.7C1248,256,1344,288,1392,304L1440,320L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
+    </path>
+  </svg>
+  <div class="w-full bg-gradient-to-b from-primary to-[#5200FF]">
+    <h1 class="text-2xl text-white text-center lg:text-start max-w-4xl m-auto">
+      Let's Get in Touch 👋
+    </h1>
+    <section class="max-w-4xl m-auto pb-12 flex flex-col lg:flex-row-reverse lg:justify-between">
+      <form action="https://formsubmit.co/bcaada81c10df6e89b6a81e2af00286f" method="POST"
+        class="flex justify-center mt-8 flex-col m-auto lg:m-0 gap-4 w-3/4 lg:w-1/2">
+        <input name="name" class="bg-darkPrimary outline-none rounded-md p-2 placeholder:text-sm text-white"
+          placeholder="Name" type="text" />
+        <input name="email" class="bg-darkPrimary outline-none rounded-md p-2 placeholder:text-sm text-white"
+          placeholder="Email" type="email" />
+        <textarea name="desc"
+          class="p-2 rounded-md outline-none bg-darkPrimary resize-none placeholder:text-sm text-white"
+          placeholder="Type Here ..." rows="6"></textarea>
+        <button
+          class="text-white flex justify-center items-center gap-2 bg-gradient-to-r from-secondary to-tertiary p-2 rounded-xl text-sm"
+          type="submit">
+          Send
+          <svg width="16" height="16" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M4.5 8.99998L2.45175 2.34448C7.35136 3.76924 11.9717 6.02008 16.1138 8.99998C11.9721 11.9803 7.35193 14.2317 2.4525 15.657L4.5 8.99998ZM4.5 8.99998H10.125"
+              stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+      </form>
+      <div class="flex items-center flex-col gap-8 lg:items-end mt-8 lg:mt-0">
+        <img class="w-48 hidden lg:block" src="dist/image/Saly-10.png" alt="" />
+        <div class="flex flex-wrap justify-center gap-6 lg:flex-col px-8 lg:px-0">
+          <a href="https://www.youtube.com/@CodeArry" target="_blank"
+            class="flex items-center gap-2 fill-white text-white font-medium">
+            <svg class="hover:-mt-2 duration-150" width="24" viewBox="0 0 20 14" fill="none"
+              xmlns="http://www.w3.org/2000/svg">
               <g clip-path="url(#clip0_107_2)">
                 <path
                   d="M19.593 2.20301C19.4791 1.78041 19.2565 1.39501 18.9473 1.08518C18.6382 0.775338 18.2533 0.551868 17.831 0.437007C16.265 0.00700739 9.99996 7.59651e-06 9.99996 7.59651e-06C9.99996 7.59651e-06 3.73596 -0.00699261 2.16896 0.404007C1.74689 0.524154 1.36279 0.750785 1.05353 1.06214C0.744273 1.3735 0.520249 1.75913 0.402964 2.18201C-0.0100364 3.74801 -0.0140366 6.99601 -0.0140366 6.99601C-0.0140366 6.99601 -0.0180366 10.26 0.391963 11.81C0.621963 12.667 1.29696 13.344 2.15496 13.575C3.73696 14.005 9.98496 14.012 9.98496 14.012C9.98496 14.012 16.25 14.019 17.816 13.609C18.2385 13.4943 18.6237 13.2714 18.9336 12.9622C19.2435 12.653 19.4673 12.2682 19.583 11.846C19.997 10.281 20 7.03401 20 7.03401C20 7.03401 20.02 3.76901 19.593 2.20301ZM7.99596 10.005L8.00096 4.00501L13.208 7.01001L7.99596 10.005Z"
-                  fill="currentColor"
-                />
+                  fill="white" />
               </g>
               <defs>
                 <clipPath id="clip0_107_2">
@@ -393,1218 +884,73 @@
                 </clipPath>
               </defs>
             </svg>
+            <h1>CodeArry</h1>
           </a>
-          <a
-            href="https://api.whatsapp.com/send/?phone=6281350445065&text&type=phone_number&app_absent=0"
-            target="_blank"
-          >
-            <svg
-              class="hover:-mt-2 duration-150"
-              width="30"
-              height="30"
-              viewBox="0 0 22 21"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+          <a href="https://www.linkedin.com/in/arry-kusuma-putra/" target="_blank"
+            class="flex items-center gap-2 text-white font-medium">
+            <svg width="24" height="24" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
+                d="M6.22877 8.99637C7.73927 8.99637 8.96377 7.77187 8.96377 6.26137C8.96377 4.75087 7.73927 3.52637 6.22877 3.52637C4.71828 3.52637 3.49377 4.75087 3.49377 6.26137C3.49377 7.77187 4.71828 8.99637 6.22877 8.99637Z"
+                fill="currentcolor" />
+              <path
+                d="M11.5463 11.0684V26.2421H16.2575V18.7384C16.2575 16.7584 16.63 14.8409 19.085 14.8409C21.5063 14.8409 21.5363 17.1046 21.5363 18.8634V26.2434H26.25V17.9221C26.25 13.8346 25.37 10.6934 20.5925 10.6934C18.2988 10.6934 16.7613 11.9521 16.1325 13.1434H16.0688V11.0684H11.5463ZM3.86877 11.0684H8.58752V26.2421H3.86877V11.0684Z"
+                fill="currentcolor" />
+            </svg>
+            <h1>Arry Kusuma Putra</h1>
+          </a>
+          <a href="https://api.whatsapp.com/send/?phone=6281350445065&text&type=phone_number&app_absent=0"
+            target="_blank" class="flex items-center gap-2 text-white font-medium">
+            <svg class="hover:-mt-2 duration-150" width="24" height="24" viewBox="0 0 22 21" fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd"
                 d="M3.3542 10.5C3.3542 6.00118 7.00121 2.35417 11.5 2.35417C15.9988 2.35417 19.6458 6.00118 19.6458 10.5C19.6458 14.9988 15.9988 18.6458 11.5 18.6458C9.89749 18.6458 8.40581 18.1841 7.14724 17.3867C6.91302 17.2383 6.626 17.1987 6.36032 17.2779L3.60113 18.1014L4.64 15.6705C4.76279 15.3832 4.73781 15.0541 4.57305 14.7886C3.80047 13.5437 3.3542 12.0754 3.3542 10.5ZM11.5 0.4375C5.94267 0.4375 1.43753 4.94263 1.43753 10.5C1.43753 12.2615 1.89096 13.9196 2.6878 15.3613L1.03546 19.2275C0.889391 19.5694 0.954138 19.9648 1.20159 20.2421C1.44904 20.5196 1.83457 20.6288 2.19075 20.5224L6.5027 19.2357C7.97569 20.08 9.68272 20.5625 11.5 20.5625C17.0574 20.5625 21.5625 16.0574 21.5625 10.5C21.5625 4.94263 17.0574 0.4375 11.5 0.4375ZM13.697 12.5915L12.4375 13.4786C11.8477 13.1426 11.1955 12.6736 10.5414 12.0194C9.86136 11.3394 9.3572 10.6373 8.98546 9.99333L9.78584 9.31397C10.1293 9.02244 10.2233 8.53094 10.0117 8.13318L8.9919 6.21652C8.85457 5.95843 8.60696 5.77714 8.31945 5.72418C8.03193 5.67124 7.73598 5.75242 7.51571 5.94465L7.21335 6.20854C6.48623 6.84313 6.0562 7.88595 6.41261 8.94184C6.78212 10.0365 7.57068 11.7592 9.18614 13.3747C10.9241 15.1127 12.6896 15.7972 13.722 16.063C14.5538 16.2771 15.341 15.9901 15.8957 15.5381L16.4626 15.0762C16.705 14.8787 16.8358 14.5752 16.813 14.2633C16.7901 13.9513 16.6165 13.6702 16.3477 13.51L14.7394 12.5517C14.4145 12.3582 14.0062 12.3737 13.697 12.5915Z"
-                fill="currentcolor"
-              />
+                fill="currentcolor" />
             </svg>
+            <h1>+62 81350445065</h1>
           </a>
         </div>
-        <!-- END SOCIAL MEDIA -->
-      </section>
-      <!-- END BOTTOM -->
-    </section>
-    <!-- END MAIN HOME -->
-
-    <!-- MAIN ABOUT -->
-    <section id="about" class="relative">
-      <svg
-        class="-z-20 w-full text-center text-gray-50 dark:text-slate-900"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 1440 320"
-      >
-        <path
-          fill="currentcolor"
-          fill-opacity="1"
-          d="M0,288L48,272C96,256,192,224,288,197.3C384,171,480,149,576,165.3C672,181,768,235,864,250.7C960,267,1056,245,1152,250.7C1248,256,1344,288,1392,304L1440,320L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-        ></path>
-      </svg>
-      <article class="bg-gray-50 dark:bg-slate-900">
-        <div class="max-w-2xl m-auto px-8">
-          <div class="flex items-center flex-col gap-2">
-            <h1
-              id="titleSection"
-              x-text="$store.language.isEnLanguage ? 'About Me' : 'Tentang Saya'"
-              class="text-2xl font-bold"
-            ></h1>
-            <div id="lineSection" class="w-20 h-1 bg-primary"></div>
-          </div>
-          <h1
-            id="aboutMyDesc"
-            x-data="{
-        en: '<span>I am Arry Kusuma Putra, a web and application developer with 1 year experience in coding. I\'ve made coding a hobby.</span>',
-        id: '<span>Saya adalah Arry Kusuma Putra, seorang pengembang web dan aplikasi dengan pengalaman 1 tahun dalam coding. Saya telah menjadikan coding sebagai hobi.</span>'
-      }"
-            x-html="$store.language.isEnLanguage ? en : id"
-            class="font-medium text-center mt-8"
-          >
-            I am <span class="font-bold">Arry Kusuma Putra</span>, a web and
-            application developer
-            <span class="font-bold"
-              >with 1 year experience in coding. I've made coding a hobby</span
-            >
-            and am currently working on developing my skills in web development
-            and apps.
-          </h1>
-          <div
-            class="flex flex-col md:flex-row gap-10 justify-around mt-12 font-medium text-sm"
-          >
-            <div
-              id="aboutIconAndTitle"
-              class="flex flex-col items-center gap-2"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                class="w-6 h-6"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5"
-                />
-              </svg>
-              <h1
-                x-text="$store.language.isEnLanguage ? 'Polythecnic Banjarmasin' : 'Politeknik Banjarmasin'"
-              ></h1>
-            </div>
-            <div
-              id="aboutIconAndTitle"
-              class="flex flex-col items-center gap-2"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                class="w-6 h-6"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"
-                />
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
-                />
-              </svg>
-              <h1>Indonesia, Banjarbaru</h1>
-            </div>
-          </div>
-        </div>
-      </article>
-      <svg
-        class="rotate-180 relative -z-20 w-full text-center text-gray-50 dark:text-slate-900"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 1440 320"
-      >
-        <path
-          fill="currentcolor"
-          fill-opacity="1"
-          d="M0,288L48,272C96,256,192,224,288,197.3C384,171,480,149,576,165.3C672,181,768,235,864,250.7C960,267,1056,245,1152,250.7C1248,256,1344,288,1392,304L1440,320L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-        ></path>
-      </svg>
-    </section>
-    <!-- END MAIN ABOUT -->
-    <!-- MAIN SKILLS -->
-    <section class="px-8 max-w-2xl m-auto">
-      <div id="skills" class="absolute -mt-20"></div>
-      <div class="flex items-center flex-col gap-2">
-        <h1
-          id="titleSection"
-          x-text="$store.language.isEnLanguage ? 'Skills' : 'Keterampilan'"
-          class="text-2xl font-bold"
-        ></h1>
-        <div id="lineSection" class="w-20 h-1 bg-primary"></div>
-      </div>
-      <div
-        id="skillsMainIcon"
-        class="flex justify-center mt-16 gap-12 flex-wrap"
-      >
-        <!-- TAILWINDCSS -->
-        <span>
-          <div class="flex flex-col items-center gap-4">
-            <div
-              class="hover:bg-gray-50 dark:hover:bg-slate-900 hover:scale-95 duration-100 border-2 border-slate-100 dark:border-slate-900 w-[4.8rem] h-[4.4rem] rounded-lg flex items-center justify-center"
-            >
-              <svg
-                width="51"
-                height="30"
-                viewBox="0 0 51 30"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M25.0061 0C18.3378 0 14.1701 3.3331 12.503 9.99931C15.0036 6.6662 17.921 5.41694 21.2552 6.24944C23.1577 6.72455 24.5174 8.1051 26.023 9.63255C28.4736 12.1196 31.3107 14.9995 37.5091 14.9995C44.1774 14.9995 48.3451 11.6664 50.0121 4.99913C47.5115 8.33223 44.5942 9.58254 41.26 8.75004C39.3585 8.27493 37.9988 6.89438 36.4932 5.36693C34.0416 2.87882 31.2034 0 25.0061 0ZM12.503 14.9995C5.83475 14.9995 1.66707 18.3326 0 24.9998C2.50061 21.6667 5.41798 20.4164 8.75212 21.25C10.6536 21.7261 12.0133 23.1056 13.5189 24.632C15.9705 27.1201 18.8087 30 25.0061 30C31.6744 30 35.842 26.6669 37.5091 19.9997C35.0085 23.3328 32.0911 24.5831 28.757 23.7495C26.8544 23.2744 25.4947 21.8939 23.9892 20.3675C21.5386 17.8793 18.7014 14.9995 12.503 14.9995Z"
-                  fill="#00ACC1"
-                />
-              </svg>
-            </div>
-            <h1>TailwindCSS</h1>
-          </div>
-        </span>
-        <!-- BOOTSTRAP -->
-        <span>
-          <div class="flex flex-col items-center gap-4">
-            <div
-              class="hover:bg-gray-50 dark:hover:bg-slate-900 hover:scale-95 duration-100 border-2 border-slate-100 dark:border-slate-900 w-[4.8rem] h-[4.4rem] rounded-lg flex items-center justify-center"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                x="0px"
-                y="0px"
-                width="55"
-                height="55"
-                viewBox="0 0 48 48"
-              >
-                <path
-                  fill="#6c19ff"
-                  d="M6.391,10.671c-0.085-2.448,1.822-4.706,4.401-4.706h26.42c2.578,0,4.486,2.258,4.401,4.706	c-0.082,2.352,0.024,5.398,0.791,7.882c0.769,2.492,2.066,4.067,4.19,4.269v2.295c-2.124,0.202-3.421,1.777-4.19,4.269	c-0.767,2.484-0.873,5.53-0.791,7.882c0.085,2.448-1.822,4.706-4.401,4.706h-26.42c-2.578,0-4.486-2.258-4.4-4.706	c0.082-2.352-0.025-5.398-0.791-7.882c-0.769-2.492-2.069-4.067-4.194-4.269v-2.295c2.124-0.202,3.425-1.777,4.194-4.269	C6.367,16.07,6.473,13.023,6.391,10.671z"
-                ></path>
-                <linearGradient
-                  id="Is-EGaxKcc0Cic9QMqyzGa_EzPCiQUqWWEa_gr1"
-                  x1="17.846"
-                  x2="27.078"
-                  y1="-147.541"
-                  y2="-163.153"
-                  gradientTransform="matrix(1 0 0 -1 0 -132)"
-                  gradientUnits="userSpaceOnUse"
-                >
-                  <stop offset="0" stop-color="#fff"></stop>
-                  <stop offset="1" stop-color="#f1e5fc"></stop>
-                </linearGradient>
-                <path
-                  fill="url(#Is-EGaxKcc0Cic9QMqyzGa_EzPCiQUqWWEa_gr1)"
-                  d="M25.042,34.016c4.366,0,6.997-2.138,6.997-5.664c0-2.665-1.877-4.595-4.665-4.9v-0.111	c2.048-0.333,3.655-2.235,3.655-4.359c0-3.026-2.389-4.997-6.03-4.997h-8.192v20.031H25.042z M19.994,16.525h4.238	c2.304,0,3.612,1.027,3.612,2.887c0,1.985-1.522,3.096-4.281,3.096h-3.57V16.525z M19.994,31.475v-6.594h4.21	c3.015,0,4.579,1.11,4.579,3.276c0,2.165-1.522,3.318-4.394,3.318H19.994z"
-                ></path>
-              </svg>
-            </div>
-            <h1>Bootstrap</h1>
-          </div>
-        </span>
-        <!-- LARAVEL -->
-        <span>
-          <div class="flex flex-col items-center gap-4">
-            <div
-              class="hover:bg-gray-50 dark:hover:bg-slate-900 hover:scale-95 duration-100 border-2 border-slate-100 dark:border-slate-900 w-[4.8rem] h-[4.4rem] rounded-lg flex items-center justify-center"
-            >
-              <svg
-                width="41"
-                height="42"
-                viewBox="0 0 41 42"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M40.7754 9.5015C40.7905 9.55749 40.7984 9.61523 40.7984 9.67323V18.6884C40.7984 18.9239 40.6724 19.1415 40.4681 19.2586L32.9015 23.6151V32.2498C32.9015 32.4848 32.7766 32.7017 32.5728 32.82L16.7782 41.9125C16.742 41.933 16.7026 41.9462 16.6631 41.9601C16.6484 41.9651 16.6344 41.9741 16.6188 41.9782C16.5084 42.0073 16.3923 42.0073 16.2819 41.9782C16.2638 41.9733 16.2474 41.9634 16.2301 41.9568C16.194 41.9437 16.1562 41.9322 16.1217 41.9125L0.330305 32.82C0.12612 32.7027 0 32.4853 0 32.2498V5.20425C0 5.14509 0.00821654 5.08758 0.0230063 5.0317C0.0279362 5.01281 0.0394394 4.99555 0.0460126 4.97665C0.0583374 4.94214 0.0698406 4.90681 0.087917 4.87477C0.100242 4.8534 0.118318 4.83615 0.133108 4.81643C0.152006 4.79014 0.169261 4.76302 0.191445 4.74002C0.210343 4.72112 0.234993 4.70715 0.256356 4.69072C0.280184 4.671 0.301547 4.64963 0.328662 4.63402H0.329483L8.22558 0.0878112C8.42904 -0.0292704 8.67943 -0.0292704 8.8829 0.0878112L16.779 4.63402H16.7806C16.8069 4.65046 16.8291 4.671 16.8529 4.6899C16.8743 4.70633 16.8981 4.72112 16.917 4.73919C16.94 4.76302 16.9565 4.79014 16.9762 4.81643C16.9902 4.83615 17.0091 4.8534 17.0206 4.87477C17.0395 4.90763 17.0501 4.94214 17.0633 4.97665C17.0699 4.99555 17.0814 5.01281 17.0863 5.03252C17.1014 5.08852 17.1092 5.14625 17.1093 5.20425V22.0966L23.6891 18.308V9.6724C23.6891 9.61489 23.6973 9.55655 23.7121 9.5015C23.7179 9.48178 23.7285 9.46453 23.7351 9.44563C23.7483 9.41112 23.7598 9.37579 23.7778 9.34374C23.7902 9.32238 23.8082 9.30513 23.8222 9.28541C23.8419 9.25911 23.8584 9.232 23.8814 9.20899C23.9003 9.19009 23.9241 9.17613 23.9455 9.15969C23.9701 9.13997 23.9915 9.11861 24.0178 9.103H24.0186L31.9155 4.55679C32.1189 4.43954 32.3694 4.43954 32.5728 4.55679L40.4689 9.103C40.4969 9.11943 40.5182 9.13997 40.5429 9.15887C40.5634 9.1753 40.5872 9.19009 40.6061 9.20817C40.6291 9.232 40.6456 9.25911 40.6653 9.28541C40.6801 9.30513 40.6982 9.32238 40.7097 9.34374C40.7286 9.37579 40.7392 9.41112 40.7524 9.44563C40.7598 9.46453 40.7705 9.48178 40.7754 9.5015ZM39.4821 18.308V10.8112L36.7189 12.4019L32.9015 14.5999V22.0966L39.4829 18.308H39.4821ZM31.586 31.8694V24.3677L27.8311 26.5122L17.1085 32.6319V40.2042L31.586 31.8694ZM1.31629 6.34224V31.8694L15.7922 40.2034V32.6327L8.22969 28.3527L8.22722 28.3511L8.22393 28.3494C8.19846 28.3346 8.1771 28.3133 8.15327 28.2952C8.13273 28.2788 8.1089 28.2656 8.09083 28.2475L8.08918 28.2451C8.06782 28.2245 8.05303 28.1991 8.03495 28.1761C8.01852 28.1539 7.9988 28.135 7.98565 28.112L7.98483 28.1095C7.97004 28.0849 7.96101 28.0553 7.95032 28.0273C7.93964 28.0027 7.92567 27.9797 7.9191 27.9534V27.9526C7.91088 27.9213 7.90924 27.8885 7.90595 27.8564C7.90267 27.8318 7.89609 27.8071 7.89609 27.7825V27.7808V10.1309L4.07951 7.93214L1.31629 6.34306V6.34224ZM8.55506 1.41725L1.97608 5.20425L8.55342 8.99125L15.1316 5.20343L8.55342 1.41725H8.55506ZM11.9764 25.0513L15.793 22.8542V6.34224L13.0298 7.93296L9.21238 10.1309V26.6428L11.9764 25.0513ZM32.2442 5.88622L25.666 9.67323L32.2442 13.4602L38.8215 9.6724L32.2442 5.88622ZM31.586 14.5999L27.7686 12.4019L25.0054 10.8112V18.308L28.822 20.5051L31.586 22.0966V14.5999ZM16.4495 31.4939L26.0982 25.9855L30.9213 23.233L24.3481 19.4484L16.7798 23.8057L9.88203 27.7767L16.4495 31.4939Z"
-                  fill="#FF2D20"
-                />
-              </svg>
-            </div>
-            <h1>Laravel</h1>
-          </div>
-        </span>
-        <!-- ALPINEJS -->
-        <span>
-          <div class="flex flex-col items-center gap-4">
-            <div
-              class="hover:bg-gray-50 dark:hover:bg-slate-900 hover:scale-95 duration-100 border-2 border-slate-100 dark:border-slate-900 w-[4.8rem] h-[4.4rem] rounded-lg flex items-center justify-center"
-            >
-              <svg
-                width="59"
-                height="27"
-                viewBox="0 0 59 27"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                  d="M45.2081 0L58.125 12.8602L45.2081 25.7203L32.2917 12.8602L45.2081 0Z"
-                  fill="#77C1D2"
-                />
-                <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                  d="M12.9169 0L39.6947 26.6606H13.8614L0 12.8602L12.9169 0Z"
-                  fill="#2D3441"
-                />
-              </svg>
-            </div>
-            <h1>AlpineJS</h1>
-          </div>
-        </span>
-        <!-- FLUTTER -->
-        <span>
-          <div class="flex flex-col items-center gap-4">
-            <div
-              class="hover:bg-gray-50 dark:hover:bg-slate-900 hover:scale-95 duration-100 border-2 border-slate-100 dark:border-slate-900 w-[4.8rem] h-[4.4rem] rounded-lg flex items-center justify-center"
-            >
-              <svg
-                width="34"
-                height="42"
-                viewBox="0 0 34 42"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M21 0L0 21L6.3 27.3L33.6 0H21Z" fill="#40C4FF" />
-                <path
-                  d="M33.6 18.9L22.05 30.45L15.75 24.15L21 18.9H33.6Z"
-                  fill="#40C4FF"
-                />
-                <path
-                  d="M15.7491 24.1502L9.44943 30.4501L15.7493 36.7498L22.049 30.4499L15.7491 24.1502Z"
-                  fill="#03A9F4"
-                />
-                <path
-                  d="M33.6 42H21L15.75 36.75L22.05 30.45L33.6 42Z"
-                  fill="#01579B"
-                />
-                <path
-                  d="M15.75 36.75L25.2 33.6L22.05 30.45L15.75 36.75Z"
-                  fill="#084994"
-                />
-              </svg>
-            </div>
-            <h1>Flutter</h1>
-          </div>
-        </span>
-        <!-- DART -->
-        <span>
-          <div class="flex flex-col items-center gap-4">
-            <div
-              class="hover:bg-gray-50 dark:hover:bg-slate-900 hover:scale-95 duration-100 border-2 border-slate-100 dark:border-slate-900 w-[4.8rem] h-[4.4rem] rounded-lg flex items-center justify-center"
-            >
-              <svg
-                width="43"
-                height="42"
-                viewBox="0 0 43 42"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g clip-path="url(#clip0_115_37)">
-                  <path
-                    d="M8.78014 33.3977L1.6432 26.2608C0.797073 25.3901 0.269775 24.1639 0.269775 22.9652C0.269775 22.4103 0.582475 21.5427 0.818533 21.043L7.40671 7.31787L8.78014 33.3977Z"
-                    fill="#01579B"
-                  />
-                  <path
-                    d="M33.2137 8.69127L26.0768 1.55434C25.4545 0.928939 24.1546 0.180908 23.0571 0.180908C22.1129 0.180908 21.187 0.370982 20.5861 0.729669L7.40979 7.31784L33.2137 8.69127Z"
-                    fill="#40C4FF"
-                  />
-                  <path
-                    d="M17.2905 41.908H34.5872V34.4952L21.6837 30.3779L9.88074 34.4952L17.2905 41.908Z"
-                    fill="#40C4FF"
-                  />
-                  <path
-                    d="M7.40979 29.5564C7.40979 31.7576 7.6857 32.3002 8.78322 33.4008L9.88074 34.4983H34.5872L22.5083 20.7732L7.40979 7.32092V29.5564Z"
-                    fill="#29B6F6"
-                  />
-                  <path
-                    d="M29.3693 7.31787H7.40671L34.5841 34.4952H41.9969V17.4745L33.2137 8.6913C31.9813 7.45276 30.8838 7.31787 29.3693 7.31787Z"
-                    fill="#01579B"
-                  />
-                  <path
-                    opacity="0.2"
-                    d="M9.05605 33.6736C7.95853 32.57 7.68262 31.4847 7.68262 29.5564V7.59378L7.40671 7.31787V29.5533C7.40977 31.4847 7.40977 32.0182 9.05605 33.6736Z"
-                    fill="white"
-                  />
-                  <path
-                    opacity="0.2"
-                    d="M41.7241 17.2017V34.2224H34.3112L34.5872 34.4952H42V17.4776L41.7241 17.2017Z"
-                    fill="#263238"
-                  />
-                  <path
-                    opacity="0.2"
-                    d="M33.2137 8.6913C31.8526 7.33013 30.7367 7.31787 29.0965 7.31787H7.40979L7.6857 7.59378H29.0996C29.915 7.59378 31.9844 7.45583 33.2137 8.6913Z"
-                    fill="white"
-                  />
-                  <path
-                    opacity="0.2"
-                    d="M41.7241 17.2016L33.2137 8.69127L26.0768 1.55434C25.4545 0.928939 24.1546 0.180908 23.0571 0.180908C22.1129 0.180908 21.187 0.370982 20.5861 0.729669L7.40979 7.31784L0.821615 21.043C0.585557 21.5427 0.272858 22.4103 0.272858 22.9651C0.272858 24.1638 0.800155 25.3901 1.64629 26.2608L8.22526 32.7907C8.38161 32.9838 8.56555 33.18 8.78628 33.3977L9.0622 33.6736L9.88687 34.4983L17.0238 41.6352L17.2997 41.9111H34.3204H34.5964V34.4983H42.0092V34.4799V17.4776L41.7241 17.2016Z"
-                    fill="url(#paint0_radial_115_37)"
-                  />
-                </g>
-                <defs>
-                  <radialGradient
-                    id="paint0_radial_115_37"
-                    cx="0"
-                    cy="0"
-                    r="1"
-                    gradientUnits="userSpaceOnUse"
-                    gradientTransform="translate(21.1395 21.0449) scale(20.8666)"
-                  >
-                    <stop stop-color="white" stop-opacity="0.1" />
-                    <stop offset="1" stop-color="white" stop-opacity="0" />
-                  </radialGradient>
-                  <clipPath id="clip0_115_37">
-                    <rect width="42.3066" height="42" fill="white" />
-                  </clipPath>
-                </defs>
-              </svg>
-            </div>
-            <h1>Dart</h1>
-          </div>
-        </span>
-        <!-- KOTLIN -->
-        <span>
-          <div class="flex flex-col items-center gap-4">
-            <div
-              class="hover:bg-gray-50 dark:hover:bg-slate-900 hover:scale-95 duration-100 border-2 border-slate-100 dark:border-slate-900 w-[4.8rem] h-[4.4rem] rounded-lg flex items-center justify-center"
-            >
-              <svg
-                width="49"
-                height="49"
-                viewBox="0 0 42 42"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M21 5.25L15.7412 10.8063L10.4738 16.3538L5.25 21.875V5.25H21Z"
-                  fill="#0D91D6"
-                />
-                <path
-                  d="M21 5.25H20.965L15.7237 10.7887L10.465 16.345L5.25 21.8487V21.875V21.9538V36.75L12.8537 29.1463L18.2613 23.7387L23.6775 18.3225L29.0938 12.9062L36.75 5.25H21Z"
-                  fill="#F88909"
-                />
-                <path
-                  d="M12.8537 29.1462L5.25 36.75V21.9537L12.8537 29.1462Z"
-                  fill="#C757BC"
-                />
-                <path
-                  d="M18.2613 23.7388L12.8537 29.1463L5.25 21.9538V21.875L10.4738 16.3538L18.2613 23.7388Z"
-                  fill="#D3638F"
-                />
-                <path
-                  d="M23.6774 18.3225L18.2611 23.7388L10.4736 16.3538L15.7411 10.8063L23.6774 18.3225Z"
-                  fill="#E07063"
-                />
-                <path
-                  d="M29.0937 12.9062L23.6775 18.3225L15.7412 10.8063L21 5.25L29.0937 12.9062Z"
-                  fill="#EC7D36"
-                />
-                <path
-                  d="M36.75 5.25L29.0938 12.9062L21 5.25H36.75Z"
-                  fill="#F88909"
-                />
-                <path
-                  d="M10.0712 16.7563L6.99125 20.02L5.25 18.375V12.1975L10.0712 16.7563Z"
-                  fill="#0095D5"
-                />
-                <path
-                  d="M13.1512 13.4925L10.0712 16.7562L5.25 12.1975V6.01123L13.1512 13.4925Z"
-                  fill="#2B88DA"
-                />
-                <path
-                  d="M16.24 10.2375L13.1512 13.4925L5.25 6.01125V5.25H10.9637L16.24 10.2375Z"
-                  fill="#557BDE"
-                />
-                <path
-                  d="M19.3201 6.97375L16.2401 10.2375L10.9639 5.25H21.0001L19.3201 6.97375Z"
-                  fill="#806EE3"
-                />
-                <path
-                  d="M20.125 21.875L5.25 36.75H8.18125H15.33H35L20.125 21.875Z"
-                  fill="#0095D5"
-                />
-                <path
-                  d="M22.47 36.7501H15.33L10.29 31.7188L13.86 28.1488L22.47 36.7501Z"
-                  fill="#2B88DA"
-                />
-                <path
-                  d="M29.6274 36.75H22.4699L13.8599 28.1487L17.4299 24.5787L29.6274 36.75Z"
-                  fill="#557BDE"
-                />
-                <path
-                  d="M36.7502 36.75H29.6277L17.4302 24.5788L21.0002 21L36.7502 36.75Z"
-                  fill="#806EE3"
-                />
-              </svg>
-            </div>
-            <h1>Kotlin</h1>
-          </div>
-        </span>
-        <!-- ANDROID STUDIO -->
-        <span>
-          <div class="flex flex-col items-center gap-4">
-            <div
-              class="hover:bg-gray-50 dark:hover:bg-slate-900 hover:scale-95 duration-100 border-2 border-slate-100 dark:border-slate-900 w-[4.8rem] h-[4.4rem] rounded-lg flex items-center justify-center"
-            >
-              <svg
-                width="41"
-                height="49"
-                viewBox="0 0 41 49"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M15.1664 6.1897H4.05842C1.81054 6.20284 -0.00353698 8.01692 -0.00353698 10.2648C-0.0692644 12.447 1.63965 14.261 3.8218 14.3268H15.2452L15.1664 6.1897Z"
-                  fill="#073042"
-                />
-                <path
-                  d="M40.3402 42.4055H4.04547C1.81073 42.3924 0.00979852 40.5783 -0.00334697 38.3436V10.2385C-0.0164925 12.4864 1.79759 14.3268 4.04547 14.3399H34.4247C34.4247 14.3399 40.3402 13.8272 40.3402 18.2836V42.4055Z"
-                  fill="#4285F4"
-                />
-                <path
-                  d="M23.4085 28.0112C25.0254 26.8018 25.3409 24.5014 24.1315 22.8976C23.461 22.0169 22.4226 21.4779 21.3183 21.4385H21.4366C21.647 21.4122 21.8704 21.4122 22.0808 21.4385V19.1774C22.0939 18.9145 21.9625 18.6779 21.739 18.5333C21.3972 18.3361 20.9634 18.4544 20.7662 18.7962C20.7005 18.9145 20.6611 19.046 20.6742 19.1774V21.4779C18.6761 21.7803 17.309 23.6469 17.6244 25.645C17.6244 25.6582 17.6244 25.6582 17.6244 25.6713C17.769 26.6309 18.2949 27.4854 19.0705 28.0507L12.3794 42.3529H16.7437L19.8329 35.7802C20.201 34.9915 21.1606 34.6497 21.9493 35.0178C22.2911 35.1755 22.554 35.4516 22.7118 35.7802L25.893 42.3529H30.3098L23.4085 28.0112ZM21.1737 27.3671C19.9249 27.3539 18.9127 26.3417 18.9259 25.0929C18.939 23.8441 19.9643 22.845 21.2132 22.8582C21.7916 22.8713 22.3305 23.0948 22.7512 23.4892C23.6451 24.3568 23.6582 25.7896 22.7906 26.6835C22.37 27.1173 21.7784 27.3671 21.1737 27.3671Z"
-                  fill="#3870B2"
-                />
-                <path
-                  d="M12.7344 8.18787H28.3118V11.0404H12.7344V8.18787Z"
-                  fill="white"
-                />
-                <path
-                  d="M19.9645 22.8582C21.2002 22.8713 22.1993 23.8967 22.1861 25.1324C22.173 26.368 21.1476 27.3671 19.912 27.3539C18.6763 27.3408 17.6904 26.3286 17.6904 25.0929C17.7035 24.5014 17.9401 23.9361 18.3608 23.5155C18.7814 23.0948 19.3598 22.8582 19.9645 22.8582ZM20.8584 21.5436V19.1774C20.8716 18.9145 20.7401 18.6779 20.5166 18.5333C20.1749 18.3361 19.7411 18.4544 19.5439 18.7962C19.4782 18.9145 19.4387 19.046 19.4519 19.1774V21.4779C17.4537 21.7803 16.0866 23.6469 16.4021 25.645C16.4021 25.6582 16.4021 25.6582 16.4021 25.6713C16.5467 26.6309 17.0725 27.4854 17.8481 28.0507L9.44814 46.1257C9.1195 46.7698 9.18523 47.5454 9.59274 48.137C10.2106 49.044 11.4463 49.2675 12.3533 48.6496C12.6556 48.4393 12.9054 48.1501 13.05 47.8083L18.65 35.7802C19.0181 34.9915 19.9777 34.6497 20.7664 35.0178C21.1082 35.1755 21.3711 35.4516 21.5288 35.7802L27.2734 47.7426C27.7598 48.7285 28.9429 49.136 29.9288 48.6628C30.9147 48.1895 31.3222 46.9933 30.849 46.0074L22.1993 28.0112C23.803 26.7492 24.0659 24.4225 22.7908 22.8187C22.3044 22.2009 21.634 21.7671 20.8847 21.5568"
-                  fill="#073042"
-                />
-                <path
-                  d="M26.0113 10.6986C25.4329 10.7117 24.9465 10.2517 24.9333 9.67325C24.9202 9.38405 25.0385 9.09485 25.2488 8.89767C25.6695 8.49016 26.3267 8.49016 26.7474 8.89767C26.9446 9.09485 27.0498 9.35776 27.0629 9.63381C27.0629 10.2122 26.5897 10.6855 26.0113 10.6855M14.3249 10.6855C13.7465 10.6986 13.2733 10.2254 13.2601 9.64696C13.2601 9.35776 13.3653 9.0817 13.5756 8.88452C13.9437 8.43758 14.601 8.3587 15.0479 8.72678C15.0611 8.72678 15.0611 8.73992 15.0742 8.73992C15.508 9.13429 15.5606 9.80471 15.1662 10.2517L15.0216 10.3963C14.8244 10.5934 14.5484 10.6986 14.2723 10.6986M26.3399 4.32304L28.4432 0.668589C28.5483 0.471407 28.4958 0.221643 28.3117 0.0901876C28.1277 0.0113147 27.9174 0.0638965 27.799 0.221642L25.6037 3.94182C22.1465 2.39065 18.2028 2.39065 14.7456 3.94182L12.6029 0.221642C12.524 0.0901875 12.3794 -0.00183105 12.2216 -0.00183105C12.0639 0.0113144 11.9193 0.0901875 11.8404 0.221642C11.7615 0.366243 11.7615 0.523989 11.8404 0.668589L13.9568 4.32304C10.2498 6.34744 7.8179 10.1202 7.48926 14.3268H32.8601C32.5314 10.1202 30.0995 6.34744 26.3925 4.32304"
-                  fill="#3DDC84"
-                />
-                <path
-                  d="M36.6986 22.122H35.0291C34.9371 22.1483 34.8713 22.2403 34.8845 22.3455V48.6364C34.8845 48.7416 34.9765 48.8336 35.0817 48.8468H36.8037C38.815 48.8336 40.445 47.2036 40.445 45.1923V18.4675C40.445 20.4919 38.815 22.122 36.7906 22.122H36.6986Z"
-                  fill="#073042"
-                />
-              </svg>
-            </div>
-            <h1>Android</h1>
-          </div>
-        </span>
-        <!-- MYSQL -->
-        <span>
-          <div class="flex flex-col items-center gap-4">
-            <div
-              class="hover:bg-gray-50 dark:hover:bg-slate-900 hover:scale-95 duration-100 border-2 border-slate-100 dark:border-slate-900 w-[4.8rem] h-[4.4rem] rounded-lg flex items-center justify-center"
-            >
-              <svg
-                width="52"
-                height="52"
-                viewBox="0 0 50 50"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M0.00208333 36.5009H2.00208V29.1207L4.78021 35.4301C5.12292 36.2165 5.59167 36.4947 6.51146 36.4947C7.43125 36.4947 7.88125 36.2165 8.22396 35.4301L11.0021 29.2822V36.5009H13.0021V28.9405C13.0021 28.2145 12.7135 27.8624 12.1177 27.6811C10.6937 27.2332 9.7375 27.6197 9.30521 28.5895L6.45625 35.0061L3.69687 28.5895C3.28229 27.6207 2.30937 27.2332 0.884375 27.6811C0.288542 27.8624 0 28.2134 0 28.9395V36.4999L0.00208333 36.5009Z"
-                  fill="#00796B"
-                />
-                <path
-                  d="M14.002 30.501H16.002V34.7249C15.9863 34.9333 16.0686 35.4864 17.0332 35.501C17.5249 35.5093 19.9717 35.501 20.002 35.501V30.501H22.002C22.0103 30.501 22.002 36.7176 22.002 36.7437C22.0124 38.277 20.0978 38.4749 19.2176 38.501H14.003V37.501C14.0134 37.501 18.9895 37.502 19.004 37.501C20.1374 37.3812 20.003 36.7572 20.003 36.5676V36.501H16.8655C15.1259 36.4854 14.0165 35.7187 14.004 34.8447C14.002 34.7635 14.0415 30.5385 14.002 30.501Z"
-                  fill="#00796B"
-                />
-                <path
-                  d="M23.0012 36.501H28.0085C28.6647 36.501 29.3022 36.3635 29.8085 36.126C30.6522 35.7385 31.0001 35.2145 31.0001 34.526V33.101C31.0001 31.5635 29.0939 31.501 28.0001 31.501H26.0001C25.2137 31.501 25.0939 31.026 25.0001 30.501V29.501C25.0939 29.101 25.2689 28.5635 25.9616 28.501C26.7668 28.501 30.9991 28.501 30.9991 28.501V27.501H26.2428C25.4564 27.501 22.9991 27.5947 22.9991 29.501V30.7374C22.9991 31.6124 23.7678 32.3249 25.4366 32.4999C25.6241 32.5124 25.8116 32.5249 25.998 32.5249C25.998 32.5249 27.9418 32.4874 27.998 32.4999C29.123 32.4999 28.998 33.3749 28.998 33.4999V34.4999C28.998 34.6374 28.9668 35.4999 27.9866 35.4999C27.9116 35.4999 22.998 35.4999 22.998 35.4999V36.501H23.0012Z"
-                  fill="#F57F17"
-                />
-                <path
-                  d="M42 34.4583C42 35.6656 42.6823 36.3427 44.4917 36.4781C44.6604 36.4896 44.8302 36.5 45 36.5H50V35.5H45.3802C44.3479 35.5 44 35.0667 44 34.4469V27.5H42V34.4583Z"
-                  fill="#F57F17"
-                />
-                <path
-                  d="M31.9824 34.501V29.501C31.9824 28.4385 32.5033 27.7051 33.9783 27.501H34.6783H38.2689H38.8158C40.2908 27.7051 40.9824 28.4374 40.9824 29.501V34.4822C40.9824 35.3437 40.7585 35.8062 40.0283 36.1062L41.5783 37.4999H39.3283L38.2137 36.4999H36.9043L34.6793 36.5124C34.3574 36.5124 34.0178 36.4676 33.6449 36.3656C32.5262 36.0604 31.9824 35.4729 31.9824 34.501ZM33.9824 34.501C34.0845 34.9874 34.4751 35.501 35.1699 35.501H37.1116L35.9991 34.501H38.2647L38.8053 35.0031C38.8053 35.0031 38.9991 34.8447 38.9991 34.501C38.9991 34.1572 38.9824 29.501 38.9824 29.501C38.8803 29.0489 38.422 28.501 37.7449 28.501H35.171C34.3908 28.501 33.9835 29.0718 33.9835 29.6031L33.9824 34.501Z"
-                  fill="#F57F17"
-                />
-                <path
-                  d="M48.1244 26.4468C47.0504 26.4176 46.2306 26.5176 45.5296 26.8124C45.3306 26.8968 45.0129 26.8989 44.9796 27.1489C45.0889 27.2635 45.1056 27.4353 45.1931 27.576C45.3598 27.8468 45.6431 28.2103 45.8952 28.3999C46.1712 28.6083 46.4556 28.8312 46.7504 29.0114C47.2754 29.3312 47.8618 29.5145 48.3681 29.8353C48.666 30.0239 48.9619 30.2635 49.2535 30.476C49.3973 30.5822 49.4931 30.7458 49.6806 30.8124C49.6806 30.802 49.6806 30.7926 49.6806 30.7822C49.5827 30.6572 49.5566 30.4853 49.4671 30.3541C49.3348 30.2218 49.2025 30.0895 49.0702 29.9572C48.6827 29.4426 48.1889 28.9895 47.666 28.6145C47.2483 28.3145 46.3139 27.9093 46.1389 27.4239C46.1285 27.4135 46.1191 27.4041 46.1077 27.3926C46.4035 27.3593 46.7504 27.252 47.0233 27.1791C47.4827 27.0562 47.8921 27.0885 48.366 26.9655C48.5796 26.9041 48.7931 26.8437 49.0066 26.7822C49.0066 26.7416 49.0066 26.701 49.0066 26.6603C48.7671 26.4145 48.5952 26.0895 48.3348 25.8666C47.6504 25.2843 46.9046 24.7031 46.1369 24.2176C45.7108 23.9489 45.1837 23.7739 44.7327 23.5458C44.5806 23.4687 44.3139 23.4291 44.2139 23.302C43.9764 22.9999 43.8483 22.6156 43.665 22.2645C43.2816 21.527 42.9046 20.7208 42.566 19.9447C42.3337 19.4155 42.1827 18.8926 41.8941 18.4176C40.5077 16.1385 39.015 14.7624 36.7046 13.4103C36.2129 13.1228 35.6202 13.0093 34.9941 12.8603C34.6577 12.8406 34.3223 12.8197 33.9858 12.7989C33.7806 12.7124 33.5681 12.4624 33.3744 12.3406C32.6087 11.8562 30.6441 10.8041 30.0775 12.1874C29.7191 13.0603 30.6129 13.9124 30.9327 14.3551C31.1566 14.6656 31.4441 15.0135 31.6046 15.3635C31.7098 15.5926 31.7285 15.8228 31.8181 16.0656C32.04 16.6635 32.391 17.3447 32.6785 17.8978C32.8233 18.178 32.9837 18.4718 33.1671 18.7218C33.2796 18.8749 33.4723 18.9426 33.5035 19.1801C33.315 19.4437 33.3046 19.8531 33.1983 20.1885C32.7212 21.6937 32.9014 23.5635 33.5952 24.676C33.8077 25.0176 34.3098 25.751 34.9993 25.4697C35.6025 25.2239 35.4681 24.4624 35.64 23.7906C35.6785 23.6385 35.6546 23.527 35.7316 23.4249C35.7316 23.4353 35.7316 23.4447 35.7316 23.4562C35.915 23.8218 36.0973 24.1895 36.2816 24.5551C36.6889 25.2103 37.4108 25.8947 38.0212 26.3572C38.3379 26.5968 38.5879 27.0114 38.9983 27.151C38.9983 27.1406 38.9983 27.1312 38.9983 27.1197C38.9879 27.1197 38.9785 27.1197 38.9671 27.1197C38.8879 26.9958 38.7629 26.9447 38.6619 26.8447C38.4233 26.6103 38.1566 26.3197 37.9598 26.051C37.4035 25.2958 36.9119 24.4687 36.4639 23.6083C36.2504 23.1968 36.0639 22.7447 35.8837 22.326C35.8139 22.1645 35.815 21.9208 35.6702 21.8374C35.4723 22.1437 35.1827 22.3916 35.0296 22.7531C34.7858 23.3312 34.7535 24.0374 34.6639 24.7676C34.6098 24.7864 34.6337 24.7739 34.6025 24.7978C34.1775 24.6947 34.0275 24.2583 33.8691 23.8822C33.4691 22.9322 33.3952 21.403 33.7473 20.3103C33.8379 20.027 34.2494 19.1364 34.0837 18.8749C34.0046 18.6135 33.7421 18.4624 33.5962 18.2635C33.4139 18.0176 33.2337 17.6926 33.1077 17.4083C32.7806 16.6676 32.4702 15.8062 32.1254 15.0572C31.9608 14.6989 31.6827 14.3374 31.4535 14.0197C31.2004 13.6676 30.916 13.4083 30.7202 12.9822C30.6504 12.8312 30.5556 12.5885 30.6587 12.4322C30.6921 12.327 30.7379 12.2833 30.8421 12.2489C31.0191 12.1114 31.5119 12.2937 31.6973 12.3708C32.1869 12.5739 32.5952 12.7676 33.0098 13.0426C33.2087 13.1749 33.4098 13.4301 33.6504 13.501C33.7421 13.501 33.8337 13.501 33.9254 13.501C34.3556 13.5999 34.8368 13.5322 35.2379 13.6541C35.9483 13.8697 36.5837 14.2051 37.1608 14.5697C38.9212 15.6812 40.3598 17.2624 41.3441 19.1499C41.5025 19.4541 41.5712 19.7437 41.7098 20.0656C41.991 20.7156 42.3462 21.3843 42.6254 22.0197C42.9046 22.6541 43.1775 23.2937 43.5723 23.8218C43.7806 24.0989 44.5827 24.2478 44.9462 24.402C45.2014 24.5103 45.6202 24.6218 45.8619 24.7676C46.3244 25.0468 46.7723 25.3791 47.2046 25.6833C47.4254 25.8364 48.091 26.1708 48.1244 26.4468Z"
-                  fill="#00796B"
-                />
-                <path
-                  d="M34.4777 14.8158C34.2538 14.8117 34.0954 14.8398 33.9277 14.8773C33.9277 14.8877 33.9277 14.8971 33.9277 14.9085C33.9382 14.9085 33.9475 14.9085 33.959 14.9085C34.0663 15.1273 34.2538 15.27 34.3861 15.4585C34.4881 15.6721 34.5892 15.8856 34.6913 16.0992C34.7017 16.0888 34.7111 16.0794 34.7215 16.069C34.91 15.9356 34.9975 15.7231 34.9965 15.3971C34.9204 15.3169 34.909 15.2169 34.8434 15.1221C34.7559 14.994 34.5871 14.9221 34.4777 14.8158Z"
-                  fill="#00796B"
-                />
-              </svg>
-            </div>
-            <h1>MySQL</h1>
-          </div>
-        </span>
-        <!-- FIGMA -->
-        <span>
-          <div class="flex flex-col items-center gap-4">
-            <div
-              class="hover:bg-gray-50 dark:hover:bg-slate-900 hover:scale-95 duration-100 border-2 border-slate-100 dark:border-slate-900 w-[4.8rem] h-[4.4rem] rounded-lg flex items-center justify-center"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 48 48"
-                width="42px"
-                height="42px"
-              >
-                <path
-                  fill="#e64a19"
-                  d="M26,17h-8c-3.866,0-7-3.134-7-7v0c0-3.866,3.134-7,7-7h8V17z"
-                />
-                <path
-                  fill="#7c4dff"
-                  d="M25,31h-7c-3.866,0-7-3.134-7-7v0c0-3.866,3.134-7,7-7h7V31z"
-                />
-                <path
-                  fill="#66bb6a"
-                  d="M18,45L18,45c-3.866,0-7-3.134-7-7v0c0-3.866,3.134-7,7-7h7v7C25,41.866,21.866,45,18,45z"
-                />
-                <path
-                  fill="#ff7043"
-                  d="M32,17h-7V3h7c3.866,0,7,3.134,7,7v0C39,13.866,35.866,17,32,17z"
-                />
-                <circle cx="32" cy="24" r="7" fill="#29b6f6" />
-              </svg>
-            </div>
-            <h1>Figma</h1>
-          </div>
-        </span>
       </div>
     </section>
-    <!-- END MAIN SKILLS -->
-    <!-- SECTION CERTIFICATE -->
-    <section class="px-8 pt-28 max-w-3xl m-auto">
-      <div id="certificate" class="absolute -mt-20"></div>
-      <div class="flex items-center flex-col gap-2">
-        <h1
-          id="titleSection"
-          x-text="$store.language.isEnLanguage ? 'Certificates' : 'Sertifikat'"
-          class="text-2xl font-bold"
-        ></h1>
-        <div id="lineSection" class="w-20 h-1 bg-primary"></div>
-      </div>
-      <main class="mt-10 flex justify-evenly flex-wrap gap-14">
-        <!-- SERTIFIKAT 1 -->
-        <div x-data="{showCertificate: false}">
-          <div id="certificate" class="text-center w-72">
-            <div
-              class="group w-72 h-44 overflow-hidden m-auto mb-2.5 rounded-lg relative"
-            >
-              <img
-                class="object-cover mb-2 group-hover:scale-110 duration-300 group-hover:brightness-50"
-                src="dist/image/sertifikat-1.jpg"
-                alt=""
-              />
-              <button
-                @click="showCertificate = true"
-                class="text-white opacity-0 group-hover:opacity-100 duration-200 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 absolute border-b-2 px-2 py-1 font-medium"
-              >
-                Detail
-              </button>
-            </div>
-            <h1
-              x-text="$store.language.isEnLanguage ? '1st Place in Software Development' 
-        : 'Juara 1 Pengembangan Perangkat Lunak'"
-              class=""
-            ></h1>
-            <p
-              x-text="$store.language.isEnLanguage ? 'iTech Poliban Competition is an annual competition held at the Banjarmasin State Polytechnic.' 
-        : 'iTech Poliban Competition adalah lomba tahunan yang diadakan di Politeknik Negeri Banjarmasin.'"
-              class="text-sm font-medium opacity-70"
-            ></p>
-          </div>
-          <div
-            @click="showCertificate = false"
-            @keyup.escape.window="showCertificate = false"
-            x-show="showCertificate"
-            class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 w-full h-screen flex justify-center items-center bg-black/70"
-            style="display: none"
-          >
-            <div
-              @click="showCertificate = false"
-              class="w-[90%] h-[90%] bg-contain bg-center bg-no-repeat"
-              style="background-image: url(dist/image/sertifikat-1.jpg)"
-            ></div>
-          </div>
-        </div>
-        <!-- CERTIFICATE 2 -->
-        <div x-data="{showCertificate: false}">
-          <div id="certificate" class="text-center w-72">
-            <div
-              class="group w-72 h-44 overflow-hidden m-auto mb-2.5 rounded-lg relative"
-            >
-              <img
-                class="object-cover mb-2 group-hover:scale-110 duration-300 group-hover:brightness-50"
-                src="dist/image/sertifikat-2.jpg"
-                alt=""
-              />
-              <button
-                @click="showCertificate = true"
-                class="text-white opacity-0 group-hover:opacity-100 duration-200 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 absolute border-b-2 px-2 py-1 font-medium"
-              >
-                Detail
-              </button>
-            </div>
-            <h1
-              x-text="$store.language.isEnLanguage ? 'Bangkit Academy Training 2024 Batch 1' 
-        : 'Pelatihan Bangkit Academy 2024 Batch 1'"
-              class=""
-            ></h1>
-            <p
-              x-text="$store.language.isEnLanguage ? 'MSIB (Internship and Certified Independent Study) Program at Merdeka Campus.' 
-        : 'Program MSIB (Magang dan Studi Idependen Bersertifikar) Kampus Merdeka.'"
-              class="text-sm font-medium opacity-70"
-            ></p>
-          </div>
-          <div
-            @click="showCertificate = false"
-            @keyup.escape.window="showCertificate = false"
-            x-show="showCertificate"
-            class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 w-full h-screen flex justify-center items-center bg-black/70"
-            style="display: none"
-          >
-            <div
-              @click="showCertificate = false"
-              class="w-[90%] h-[90%] bg-contain bg-center bg-no-repeat"
-              style="background-image: url(dist/image/sertifikat-2.jpg)"
-            ></div>
-          </div>
-        </div>
-        <!-- CERTIFICATE 3 -->
-        <div x-data="{showCertificate: false}">
-          <div id="certificate" class="text-center w-72">
-            <div
-              class="group w-72 h-44 overflow-hidden m-auto mb-2.5 rounded-lg relative"
-            >
-              <img
-                class="object-cover mb-2 group-hover:scale-110 duration-300 group-hover:brightness-50"
-                src="dist/image/sertifikat-3.jpg"
-                alt=""
-              />
-              <button
-                @click="showCertificate = true"
-                class="text-white opacity-0 group-hover:opacity-100 duration-200 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 absolute border-b-2 px-2 py-1 font-medium"
-              >
-                Detail
-              </button>
-            </div>
-            <h1
-              x-text="$store.language.isEnLanguage ? 'IBAC 2024 Web Design Participant' 
-        : 'Peserta Lomba IBAC 2024 Bidang Web Design'"
-              class=""
-            ></h1>
-            <p
-              x-text="$store.language.isEnLanguage ? 'IBAC is an international competition at Polytechnics which is held every year.' 
-        : 'IBAC adalah lomba internasional pada Politeknik yang diadakan setiap tahun.'"
-              class="text-sm font-medium opacity-70"
-            ></p>
-          </div>
-          <div
-            @click="showCertificate = false"
-            @keyup.escape.window="showCertificate = false"
-            x-show="showCertificate"
-            class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 w-full h-screen flex justify-center items-center bg-black/70"
-            style="display: none"
-          >
-            <div
-              @click="showCertificate = false"
-              class="w-[90%] h-[90%] bg-contain bg-center bg-no-repeat"
-              style="background-image: url(dist/image/sertifikat-3.jpg)"
-            ></div>
-          </div>
-        </div>
-      </main>
-    </section>
-    <!-- END SECTION CERTIFICATE -->
-    <!-- SECTION PROJECT -->
-    <section class="pt-28 px-8 max-w-3xl m-auto">
-      <div id="project" class="absolute -mt-20"></div>
-      <div class="flex items-center flex-col gap-2">
-        <h1
-          id="titleSection"
-          x-text="$store.language.isEnLanguage ? 'Projects' : 'Projek'"
-          class="text-2xl font-bold"
-        ></h1>
-        <div id="lineSection" class="w-20 h-1 bg-primary"></div>
-      </div>
-      <main class="mt-10 flex justify-evenly flex-wrap gap-14">
-        <!-- PROJECT 1 -->
-        <div id="project" class="w-72">
-          <div
-            class="group w-72 h-44 overflow-hidden m-auto mb-2.5 rounded-lg relative"
-          >
-            <img
-              class="h-full object-cover group-hover:scale-110 duration-300 group-hover:brightness-50"
-              src="dist/image/project-1.jpg"
-              alt=""
-            />
-            <a
-              target="_blank"
-              href="https://github.com/ArryPutra/tewiter"
-              class="text-white opacity-0 group-hover:opacity-100 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 absolute border-b-2 px-2 py-1 font-medium duration-150"
-              >Explore 🚀</a
-            >
-          </div>
-          <a
-            href="https://github.com/ArryPutra/tewiter"
-            target="_blank"
-            class="flex justify-between"
-          >
-            <h1 class="text-xl">Tewiter</h1>
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M11.25 5H4.375C3.87772 5 3.40081 5.19754 3.04917 5.54917C2.69754 5.90081 2.5 6.37772 2.5 6.875V15.625C2.5 16.1223 2.69754 16.5992 3.04917 16.9508C3.40081 17.3025 3.87772 17.5 4.375 17.5H13.125C13.6223 17.5 14.0992 17.3025 14.4508 16.9508C14.8025 16.5992 15 16.1223 15 15.625V8.75M6.25 13.75L17.5 2.5M17.5 2.5H13.125M17.5 2.5V6.875"
-                stroke="currentcolor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-          </a>
-          <p
-            x-text="$store.language.isEnLanguage ? 
-      'A simple twitter cloning website, creation using the Laravel framework. This website was created by myself.' 
-      : 'Sebuah website cloning twitter sederhana, pembuatan menggunakan framework Laravel. Website ini dibuat oleh diri saya sendiri.'"
-            class="text-sm font-medium opacity-70 mt-1.5 mb-5"
-          ></p>
-          <span
-            class="text-sm font-medium border border-slate-200 dark:border-slate-800 p-2 rounded-md hover:bg-gray-50 dark:hover:bg-slate-900"
-            >TailwindCSS</span
-          >
-          <span
-            class="text-sm font-medium border border-slate-200 dark:border-slate-800 p-2 rounded-md ml-2 hover:bg-gray-50 dark:hover:bg-slate-900"
-            >Laravel</span
-          >
-        </div>
-        <!-- PROJECT 2 -->
-        <div id="project" class="w-72">
-          <div
-            class="group w-72 h-44 overflow-hidden m-auto mb-2.5 rounded-lg relative"
-          >
-            <img
-              class="h-full object-cover group-hover:scale-110 duration-300 group-hover:brightness-50"
-              src="dist/image/project-2.jpg"
-              alt=""
-            />
-            <a
-              target="_blank"
-              href="https://qr-code-generator-and-qr-code-scanner.en.uptodown.com/android"
-              class="text-white opacity-0 group-hover:opacity-100 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 absolute border-b-2 px-2 py-1 font-medium duration-150"
-              >Explore 🚀</a
-            >
-          </div>
-          <a
-            href="https://qr-code-generator-and-qr-code-scanner.en.uptodown.com/android"
-            target="_blank"
-            class="flex justify-between"
-          >
-            <h1 class="text-xl">QR Code Scanner & Generate</h1>
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M11.25 5H4.375C3.87772 5 3.40081 5.19754 3.04917 5.54917C2.69754 5.90081 2.5 6.37772 2.5 6.875V15.625C2.5 16.1223 2.69754 16.5992 3.04917 16.9508C3.40081 17.3025 3.87772 17.5 4.375 17.5H13.125C13.6223 17.5 14.0992 17.3025 14.4508 16.9508C14.8025 16.5992 15 16.1223 15 15.625V8.75M6.25 13.75L17.5 2.5M17.5 2.5H13.125M17.5 2.5V6.875"
-                stroke="currentcolor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-          </a>
-          <p
-            x-text="$store.language.isEnLanguage ? 
-      'The app allows you to scan QR codes and create beautiful custom QR codes. The manufacturing process takes about 2 months.' 
-      : 'Aplikasi ini memungkinkan Anda untuk memindai QR code dan membuat QR code kustom yang cantik. Proses pembuatannya memakan waktu sekitar 2 bulan.'"
-            class="text-sm font-medium opacity-70 mt-1.5 mb-5"
-          ></p>
-          <span
-            class="text-sm font-medium border border-slate-200 dark:border-slate-800 p-2 rounded-md hover:bg-gray-50 dark:hover:bg-slate-900"
-            >Flutter</span
-          >
-          <span
-            class="text-sm font-medium border border-slate-200 dark:border-slate-800 p-2 rounded-md ml-2 hover:bg-gray-50 dark:hover:bg-slate-900"
-            >Dart</span
-          >
-        </div>
-        <!-- PROJECT 3 -->
-        <div id="project" class="w-72">
-          <div
-            class="group w-72 h-44 overflow-hidden m-auto mb-2.5 rounded-lg relative"
-          >
-            <img
-              class="h-full object-cover group-hover:scale-110 duration-300 group-hover:brightness-50"
-              src="dist/image/project-3.jpg"
-              alt=""
-            />
-            <a
-              target="_blank"
-              href="https://play.google.com/store/apps/details?id=com.arryputra.catatankeuangan"
-              class="text-white opacity-0 group-hover:opacity-100 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 absolute border-b-2 px-2 py-1 font-medium duration-150"
-              >Explore 🚀</a
-            >
-          </div>
-          <a
-            href="https://play.google.com/store/apps/details?id=com.arryputra.catatankeuangan"
-            target="_blank"
-            class="flex justify-between"
-          >
-            <h1 class="text-xl">Catatan Keuangan</h1>
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M11.25 5H4.375C3.87772 5 3.40081 5.19754 3.04917 5.54917C2.69754 5.90081 2.5 6.37772 2.5 6.875V15.625C2.5 16.1223 2.69754 16.5992 3.04917 16.9508C3.40081 17.3025 3.87772 17.5 4.375 17.5H13.125C13.6223 17.5 14.0992 17.3025 14.4508 16.9508C14.8025 16.5992 15 16.1223 15 15.625V8.75M6.25 13.75L17.5 2.5M17.5 2.5H13.125M17.5 2.5V6.875"
-                stroke="currentcolor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-          </a>
-          <p
-            x-text="$store.language.isEnLanguage ? 
-      'An application that can record finances digitally, track income and expenses.' 
-      : 'Aplikasi yang dapat mencatat keuangan secara digital, melacak pendapatan dan pengeluaran.'"
-            class="text-sm font-medium opacity-70 mt-1.5 mb-5"
-          ></p>
-          <span
-            class="text-sm font-medium border border-slate-200 dark:border-slate-800 p-2 rounded-md hover:bg-gray-50 dark:hover:bg-slate-900"
-            >Flutter</span
-          >
-          <span
-            class="text-sm font-medium border border-slate-200 dark:border-slate-800 p-2 rounded-md ml-2 hover:bg-gray-50 dark:hover:bg-slate-900"
-            >Dart</span
-          >
-        </div>
-        <!-- PROJECT 4 -->
-        <div id="project" class="w-72">
-          <div
-            class="group w-72 h-44 overflow-hidden m-auto mb-2.5 rounded-lg relative"
-          >
-            <img
-              class="h-full object-cover group-hover:scale-110 duration-300 group-hover:brightness-50"
-              src="dist/image/project-4.jpg"
-              alt=""
-            />
-            <a
-              target="_blank"
-              href="https://github.com/ArryPutra/website-kasir-mozee"
-              class="text-white opacity-0 group-hover:opacity-100 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 absolute border-b-2 px-2 py-1 font-medium duration-150"
-              >Explore 🚀</a
-            >
-          </div>
-          <a
-            href="https://github.com/ArryPutra/website-kasir-mozee"
-            target="_blank"
-            class="flex justify-between"
-          >
-            <h1 class="text-xl">Kasir Mozee</h1>
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M11.25 5H4.375C3.87772 5 3.40081 5.19754 3.04917 5.54917C2.69754 5.90081 2.5 6.37772 2.5 6.875V15.625C2.5 16.1223 2.69754 16.5992 3.04917 16.9508C3.40081 17.3025 3.87772 17.5 4.375 17.5H13.125C13.6223 17.5 14.0992 17.3025 14.4508 16.9508C14.8025 16.5992 15 16.1223 15 15.625V8.75M6.25 13.75L17.5 2.5M17.5 2.5H13.125M17.5 2.5V6.875"
-                stroke="currentcolor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-          </a>
-          <p
-            x-text="$store.language.isEnLanguage ? 
-      'PBL college assignments creates an MSME website with a cashier case study. There are two types of users, admin and employees.' 
-      : 'Tugas kuliah PBL membuat website UMKM dengan studi kasus kasir. Terdapat dua jenis pengguna, yaitu admin dan karyawan.'"
-            class="text-sm font-medium opacity-70 mt-1.5 mb-5"
-          ></p>
-          <span
-            class="text-sm font-medium border border-slate-200 dark:border-slate-800 p-2 rounded-md hover:bg-gray-50 dark:hover:bg-slate-900"
-            >Javascript</span
-          >
-          <span
-            class="text-sm font-medium border border-slate-200 dark:border-slate-800 p-2 rounded-md ml-2 hover:bg-gray-50 dark:hover:bg-slate-900"
-            >PHP</span
-          >
-        </div>
-        <!-- PROJECT 5 -->
-        <div id="project" class="w-72">
-          <div
-            class="group w-72 h-44 overflow-hidden m-auto mb-2.5 rounded-lg relative"
-          >
-            <img
-              class="h-full object-cover group-hover:scale-110 duration-300 group-hover:brightness-50"
-              src="dist/image/project-5.jpg"
-              alt=""
-            />
-            <a
-              target="_blank"
-              href="https://indeks-kami-vercel.vercel.app"
-              class="text-white opacity-0 group-hover:opacity-100 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 absolute border-b-2 px-2 py-1 font-medium duration-150"
-              >Explore 🚀</a
-            >
-          </div>
-          <a
-            href="https://indeks-kami-vercel.vercel.app"
-            target="_blank"
-            class="flex justify-between"
-          >
-            <h1 class="text-xl">Website Indeks KAMI</h1>
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M11.25 5H4.375C3.87772 5 3.40081 5.19754 3.04917 5.54917C2.69754 5.90081 2.5 6.37772 2.5 6.875V15.625C2.5 16.1223 2.69754 16.5992 3.04917 16.9508C3.40081 17.3025 3.87772 17.5 4.375 17.5H13.125C13.6223 17.5 14.0992 17.3025 14.4508 16.9508C14.8025 16.5992 15 16.1223 15 15.625V8.75M6.25 13.75L17.5 2.5M17.5 2.5H13.125M17.5 2.5V6.875"
-                stroke="currentcolor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-          </a>
-          <p
-            x-text="$store.language.isEnLanguage ? 
-      'Information security evaluation and monitoring system website for SKPD and OPD in South Kalimantan Province.' 
-      : 'Website sistem evaluasi dan monitoring keamanan informasi untuk SKPD dan OPD di Provinsi Kalimantan Selatan.'"
-            class="text-sm font-medium opacity-70 mt-1.5 mb-5"
-          ></p>
-          <span
-            class="text-sm font-medium border border-slate-200 dark:border-slate-800 p-2 rounded-md hover:bg-gray-50 dark:hover:bg-slate-900"
-            >Tailwind CSS</span
-          >
-          <span
-            class="text-sm font-medium border border-slate-200 dark:border-slate-800 p-2 rounded-md ml-2 hover:bg-gray-50 dark:hover:bg-slate-900"
-            >Alpine JS</span
-          >
-          <span
-            class="text-sm font-medium border border-slate-200 dark:border-slate-800 p-2 rounded-md ml-2 hover:bg-gray-50 dark:hover:bg-slate-900"
-            >Laravel</span
-          >
-        </div>
-      </main>
-    </section>
-    <!-- END SECTION PROJECT -->
-    <!-- SECTION MOTIVATION -->
-    <section class="max-w-2xl m-auto pt-28 px-8">
-      <h1
-        id="motivation"
-        x-text="$store.language.isEnLanguage ? '&quot;Success is like building a solid building. Every brick that is carefully and meticulously laid is an important part of the process to glory 🚀. &quot;' : '&quot;Kesuksesan adalah seperti membangun sebuah bangunan yang kokoh. Setiap batu bata yang diletakkan dengan hati-hati dan teliti adalah bagian penting dari proses menuju kejayaan 🚀. &quot;'"
-        class="text-center font-medium"
-      ></h1>
-    </section>
-    <!-- END SECTION MOTIVATION -->
-    <!-- SECTION CONTACT -->
-    <svg
-      id="contact"
-      class="-z-20 w-full text-center text-gray-50 dark:text-slate-900"
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 1440 320"
-    >
-      <path
-        fill="#5700FF"
-        fill-opacity="1"
-        d="M0,288L48,272C96,256,192,224,288,197.3C384,171,480,149,576,165.3C672,181,768,235,864,250.7C960,267,1056,245,1152,250.7C1248,256,1344,288,1392,304L1440,320L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-      ></path>
-    </svg>
-    <div class="w-full bg-gradient-to-b from-primary to-[#5200FF]">
-      <h1
-        class="text-2xl text-white text-center lg:text-start max-w-4xl m-auto"
-      >
-        Let's Get in Touch 👋
-      </h1>
-      <section
-        class="max-w-4xl m-auto pb-12 flex flex-col lg:flex-row-reverse lg:justify-between"
-      >
-        <form
-          action="https://formsubmit.co/bcaada81c10df6e89b6a81e2af00286f"
-          method="POST"
-          class="flex justify-center mt-8 flex-col m-auto lg:m-0 gap-4 w-3/4 lg:w-1/2"
-        >
-          <input
-            name="name"
-            class="bg-darkPrimary outline-none rounded-md p-2 placeholder:text-sm text-white"
-            placeholder="Name"
-            type="text"
-          />
-          <input
-            name="email"
-            class="bg-darkPrimary outline-none rounded-md p-2 placeholder:text-sm text-white"
-            placeholder="Email"
-            type="email"
-          />
-          <textarea
-            name="desc"
-            class="p-2 rounded-md outline-none bg-darkPrimary resize-none placeholder:text-sm text-white"
-            placeholder="Type Here ..."
-            rows="6"
-          ></textarea>
-          <button
-            class="text-white flex justify-center items-center gap-2 bg-gradient-to-r from-secondary to-tertiary p-2 rounded-xl text-sm"
-            type="submit"
-          >
-            Send
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 18 18"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M4.5 8.99998L2.45175 2.34448C7.35136 3.76924 11.9717 6.02008 16.1138 8.99998C11.9721 11.9803 7.35193 14.2317 2.4525 15.657L4.5 8.99998ZM4.5 8.99998H10.125"
-                stroke="white"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-          </button>
-        </form>
-        <div class="flex items-center flex-col gap-8 lg:items-end mt-8 lg:mt-0">
-          <img
-            class="w-48 hidden lg:block"
-            src="dist/image/Saly-10.png"
-            alt=""
-          />
-          <div
-            class="flex flex-wrap justify-center gap-6 lg:flex-col px-8 lg:px-0"
-          >
-            <a
-              href="https://www.youtube.com/@CodeArry"
-              target="_blank"
-              class="flex items-center gap-2 fill-white text-white font-medium"
-            >
-              <svg
-                class="hover:-mt-2 duration-150"
-                width="24"
-                viewBox="0 0 20 14"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g clip-path="url(#clip0_107_2)">
-                  <path
-                    d="M19.593 2.20301C19.4791 1.78041 19.2565 1.39501 18.9473 1.08518C18.6382 0.775338 18.2533 0.551868 17.831 0.437007C16.265 0.00700739 9.99996 7.59651e-06 9.99996 7.59651e-06C9.99996 7.59651e-06 3.73596 -0.00699261 2.16896 0.404007C1.74689 0.524154 1.36279 0.750785 1.05353 1.06214C0.744273 1.3735 0.520249 1.75913 0.402964 2.18201C-0.0100364 3.74801 -0.0140366 6.99601 -0.0140366 6.99601C-0.0140366 6.99601 -0.0180366 10.26 0.391963 11.81C0.621963 12.667 1.29696 13.344 2.15496 13.575C3.73696 14.005 9.98496 14.012 9.98496 14.012C9.98496 14.012 16.25 14.019 17.816 13.609C18.2385 13.4943 18.6237 13.2714 18.9336 12.9622C19.2435 12.653 19.4673 12.2682 19.583 11.846C19.997 10.281 20 7.03401 20 7.03401C20 7.03401 20.02 3.76901 19.593 2.20301ZM7.99596 10.005L8.00096 4.00501L13.208 7.01001L7.99596 10.005Z"
-                    fill="white"
-                  />
-                </g>
-                <defs>
-                  <clipPath id="clip0_107_2">
-                    <rect width="20" height="14" fill="white" />
-                  </clipPath>
-                </defs>
-              </svg>
-              <h1>CodeArry</h1>
-            </a>
-            <a
-              href="https://instagram.com/rryputra?igshid=NTc4MTIwNjQ2YQ=="
-              target="_blank"
-              class="flex items-center gap-2 text-white font-medium"
-            >
-              <svg
-                class="hover:-mt-2 duration-150"
-                width="24"
-                height="24"
-                viewBox="0 0 23 23"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g clip-path="url(#clip0_3_28)">
-                  <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
-                    d="M6.7501 0.141139C4.87804 0.225606 3.25543 0.683303 1.94522 1.98799C0.630424 3.29953 0.178413 4.92856 0.0937346 6.78115C0.0410968 7.93746 -0.266701 16.673 0.625848 18.964C1.22775 20.5095 2.41321 21.6978 3.97288 22.3017C4.70065 22.5847 5.53143 22.7764 6.7501 22.8323C16.94 23.2934 20.7173 23.0424 22.3102 18.964C22.5928 18.238 22.7874 17.4079 22.8412 16.1923C23.3069 5.97621 22.7656 3.76182 20.9897 1.98799C19.5811 0.58285 17.9241 -0.373659 6.7501 0.141139ZM6.84391 20.7777C5.72823 20.7275 5.1229 20.5416 4.71897 20.3852C3.70283 19.9902 2.93959 19.2301 2.5471 18.2199C1.86739 16.4792 2.09283 8.2116 2.15347 6.8738C2.21298 5.5634 2.47845 4.36579 3.40304 3.44121C4.54733 2.29974 6.02574 1.74032 16.0921 2.19463C17.4057 2.25398 18.6061 2.51891 19.533 3.44121C20.6773 4.58267 21.2449 6.07246 20.7826 16.1002C20.7322 17.2131 20.5457 17.817 20.3889 18.2199C19.3534 20.8738 16.9709 21.2423 6.84391 20.7777ZM16.2031 5.39307C16.2031 6.14872 16.8176 6.76318 17.5763 6.76318C18.3349 6.76318 18.9506 6.14872 18.9506 5.39307C18.9506 4.63743 18.3349 4.02351 17.5763 4.02351C16.8176 4.02351 16.2031 4.63743 16.2031 5.39307ZM5.59207 11.4862C5.59207 14.7233 8.22281 17.3479 11.468 17.3479C14.7132 17.3479 17.344 14.7233 17.344 11.4862C17.344 8.24898 14.7132 5.6261 11.468 5.6261C8.22281 5.6261 5.59207 8.24898 5.59207 11.4862ZM7.65409 11.4862C7.65409 9.38588 9.36138 7.68184 11.468 7.68184C13.5747 7.68184 15.282 9.38588 15.282 11.4862C15.282 13.5876 13.5747 15.2922 11.468 15.2922C9.36138 15.2922 7.65409 13.5876 7.65409 11.4862Z"
-                    fill="currentcolor"
-                  />
-                </g>
-                <defs>
-                  <clipPath id="clip0_3_28">
-                    <rect width="30" height="30" fill="white" />
-                  </clipPath>
-                </defs>
-              </svg>
-              <h1>@rryputra</h1>
-            </a>
-            <a
-              href="https://api.whatsapp.com/send/?phone=6281350445065&text&type=phone_number&app_absent=0"
-              target="_blank"
-              class="flex items-center gap-2 text-white font-medium"
-            >
-              <svg
-                class="hover:-mt-2 duration-150"
-                width="24"
-                height="24"
-                viewBox="0 0 22 21"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                  d="M3.3542 10.5C3.3542 6.00118 7.00121 2.35417 11.5 2.35417C15.9988 2.35417 19.6458 6.00118 19.6458 10.5C19.6458 14.9988 15.9988 18.6458 11.5 18.6458C9.89749 18.6458 8.40581 18.1841 7.14724 17.3867C6.91302 17.2383 6.626 17.1987 6.36032 17.2779L3.60113 18.1014L4.64 15.6705C4.76279 15.3832 4.73781 15.0541 4.57305 14.7886C3.80047 13.5437 3.3542 12.0754 3.3542 10.5ZM11.5 0.4375C5.94267 0.4375 1.43753 4.94263 1.43753 10.5C1.43753 12.2615 1.89096 13.9196 2.6878 15.3613L1.03546 19.2275C0.889391 19.5694 0.954138 19.9648 1.20159 20.2421C1.44904 20.5196 1.83457 20.6288 2.19075 20.5224L6.5027 19.2357C7.97569 20.08 9.68272 20.5625 11.5 20.5625C17.0574 20.5625 21.5625 16.0574 21.5625 10.5C21.5625 4.94263 17.0574 0.4375 11.5 0.4375ZM13.697 12.5915L12.4375 13.4786C11.8477 13.1426 11.1955 12.6736 10.5414 12.0194C9.86136 11.3394 9.3572 10.6373 8.98546 9.99333L9.78584 9.31397C10.1293 9.02244 10.2233 8.53094 10.0117 8.13318L8.9919 6.21652C8.85457 5.95843 8.60696 5.77714 8.31945 5.72418C8.03193 5.67124 7.73598 5.75242 7.51571 5.94465L7.21335 6.20854C6.48623 6.84313 6.0562 7.88595 6.41261 8.94184C6.78212 10.0365 7.57068 11.7592 9.18614 13.3747C10.9241 15.1127 12.6896 15.7972 13.722 16.063C14.5538 16.2771 15.341 15.9901 15.8957 15.5381L16.4626 15.0762C16.705 14.8787 16.8358 14.5752 16.813 14.2633C16.7901 13.9513 16.6165 13.6702 16.3477 13.51L14.7394 12.5517C14.4145 12.3582 14.0062 12.3737 13.697 12.5915Z"
-                  fill="currentcolor"
-                />
-              </svg>
-              <h1>+62 81350445065</h1>
-            </a>
-          </div>
-        </div>
-      </section>
-    </div>
-    <!-- END SECTION CONTACT -->
-    <script>
-      ScrollReveal({
-        reset: false,
-        distance: "40px",
-        duration: 1500,
-        delay: 300,
-      });
-      ScrollReveal().reveal("#titleSection", { origin: "left" });
-      ScrollReveal().reveal("#lineSection", { origin: "left" });
+  </div>
+  <!-- END SECTION CONTACT -->
+  <script>
+    ScrollReveal({
+      reset: false,
+      distance: "40px",
+      duration: 1500,
+      delay: 300,
+    });
+    ScrollReveal().reveal("#titleSection", { origin: "left" });
+    ScrollReveal().reveal("#lineSection", { origin: "left" });
 
-      // NAVIGATION
-      // ScrollReveal().reveal('#navigationMainIcon a', { delay: 0, interval: 250, reset: false });
+    // NAVIGATION
+    // ScrollReveal().reveal('#navigationMainIcon a', { delay: 0, interval: 250, reset: false });
 
-      // HOME
-      ScrollReveal().reveal("#homeAvatar", { origin: "bottom" });
-      ScrollReveal().reveal("#homeAvatarBg", { origin: "bottom" });
+    // HOME
+    ScrollReveal().reveal("#homeAvatar", { origin: "bottom" });
+    ScrollReveal().reveal("#homeAvatarBg", { origin: "bottom" });
 
-      ScrollReveal().reveal("#homeName");
-      ScrollReveal().reveal("#homeTitle");
-      ScrollReveal().reveal("#homeDownloadCv");
-      ScrollReveal().reveal("#homeMainSocialMedia a", { interval: 250 });
+    ScrollReveal().reveal("#homeName");
+    ScrollReveal().reveal("#homeTitle");
+    ScrollReveal().reveal("#homeDownloadCv");
+    ScrollReveal().reveal("#homeMainSocialMedia a", { interval: 250 });
 
-      // ABOUT
-      ScrollReveal().reveal("#aboutMyDesc");
-      ScrollReveal().reveal("#aboutIconAndTitle");
+    // ABOUT
+    ScrollReveal().reveal("#aboutMyDesc");
+    ScrollReveal().reveal("#aboutIconAndTitle");
 
-      // SKILLS
-      ScrollReveal().reveal("#skillsMainIcon span", { interval: 250 });
+    // SKILLS
+    ScrollReveal().reveal("#skillsMainIcon span", { interval: 250 });
 
-      // CERFICATE
-      ScrollReveal().reveal("#certificate", { interval: 800 });
+    // CERFICATE
+    ScrollReveal().reveal("#certificate", { interval: 800 });
 
-      // PROJECT
-      ScrollReveal().reveal("#project", { interval: 800 });
+    // PROJECT
+    ScrollReveal().reveal("#project", { interval: 800 });
 
-      // MOTIVATION
-      ScrollReveal().reveal("#motivation");
-    </script>
-  </body>
+    // MOTIVATION
+    ScrollReveal().reveal("#motivation");
+  </script>
+</body>
+
 </html>
